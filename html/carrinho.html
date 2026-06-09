@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Carrinho - DRIPT</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1 style="text-align:center; padding:20px;">Seu Carrinho</h1>
+    <div id="lista"></div>
+    <h2 id="total" style="text-align:center;"></h2>
+    <div style="text-align:center; margin:20px;">
+    <button onclick="finalizar()">Finalizar Compra</button>
+    </div>
+
+    <script>
+        let lista = document.getElementById("lista");
+        lista.innerHTML = localStorage.getItem("carrinho") || "";
+
+    document.getElementById("total").innerText =
+        "Total: R$ " + total.toFixed(2);
+    
+    function finalizar() {
+        alert("Compra finalizada!");
+        localStorage.removeItem("carrinho");
+        window.location.href = "index.html";
+    }
+    </script>
+
+</body>
+</html>

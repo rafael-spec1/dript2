@@ -1,0 +1,80 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:black;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+}
+
+.fundo-dript{
+    position:absolute;
+    font-size:12rem;
+    font-weight:900;
+    color:rgba(255,255,255,0.05);
+    letter-spacing:15px;
+}
+
+.container-cadastro{
+    z-index:2;
+    width:400px;
+    display:flex;
+    flex-direction:column;
+    gap:20px;
+    text-align:center;
+}
+
+.container-cadastro h1{
+    color:white;
+    letter-spacing:5px;
+}
+
+.slogan{
+    color:#888;
+    margin-bottom:10px;
+}
+
+.container-cadastro input{
+    padding:15px;
+    background:transparent;
+    border:1px solid white;
+    color:white;
+    outline:none;
+}
+
+.container-cadastro button{
+    padding:15px;
+    border:none;
+    background:#ff3c00;
+    color:white;
+    font-weight:bold;
+    letter-spacing:3px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.container-cadastro button:hover{
+    transform:translateY(-3px);
+}
+
+.login-texto{
+    color:#888;
+}
+
+.login-link{
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+    letter-spacing:3px;
+}
+
+.login-link:hover{
+    color:#ff3c00;
+}

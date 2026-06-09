@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Pagamento - DRIPT</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1 style="text-align:center; padding:20px;">Finalizar Compra</h1>
+
+    <div class="checkout">
+
+    <h3>Escolha o método de pagamento:</h3>
+
+    <select id="metodo" onchange="mostrarCampos()">
+        <option value="">Selecione</option>
+        <option value="cartao">Cartão de Crédito</option>
+        <option value="pix">Pix</option>
+        <option value="boleto">Boleto</option>
+    </select>
+
+    <div id="camposCartao" style="display:none; margin-top:20px;">
+        <input type="text" placeholder="Número do cartão"><br><br>
+        <input type="text" placeholder="Nome no cartão"><br><br>
+        <input type="text" placeholder="Validade"><br><br>
+        <input type="text" placeholder="CVV"><br><br>
+    </div>
+
+    <button onclick="confirmarPagamento()">Confirmar Pagamento</button>
+
+    </div>
+
+    <script>
+    function mostrarCampos() {
+        let metodo = document.getElementById("metodo").value;
+        let campos = document.getElementById("camposCartao");
+
+        if (metodo === "cartao") {
+        campos.style.display = "block";
+        } else {
+        campos.style.display = "none";
+        }
+    }
+
+    function confirmarPagamento() {
+        alert("Pagamento realizado com sucesso!");
+        localStorage.removeItem("carrinho");
+        window.location.href = "index.html";
+    }
+    </script>
+
+</body>
+</html>
