@@ -8,8 +8,8 @@
 body {
     background: #000;
     color: #fff;
+    padding-top: 80px;
 }
-
 
 .header {
     display: flex;
@@ -26,11 +26,11 @@ body {
 }
 
 .logo {
-    letter-spacing: 3px;
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 4px;
     color: white;
     text-decoration: none;
-    font-size: 28px;
-    font-weight: bold;
 }
 
 .logo:hover {
@@ -167,7 +167,19 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 15px 40px;
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 1400px;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    border: 1px solid #222;
+    border-radius: 20px;
+    z-index: 1000;
 }
+
 
 .menu {
     list-style: none;
@@ -508,13 +520,13 @@ button:hover {
     text-align: center;
 }
 
-/*opcoes de tamanhos*/
+/*OPÇÕES DE TAMANHO*/
 .opcoes-tamanho {
     display: flex;
     gap: 15px;
 }
 
-/*funcoes do carrinho*/
+/*DESIGN DO CARRINHO*/
 .carrinho-lateral {
     position: fixed;
     top: 0;
