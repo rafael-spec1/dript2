@@ -33,7 +33,7 @@ body {
     font-weight: bold;
 }
 
-.logo:hover{
+.logo:hover {
     color: red;
     transition: 0.3s;
 }
@@ -129,7 +129,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.85);
+    background: rgba(0, 0, 0, 0.85);
     justify-content: center;
     align-items: center;
 }
@@ -175,13 +175,13 @@ body {
     gap: 25px;
 }
 
-.menu a{
+.menu a {
     color: white;
     text-decoration: none;
     transition: 0.3s;
 }
 
-.menu a:hover{
+.menu a:hover {
     color: red;
     text-shadow: 0 0 10px red;
 }
@@ -289,7 +289,7 @@ body {
     display: flex;
     justify-content: space-between;
     margin-top: 60px;
-} 
+}
 
 .footer h2,
 .footer h3 {
@@ -308,42 +308,42 @@ body {
 
 @media (max-width: 768px) {
     nav {
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
     }
 
     .menu {
-    flex-direction: column;
-    align-items: center;
+        flex-direction: column;
+        align-items: center;
     }
 
 
     .hero {
-    flex-direction: column;
-    text-align: center;
-    padding: 40px 20px;
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
     }
 
     .hero-text h1 {
-    font-size: 40px;
+        font-size: 40px;
     }
 
     .hero-image {
-    width: 100%;
-    height: 300px;
+        width: 100%;
+        height: 300px;
     }
 
 
     .produtos {
-    grid-template-columns: 1fr;
+        grid-template-columns: 1fr;
     }
 
 
     .footer {
-    flex-direction: column;
-    gap: 30px;
-    text-align: center;
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
     }
 
 }
@@ -390,9 +390,10 @@ button:hover {
 
 .produto-imagem {
     flex: 1;
+
     .produto-info {
-    width: 500px;
-}
+        width: 500px;
+    }
 }
 
 .produto-imagem img {
@@ -499,7 +500,7 @@ button:hover {
     transform: scale(1.1);
     background-color: white;
     color: red;
-}  
+}
 
 #qtd {
     font-size: 22px;
@@ -588,6 +589,7 @@ button:hover {
     margin-bottom: 20px;
 }
 
+
 .rodape-carrinho button {
     width: 100%;
     padding: 15px;
@@ -600,11 +602,13 @@ button:hover {
     transition: 0.3s;
 }
 
+/*RODAPÉ DO CARRINHO*/
 .rodape-carrinho button:hover {
     background: white;
     color: red;
 }
 
+/*BOTÃO DE REMOVER ITEM DO CARRINHO*/
 .btn-remover {
     background: transparent;
     border: none;
@@ -614,10 +618,12 @@ button:hover {
     transition: 0.3s;
 }
 
+/*DESIGN DE REMOVER ITEM DO CARRINHO*/
 .btn-remover:hover {
     transform: scale(1.2);
 }
 
+/*BOTÃO DE LIMPAR TUDO NO CARRINHO*/
 .btn-limpar {
     width: 100%;
     margin-top: 10px;
@@ -627,31 +633,32 @@ button:hover {
     cursor: pointer;
 }
 
-.sobre{
+.sobre {
     max-width: 900px;
     margin: 50px auto;
     padding: 30px;
     color: white;
 }
 
-.sobre h1{
+.sobre h1 {
     text-align: center;
     color: red;
     font-size: 3rem;
     margin-bottom: 30px;
 }
 
-.sobre h2{
+.sobre h2 {
     margin-top: 25px;
     color: red;
 }
 
-.sobre p{
+.sobre p {
     line-height: 1.8;
     color: #ddd;
 }
 
-.favorito{
+/*DESIGN DO BOTAO DE FAVORITAR*/
+.favorito {
     background: transparent;
     border: none;
     font-size: 11px;
@@ -661,6 +668,7 @@ button:hover {
     padding: 5px;
 }
 
-.favoritado{
+/*BOTÃO FAVORITAR CARD*/
+.favoritado {
     transform: scale(1.2);
 }
