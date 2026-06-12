@@ -73,17 +73,25 @@ body {
 /*CARD DOD PRODUTO*/
 .produtos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
     padding: 40px;
 }
 
-/*TEXTO DO PRODUTO*/
 .produto {
     background: #111;
-    padding: 20px;
-    border-radius: 10px;
+    padding: 30px;
+    border-radius: 15px;
     text-align: center;
+    border: 1px solid #222;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.15);
+    transition: 0.3s;
+}
+
+.produto:hover {
+    transform: translateY(-8px);
+    border-color: red;
+    box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
 }
 
 /*BOTÃO DO PRODUTO*/
@@ -99,12 +107,14 @@ body {
 /*CARD DO PRODUTO*/
 .card {
     background: #111;
-    padding: 20px;
     border-radius: 15px;
     text-align: center;
     border: 1px solid #222;
     box-shadow: 0 0 15px rgba(255, 0, 0, 0.15);
     transition: all 0.3s ease;
+    width: 280px;
+    min-height: 350px;
+    padding: 30px;
 }
 
 /*CUSOR*/
@@ -394,6 +404,9 @@ body {
 
 .produto img {
     width: 100%;
+    height: 250px;
+    object-fit: contain;
+    border-radius: 10px;
     transition: 0.3s;
 }
 
@@ -709,4 +722,27 @@ button:hover {
 /*BOTÃO FAVORITAR CARD*/
 .favoritado {
     transform: scale(1.2);
+}
+
+.filtros {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 30px 0;
+    flex-wrap: wrap;
+}
+
+.filtros button {
+    background: #111;
+    color: white;
+    border: 1px solid red;
+    padding: 10px 20px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.filtros button:hover {
+    background: red;
+    transform: translateY(-2px);
 }
