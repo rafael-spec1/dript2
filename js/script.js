@@ -158,19 +158,15 @@ function favoritar(botao) {
         if (favoritos === null) {
                 favoritos = 0;
         }
+        favoritos = Number(favoritos);
         if (botao.classList.contains("favoritado")) {
                 favoritos++;
         } else {
                 favoritos--;
         }
         localStorage.setItem("favoritos", favoritos);
+        document.getElementById("contador-favoritos").textContent = favoritos;
 }
-
-let contador = localStorage.getItem("favoritos");
-if (contador === null) {
-        contador = 0;
-}
-document.getElementById("contador-favoritos").textContent = contador;
 
 function filtrarProdutos(categoria) {
         let produtos = document.querySelectorAll(".produto");
