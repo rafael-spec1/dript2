@@ -154,7 +154,24 @@ window.onload = function () {
 
 function favoritar(botao) {
         botao.classList.toggle("favoritado");
+        let favoritos = localStorage.getItem("favoritos");
+        if (favoritos === null) {
+                favoritos = 0;
+        }
+        if (botao.classList.contains("favoritado")) {
+                favoritos++;
+        } else {
+                favoritos--;
+        }
+        localStorage.setItem("favoritos", favoritos);
 }
+
+let contador = localStorage.getItem("favoritos");
+if (contador === null) {
+        contador = 0;
+}
+document.getElementById("contador-favoritos").textContent = contador;
+
 function filtrarProdutos(categoria) {
         let produtos = document.querySelectorAll(".produto");
         produtos.forEach(produto => {

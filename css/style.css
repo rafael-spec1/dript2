@@ -86,22 +86,59 @@ body {
     border: 1px solid #222;
     box-shadow: 0 0 15px rgba(255, 0, 0, 0.15);
     transition: 0.3s;
+    position: relative;
 }
 
-.produto:hover {
-    transform: translateY(-8px);
-    border-color: red;
-    box-shadow: 0 0 25px rgba(255, 0, 0, 0.4);
-}
 
-/*BOTÃO DO PRODUTO*/
 .produto button {
-    background: red;
+    background: #000;
     color: white;
-    border: none;
-    padding: 10px;
+    border: 2px solid red;
+    padding: 12px 25px;
     margin-top: 10px;
     cursor: pointer;
+    border-radius: 8px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.produto button:hover {
+    background: red;
+    color: black;
+    box-shadow: 0 0 20px red;
+    transform: scale(1.05);
+}
+
+.produto p {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+}
+
+.produto:hover img {
+    transform: scale(1.08);
+}
+
+.produto img {
+    transition: 0.4s;
+}
+
+.tag-produto {
+    background: red;
+    color: white;
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 5px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    box-shadow: 0 0 10px red;
 }
 
 /*CARD DO PRODUTO*/

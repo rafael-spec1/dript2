@@ -14,31 +14,36 @@
 
 <nav class="navbar">
     <div id="search-box" class="search-box">
-    <input
-    type="text"
-    placeholder="Pesquisar produtos..."
-    onkeyup="pesquisarProduto()"
-    id="pesquisa"
-/>
-</div>
+        <input
+            type="text"
+            placeholder="Pesquisar produtos..."
+            onkeyup="pesquisarProduto()"
+            id="pesquisa"
+        />
+    </div>
     <a href="index.html" class="logo">DRIPT</a>
     <ul class="menu">
-    <li><a href="index.html">INÍCIO</a></li>
-    <li><a href="#">COLEÇÕES</a></li>
-    <li><a href="#">CAMISETAS</a></li>
-    <li><a href="#">MOLETONS</a></li>
-    <li><a href="#">ACESSÓRIOS</a></li>
-    <li><a href="sobre.html">SOBRE</a></li>
+        <li><a href="index.html">INÍCIO</a></li>
+        <li><a href="#">COLEÇÕES</a></li>
+        <li><a href="#">CAMISETAS</a></li>
+        <li><a href="#">MOLETONS</a></li>
+        <li><a href="#">ACESSÓRIOS</a></li>
+        <li><a href="sobre.html">SOBRE</a></li>
     </ul>
     <div class="icons">
-    <span onclick="abrirPesquisa()">🔍</span>
-    <span>👤</span>
-    <div class="icone-carrinho">
-    <span onclick="abrirCarrinho()">
-    🛒
-    </span>
-    <div class="contador-carrinho" id="contador">
-    0
+        <span onclick="abrirPesquisa()">🔍</span>
+        <span>👤</span>
+        <span>
+            ❤️ <span id="contador-favoritos">0</span>
+        </span>
+        <div class="icone-carrinho">
+            <span onclick="abrirCarrinho()">
+                🛒
+            </span>
+            <div class="contador-carrinho" id="contador">
+                0
+            </div>
+        </div>
     </div>
 </nav>
 
@@ -83,7 +88,10 @@
 
 
     <div class="produto" data-categoria="camiseta">
-    <img src="../img/camiseta-fashion-free.png" alt="Camiseta DRIPT">
+        <span class="tag-produto">
+    LIMITED
+</span>
+    <img src="../img/camiseta-fashion-free-black.png" alt="Camiseta DRIPT">
     <h3 class="nome-produto">
     Camiseta DRIPT
     </h3>
@@ -97,8 +105,11 @@
     </div>
 
     <div class="produto" data-categoria="moletom">
+        <span class="tag-produto">
+    LIMITED
+</span>
     <a href="produto.html"> 
-    <img src="" alt="Moletom DRIPT">
+    <img src="../img/moletom-rio-arabe-black.png" alt="Moletom DRIPT">
     </a>
     <h3 class="nome-produto">
     Moletom DRIPT
@@ -113,6 +124,9 @@
 </div>
 
     <div class="produto" data-categoria="calca">
+        <span class="tag-produto">
+    LIMITED
+</span>
     <img src="" alt="Calça DRIPT">
     <h3 class="nome-produto">
             Calça DRIPT
@@ -127,6 +141,9 @@
     </div>
 
     <div class="produto" data-categoria="Boné">
+        <span class="tag-produto">
+    LIMITED
+</span>
     <img src="" alt="Boné DRIPT">
     <h3 class="nome-produto">
             Boné DRIPT
