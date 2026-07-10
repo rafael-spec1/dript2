@@ -1,72 +1,134 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Produto DRIPT</title>
+    <title>Produto | DRIPT</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<script src="script.js"></script>
-
 <body>
 
-    <section class="pagina-produto">
+<nav class="navbar">
 
+    <a href="index.html" class="logo">DRIPT</a>
+    <ul class="menu">
+        <li><a href="index.html">INÍCIO</a></li>
+        <li><a href="#">COLEÇÕES</a></li>
+        <li><a href="#">CAMISETAS</a></li>
+        <li><a href="#">MOLETONS</a></li>
+        <li><a href="#">ACESSÓRIOS</a></li>
+    </ul>
+
+</nav>
+
+<section class="pagina-produto">
     <div class="produto-imagem">
-        <img src="" alt="Produto DRIPT">
+        <img src="../img/moletom-rio-arabe-black.png" alt="Moletom DRIPT">
     </div>
-
-    <section class="pagina-produto">
-
-    <div class="produto-imagem">
-
-    <img src="" alt="Produto DRIPT">
-
-    </div>
-
     <div class="produto-info">
-
-    <h1>Moletom DRIPT</h1>
-
-    <p class="preco">
-        R$ 179,90
-    </p>
-
-    <p class="descricao">
-        Moletom streetwear premium DRIPT.
-      Conforto, estilo e identidade urbana.
-    </p>
-
-    <div class="tamanhos">
-
-    <h3>Tamanho</h3>
-
+        <span class="tag">LIMITED</span>
+        <h1>Moletom DRIPT</h1>
+        <div class="avaliacao">
+            ⭐⭐⭐⭐⭐
+            <span>4.9 (218 avaliações)</span>
+        </div>
+        <p class="preco">
+            R$ 179,90
+        </p>
+        <p class="descricao">
+            Moletom oversized premium desenvolvido para quem busca conforto,
+            qualidade e estilo no streetwear.
+        </p>
+        <hr>
+        <h3>Tamanho</h3>
         <div class="opcoes-tamanho">
+            <button onclick="selecionarTamanho(this)">P</button>
+            <button onclick="selecionarTamanho(this)">M</button>
+            <button onclick="selecionarTamanho(this)">G</button>
+            <button onclick="selecionarTamanho(this)">GG</button>
+        </div>
+        <h3>Quantidade</h3>
+        <div class="quantidade">
+            <button onclick="diminuirQtd()">−</button>
+            <span id="qtd">1</span>
+            <button onclick="aumentarQtd()">+</button>
+        </div>
 
-        <button onclick="selecionarTamanho(this)">P</button>
+        <div class="acoes">
 
-        <button onclick="selecionarTamanho(this)">M</button>
+            <button class="btn-comprar">
 
-        <button onclick="selecionarTamanho(this)">G</button>
+                Comprar Agora
 
-        <button onclick="selecionarTamanho(this)">GG</button>
+            </button>
 
-    </div>
+            <button class="btn-carrinho">
 
-    </div>
+                Adicionar ao Carrinho
 
-    <div class="quantidade">
-        <button onclick="diminuirQtd()">-</button>
-        <span id="qtd">1</span>
-        <button onclick="aumentarQtd()">+</button>
+            </button>
 
-    </div>
+        </div>
 
-    <button>
-        Comprar Agora
-    </button>
+        <div class="beneficios">
+
+            <p>🚚 Frete para todo o Brasil</p>
+
+            <p>🔄 Troca em até 7 dias</p>
+
+            <p>💎 Qualidade Premium</p>
+
+            <p>✔ Produto Original DRIPT</p>
+
+        </div>
 
     </div>
 
 </section>
+
+<section class="relacionados">
+
+    <h2>Você também pode gostar</h2>
+
+    <div class="produtos">
+
+        <div class="produto">
+
+            <img src="../img/camiseta-fashion-free-black.png">
+
+            <h3>Camiseta DRIPT</h3>
+
+            <p>R$ 99,90</p>
+
+        </div>
+
+        <div class="produto">
+
+            <img src="../img/calca-streetwear.png">
+
+            <h3>Calça DRIPT</h3>
+
+            <p>R$ 199,90</p>
+
+        </div>
+
+        <div class="produto">
+
+            <img src="../img/bone-dript.png">
+
+            <h3>Boné DRIPT</h3>
+
+            <p>R$ 79,90</p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<script src="../js/script.js"></script>
+
+</body>
+
+</html>

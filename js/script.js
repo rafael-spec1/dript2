@@ -181,3 +181,34 @@ function filtrarProdutos(categoria) {
                 }
         });
 }
+
+const produtos = document.querySelectorAll(".produto");
+
+const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                        entry.target.classList.add("aparecer");
+                }
+        });
+});
+
+produtos.forEach(produto => {
+        observer.observe(produto);
+});
+
+document.querySelectorAll(".produto").forEach(card => {
+        card.addEventListener("mousemove", (e) => {
+                const rect = card.getBoundingClientRect();
+                card.style.setProperty("--x", `${e.clientX - rect.left}px`);
+                card.style.setProperty("--y", `${e.clientY - rect.top}px`);
+        });
+});
+
+window.addEventListener("load", () => {
+        setTimeout(() => {
+                document.getElementById("loader").style.opacity = "0";
+                setTimeout(() => {
+                        document.getElementById("loader").style.display = "none";
+                }, 1000);
+        }, 2000);
+});
