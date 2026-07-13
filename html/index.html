@@ -1,206 +1,416 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DRIPT</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
 
+    <!-- LOADER -->
+
     <div id="loader">
-    <h1>DRIPT</h1>
-    <p>ENTER THE DRIP</p>
-    <div class="loader-bar">
-        <div class="loader-fill"></div>
-    </div>
 
-</div>
-    
-<div class="top-bar">
-    <p>🚚   FRETE GRÁTIS ACIMA DE R$ 500,00</p>
-</div>
+        <h1>DRIPT</h1>
 
-<nav class="navbar">
-    <div id="search-box" class="search-box">
-        <input
-            type="text"
-            placeholder="Pesquisar produtos..."
-            onkeyup="pesquisarProduto()"
-            id="pesquisa"
-        />
-    </div>
-    <a href="index.html" class="logo">DRIPT</a>
-    <ul class="menu">
-        <li><a href="index.html">INÍCIO</a></li>
-        <li><a href="#">COLEÇÕES</a></li>
-        <li><a href="#">CAMISETAS</a></li>
-        <li><a href="#">MOLETONS</a></li>
-        <li><a href="#">ACESSÓRIOS</a></li>
-        <li><a href="sobre.html">SOBRE</a></li>
-    </ul>
-    <div class="icons">
-        <span onclick="abrirPesquisa()">🔍</span>
-        <span>👤</span>
-        <span>
-            ❤️ <span id="contador-favoritos">0</span>
-        </span>
-        <div class="icone-carrinho">
-            <span onclick="abrirCarrinho()">
-                🛒
-            </span>
-            <div class="contador-carrinho" id="contador">
-                0
-            </div>
+        <p>ENTER THE DRIP</p>
+
+        <div class="loader-bar">
+
+            <div class="loader-progress"></div>
+
         </div>
-    </div>
-</nav>
-
-<section class="hero">
-    <div class="hero-text">
-    <h2>NOVA COLEÇÃO</h2>
-    <h1>STREETWEAR<br>SEM REGRAS</h1>
-    <p>Estilo urbano DRIPT.</p>
-    <button onclick="abrirOverlay()">
-        EXPLORAR
-    </button>
-    </div>
-    <div class="hero-image">
-    <img src="" alt="">
-    </div>
-</section>
-
-</header>
-
-    <section class="hero">
-    <h2>Streetwear</h2>
-    <h1>Nova Coleção</h1>
-    <button onclick="abrirOverlay()">Ver Promoção</button>
-    </section>
-<div id="overlay" class="overlay">
-
-    <div class="overlay-content">
-
-    <span class="close" onclick="fecharOverlay()">×</span>
-
-    <h2>DRIPT - Nova Coleção</h2>
-    <p>Streetwear preto, vermelho e branco.</p>
-
-    <button onclick="fecharOverlay()">Explorar</button>
 
     </div>
 
-</div>
-    <section class="produtos">
-
-    <section class="produtos">
-
-
-    <div class="produto" data-categoria="camiseta">
-        <span class="tag-produto">
-    LIMITED
-</span>
-    <img src="../img/camiseta-fashion-free-black.png" alt="Camiseta DRIPT">
-    <h3 class="nome-produto">
-    Camiseta DRIPT
-    </h3>
-    <p>R$ 99,90</p>
-        <button onclick="adicionarCarrinho('Camiseta DRIPT', 99.90)">
-            Comprar
-        </button>
-        <button class="favorito" onclick="favoritar(this)">
-    ❤️
-        </button>
-    </div>
-
-    <div class="produto" data-categoria="moletom">
-        <span class="tag-produto">
-    LIMITED
-</span>
-    <a href="produto.html"> 
-    <img src="../img/moletom-rio-arabe-black.png" alt="Moletom DRIPT">
-    </a>
-    <h3 class="nome-produto">
-    Moletom DRIPT
-    </h3>
-    <p>R$ 179,90</p>
-        <button onclick="adicionarCarrinho('Moletom DRIPT', 179.90)">
-            Comprar
-        </button>
-        <button class="favorito" onclick="favoritar(this)">
-    ❤️
-        </button>
-</div>
-
-    <div class="produto" data-categoria="calca">
-        <span class="tag-produto">
-    LIMITED
-</span>
-    <img src="" alt="Calça DRIPT">
-    <h3 class="nome-produto">
-            Calça DRIPT
-    </h3>
-    <p>R$ 199,90</p>
-    <button onclick="adicionarCarrinho('Calça DRIPT', 159.90)">
-            Comprar
-        </button>
-        <button class="favorito" onclick="favoritar(this)">
-    ❤️
-        </button>
-    </div>
-
-    <div class="produto" data-categoria="Boné">
-        <span class="tag-produto">
-    LIMITED
-</span>
-    <img src="" alt="Boné DRIPT">
-    <h3 class="nome-produto">
-            Boné DRIPT
-    </h3>
-    <p>R$ 79,90</p>
-        <button onclick="adicionarCarrinho('Boné DRIPT', 79.90)">
-            Comprar
-        </button>
-        <button class="favorito" onclick="favoritar(this)">
-    ❤️
-</button>
-    </div>
-
-</section>
-
-    </section>
+    <!-- OVERLAY -->
 
     <div id="overlay" class="overlay">
-    <div class="overlay-box">
-        <span class="close" onclick="fecharOverlay()">X</span>
-        <h2>Promoção DRIPT</h2>
-        <p>Nova coleção disponível!</p>
+
+        <div class="overlay-box">
+
+            <span class="close" onclick="fecharOverlay()">✖</span>
+
+            <h2>Nova Coleção DRIPT</h2>
+
+            <p>Streetwear sem limites.</p>
+
+            <button onclick="fecharOverlay()">
+
+                Explorar
+
+            </button>
+
+        </div>
+
     </div>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+
+            DRIPT
+
+        </a>
+
+        <ul class="menu">
+
+            <li><a href="index.html">INÍCIO</a></li>
+
+            <li><a href="#">COLEÇÕES</a></li>
+
+            <li><a href="#">CAMISETAS</a></li>
+
+            <li><a href="#">MOLETONS</a></li>
+
+            <li><a href="#">ACESSÓRIOS</a></li>
+
+            <li><a href="sobre.html">SOBRE</a></li>
+
+        </ul>
+
+        <div class="icons">
+
+            <span onclick="abrirPesquisa()">
+
+                🔍
+
+            </span>
+
+            <span>
+
+                👤
+
+            </span>
+
+            <div class="icone-carrinho">
+
+                <span onclick="abrirCarrinho()">
+
+                    🛒
+
+                </span>
+
+                <div class="contador-carrinho" id="contador">
+
+                    0
+
+                </div>
+
+            </div>
+
+            <a href="favoritos.html" class="icone-favoritos">
+
+                ❤️
+
+                <span id="contador-favoritos">
+
+                    0
+
+                </span>
+
+            </a>
+
+        </div>
+
+    </nav>
+
+    <!-- PESQUISA -->
+
+    <div id="search-box" class="search-box">
+
+        <input
+            type="text"
+            id="pesquisa"
+            placeholder="Pesquisar produtos..."
+            onkeyup="pesquisarProduto()">
+
     </div>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+    <div class="hero-text">
+
+        <span class="limited">
+            NOVA COLEÇÃO
+        </span>
+
+        <h1>
+            DRIPT<br>
+            STREETWEAR
+        </h1>
+
+        <p>
+            Vista atitude. Vista identidade.
+            Peças exclusivas criadas para quem vive a cultura streetwear.
+        </p>
+
+        <button onclick="abrirOverlay()">
+            COMPRAR AGORA
+        </button>
+
+    </div>
+
+</section>
+
+    <!-- CATEGORIAS -->
+
+    <section class="categorias">
+
+        <button onclick="filtrarProdutos('todos')">
+
+            Todos
+
+        </button>
+
+        <button onclick="filtrarProdutos('camiseta')">
+
+            Camisetas
+
+        </button>
+
+        <button onclick="filtrarProdutos('moletom')">
+
+            Moletons
+
+        </button>
+
+        <button onclick="filtrarProdutos('calca')">
+
+            Calças
+
+        </button>
+
+        <button onclick="filtrarProdutos('acessorio')">
+
+            Acessórios
+
+        </button>
+
+    </section>
+
+    <!-- PRODUTOS -->
+
+    <section class="produtos">
+
+        <!-- CAMISETA -->
+
+<div class="produto" data-categoria="camiseta">
+
+    <span class="tag">LIMITED</span>
+
+    <img src="../img/camiseta-fashion-free-black.png" alt="Camiseta DRIPT">
+
+    <h3 class="nome-produto">Camiseta DRIPT</h3>
+
+    <p>R$ 99,90</p>
+
+    <div class="acoes-produto">
+
+        <a href="produto.html">
+
+            <button class="btn-comprar">
+                Comprar
+            </button>
+
+        </a>
+
+        <button class="btn-favorito"
+onclick="favoritarProduto(this,'Camiseta DRIPT',99.90,'../img/camiseta-fashion-free-black.png')">
+
+🤍
+
+</button>
+
+    </div>
+
+</div>
+
+
+<!-- MOLETOM -->
+
+<div class="produto" data-categoria="moletom">
+
+    <span class="tag">LIMITED</span>
+
+    <img src="../img/moletom-rio-arabe-black.png" alt="Moletom DRIPT">
+
+    <h3 class="nome-produto">Moletom DRIPT</h3>
+
+    <p>R$ 179,90</p>
+
+    <div class="acoes-produto">
+
+        <a href="produto.html">
+
+            <button class="btn-comprar">
+                Comprar
+            </button>
+
+        </a>
+
+            <button class="btn-favorito"
+onclick="favoritarProduto(this,'Moletom DRIPT',179.90,'../img/moletom-rio-arabe-black.png')">
+
+🤍
+
+</button>
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- CALÇA -->
+
+<div class="produto" data-categoria="calca">
+
+    <span class="tag">LIMITED</span>
+
+    <img src="../img/camiseta-fashion-free-black.png" alt="Calça DRIPT">
+
+    <h3 class="nome-produto">Calça DRIPT</h3>
+
+    <p>R$ 199,90</p>
+
+    <div class="acoes-produto">
+
+        <button class="btn-comprar">
+
+            Comprar
+
+        </button>
+
+        <button class="btn-favorito"
+            onclick="favoritarProduto(this,
+            'Calça DRIPT',
+            199.90,
+            '../img/camiseta-fashion-free-black.png')">
+
+            🤍
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- BONÉ -->
+
+<div class="produto" data-categoria="acessorio">
+
+    <span class="tag">LIMITED</span>
+
+    <img src="../img/camiseta-fashion-free-black.png" alt="Boné DRIPT">
+
+    <h3 class="nome-produto">Boné DRIPT</h3>
+
+    <p>R$ 79,90</p>
+
+    <div class="acoes-produto">
+
+        <button class="btn-comprar">
+
+            Comprar
+
+        </button>
+
+        <button class="btn-favorito"
+            onclick="favoritarProduto(this,
+            'Boné DRIPT',
+            79.90,
+            '../img/camiseta-fashion-free-black.png')">
+
+            🤍
+
+        </button>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- CARRINHO LATERAL -->
+
+<div class="carrinho-lateral" id="carrinho">
+
+    <div class="topo-carrinho">
+
+        <h2>Seu Carrinho</h2>
+
+        <span onclick="fecharCarrinho()">✖</span>
+
+    </div>
+
+    <div id="itens-carrinho">
+
+    </div>
+
+    <div class="rodape-carrinho">
+
+        <h3 id="total-carrinho">
+            Total: R$ 0,00
+        </h3>
+
+        <button class="btn-finalizar">
+            Finalizar Compra
+        </button>
+
+        <button onclick="limparCarrinho()" class="btn-limpar">
+            Limpar Carrinho
+        </button>
+
+    </div>
+
+</div>
+
+<!-- FOOTER -->
 
 <footer class="footer">
 
     <div class="footer-logo">
-    <h2>DRIPT</h2>
-    <p>Streetwear sem regras.</p>
+
+        <h2>DRIPT</h2>
+
+        <p>
+            Streetwear sem regras. Sem limites.
+        </p>
+
     </div>
 
     <div class="footer-links">
-    <h3>Links</h3>
 
-    <a href="#">Início</a>
-    <a href="#">Coleções</a>
-    <a href="#">Contato</a>
+        <h3>Links</h3>
+
+        <a href="index.html">Início</a>
+        <a href="#">Coleções</a>
+        <a href="produto.html">Produtos</a>
+        <a href="sobre.html">Sobre</a>
+
     </div>
 
     <div class="footer-social">
-    <h3>Redes</h3>
 
-    <p>Instagram</p>
-    <p>TikTok</p>
+        <h3>Redes Sociais</h3>
+
+        <p>Instagram</p>
+        <p>TikTok</p>
+
     </div>
 
 </footer>
+
+<!-- JAVASCRIPT -->
 
 <script src="../js/pesquisa.js"></script>
 <script src="../js/produto.js"></script>
@@ -209,38 +419,6 @@
 <script src="../js/loader.js"></script>
 <script src="../js/script.js"></script>
 
-    <div class="carrinho-lateral" id="carrinho">
-    <div class="topo-carrinho">
-    <h2>Carrinho</h2>
-    <span onclick="fecharCarrinho()">
-        ✖
-    </span>
-
-    </div>
-
-    <div id="itens-carrinho">
-<div class="rodape-carrinho">
-    <h3 id="total-carrinho">
-        Total: R$ 0
-    </h3>
-
-    <button>
-        Finalizar Compra
-    </button>
-
-    <button onclick="limparCarrinho()" class="btn-limpar">
-    Limpar Carrinho
-</button>
-
-</div>
-    </div>
-
-</div>
-
-<footer class="footer">
-    <h3>DRIPT</h3>
-    <p>Streetwear sem regras. Sem limites.</p>
-</footer>
-
 </body>
+
 </html>
