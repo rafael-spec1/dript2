@@ -4,8 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastro DRIPT</title>
-
-    <link rel="stylesheet" href="../css/cadastro.css" />
+    <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <div class="fundo-dript">DRIPT</div>
@@ -13,12 +12,19 @@
     <div class="container-cadastro">
       <h1>JOIN THE DRIP</h1>
       <p class="slogan">SEM REGRAS. SEM LIMITES.</p>
-      <input type="text" placeholder="NOME" />
-      <input type="email" placeholder="EMAIL" />
-      <input type="password" placeholder="SENHA" />
-      <button>CRIAR CONTA</button>
+      <input type="text" id="nome" placeholder="NOME" />
+      <input type="email" id="email" placeholder="EMAIL" />
+      <input type="password" id="senha" placeholder="SENHA" />
+      <button onclick="cadastrar()">CRIAR CONTA</button>
       <p class="login-texto">Já possui conta?</p>
-      <a href="login.html" class="login-link"> ENTRAR </a>
+      <a href="login.html" class="login-link">ENTRAR</a>
     </div>
+
+    <script>
+      function cadastrar() {
+        alert("Conta criada com sucesso!");
+        window.location.href = "login.html";
+      }
+    </script>
   </body>
 </html>

@@ -1,4 +1,3 @@
-// FAVORITAR PRODUTO
 
 function favoritarProduto(botao, nome, preco, imagem) {
 
@@ -82,7 +81,7 @@ function carregarFavoritos() {
 
         <div class="produto">
 
-            <img src="${produto.imagem}" alt="${produto.nome}">
+            ${produto.imagem ? `<img src="${produto.imagem}" alt="${produto.nome}">` : `<div class="sem-imagem">📷<br>Imagem pendente</div>`}
 
             <h3>${produto.nome}</h3>
 
@@ -98,7 +97,23 @@ function carregarFavoritos() {
 
 
 
-// INICIAR
+function sincronizarBotoesFavoritos() {
+
+    const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+
+    document.querySelectorAll(".btn-favorito[data-nome]").forEach(botao => {
+
+        const favoritado = favoritos.some(p => p.nome === botao.dataset.nome);
+
+        botao.innerHTML = favoritado ? "❤️" : "🤍";
+        botao.classList.toggle("favoritado", favoritado);
+
+    });
+
+}
+
+
+
 
 document.addEventListener("DOMContentLoaded", () => {
 

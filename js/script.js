@@ -1,49 +1,142 @@
 function abrirOverlay() {
-        document.getElementById("overlay").style.display = "flex";
+        let overlay = document.getElementById("overlay");
+        if (overlay) overlay.style.display = "flex";
 }
 
 function fecharOverlay() {
-        document.getElementById("overlay").style.display = "none";
+        let overlay = document.getElementById("overlay");
+        if (overlay) overlay.style.display = "none";
 }
+
+window.addEventListener("load", () => {
+        if (!document.getElementById("overlay")) return;
+
+        setTimeout(() => {
+                abrirOverlay();
+        }, 500);
+});
 
 function filtrarProdutos(categoria) {
         let produtos = document.querySelectorAll(".produto");
 
         produtos.forEach(produto => {
-                if (
-                        categoria === "todos" ||
-                        produto.dataset.categoria === categoria
-                ) {
+                if (categoria === "todos" || produto.dataset.categoria === categoria) {
                         produto.style.display = "block";
                 } else {
                         produto.style.display = "none";
                 }
         });
+
+        let secao = document.querySelector(".produtos");
+        if (secao) secao.scrollIntoView({ behavior: "smooth" });
 }
 
-const produtos = document.querySelectorAll(".produto");
 
-const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                        entry.target.classList.add("aparecer");
-                }
+
+function renderizarProdutosHome() {
+        let grid = document.getElementById("grid-produtos");
+        if (!grid || typeof PRODUTOS === "undefined") return;
+
+        let html = "";
+
+        Object.values(PRODUTOS).forEach(produto => {
+                html += `
+        <div class="produto" data-categoria="${produto.categoria}">
+            <span class="tag-produto">LIMITED</span>
+            <a href="produto.html?id=${produto.id}" class="link-produto">
+                ${htmlImagemProduto(produto, "")}
+                <h3 class="nome-produto">${produto.nome}</h3>
+                <p>R$ ${produto.preco.toFixed(2).replace(".", ",")}</p>
+            </a>
+            <div class="acoes-produto">
+                <a href="produto.html?id=${produto.id}">
+                    <button class="btn-comprar">Comprar</button>
+                </a>
+                <button class="btn-favorito" data-nome="${produto.nome}"
+                    onclick="favoritarProduto(this,'${produto.nome}',${produto.preco},'${produto.imagem || ""}')">🤍</button>
+            </div>
+        </div>
+        `;
         });
+
+        grid.innerHTML = html;
+
+
+        ativarEfeitosProdutos();
+
+        if (typeof sincronizarBotoesFavoritos === "function") sincronizarBotoesFavoritos();
+}
+
+function ativarEfeitosProdutos() {
+        let produtos = document.querySelectorAll(".produto");
+
+        const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                                entry.target.classList.add("aparecer");
+                        }
+                });
+        });
+
+        produtos.forEach(produto => {
+                observer.observe(produto);
+
+                produto.addEventListener("mousemove", (e) => {
+                        const rect = produto.getBoundingClientRect();
+                        produto.style.setProperty("--x", `${e.clientX - rect.left}px`);
+                        produto.style.setProperty("--y", `${e.clientY - rect.top}px`);
+                });
+        });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+        renderizarProdutosHome();
 });
 
-produtos.forEach(produto => {
-        observer.observe(produto);
-});
+function carregarProdutos() {
 
-document.querySelectorAll(".produto").forEach(card => {
+        const grid = document.getElementById("grid-produtos");
 
-        card.addEventListener("mousemove", (e) => {
+        if (!grid) return;
 
-                const rect = card.getBoundingClientRect();
+        grid.innerHTML = "";
 
-                card.style.setProperty("--x", `${e.clientX - rect.left}px`);
-                card.style.setProperty("--y", `${e.clientY - rect.top}px`);
+        produtos.forEach(produto => {
+
+                grid.innerHTML += `
+        
+        <div class="produto" data-categoria="${produto.categoria}">
+
+            <span class="tag-produto">${produto.tag}</span>
+
+            <img src="${produto.imagem}" alt="${produto.nome}">
+
+            <h3 class="nome-produto">${produto.nome}</h3>
+
+            <p>R$ ${produto.preco.toFixed(2).replace(".", ",")}</p>
+
+            <div class="acoes-produto">
+
+                <a href="${produto.link}">
+
+                    <button class="btn-comprar">
+                        Comprar
+                    </button>
+
+                </a>
+
+                <button class="btn-favorito">
+                    🤍
+                </button>
+
+            </div>
+
+        </div>
+
+        `;
 
         });
 
-});
+}
+
+document.addEventListener("DOMContentLoaded", carregarProdutos);
