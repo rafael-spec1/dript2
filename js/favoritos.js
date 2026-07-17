@@ -3,6 +3,10 @@ function favoritarProduto(botao, nome, preco, imagem) {
 
     let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
 
+    if (!Array.isArray(favoritos)) {
+        favoritos = [];
+    }
+
     const indice = favoritos.findIndex(produto => produto.nome === nome);
 
     if (indice !== -1) {
@@ -66,7 +70,7 @@ function carregarFavoritos() {
     lista.innerHTML = "";
 
     const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
-
+    console.log(favoritos);
     if (favoritos.length === 0) {
 
         lista.innerHTML = "<p>Nenhum produto favoritado.</p>";
@@ -92,14 +96,23 @@ function carregarFavoritos() {
         `;
 
     });
-
+    document.querySelectorAll("#lista-favoritos .produto").forEach(produto => {
+        produto.classList.add("aparecer");
+    });
 }
+
+document.addEventListener("DOMContentLoaded", carregarFavoritos);
+
 
 
 
 function sincronizarBotoesFavoritos() {
 
-    const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+    let favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+
+    if (!Array.isArray(favoritos)) {
+        favoritos = [];
+    }
 
     document.querySelectorAll(".btn-favorito[data-nome]").forEach(botao => {
 
@@ -120,5 +133,22 @@ document.addEventListener("DOMContentLoaded", () => {
     atualizarContadorFavoritos();
 
     carregarFavoritos();
+
+});
+
+document.addEventListener("click", function (e) {
+
+    if (e.target.classList.contains("btn-favorito")) {
+
+        const botao = e.target;
+
+        favoritarProduto(
+            botao,
+            botao.dataset.nome,
+            Number(botao.dataset.preco),
+            botao.dataset.imagem
+        );
+
+    }
 
 });

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produto | DRIPT</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
@@ -47,17 +47,18 @@
     </div>
 </div>
 
-<script src="js/produtos.js"></script>
-<script src="js/produto.js"></script>
-<script src="js/carrinho.js"></script>
-<script src="js/favoritos.js"></script>
-<script src="js/script.js"></script>
+<script src="../js/produtos.js"></script>
+<script src="../js/produto.js"></script>
+<script src="../js/carrinho.js"></script>
+<script src="../js/favoritos.js"></script>
+<script src="../js/script.js"></script>
 
 <script>
 function carregarPaginaProduto() {
-    let params = new URLSearchParams(window.location.search);
-    let id = params.get("id") || "moletom";
-    let produto = PRODUTOS[id];
+    const params = new URLSearchParams(window.location.search);
+const id = Number(params.get("id"));
+
+const produto = Object.values(PRODUTOS).find(p => p.id === id);
 
     if (!produto) {
         document.getElementById("pagina-produto").innerHTML = "<p>Produto não encontrado.</p>";
@@ -68,8 +69,8 @@ function carregarPaginaProduto() {
 
     document.getElementById("pagina-produto").innerHTML = `
         <div class="produto-imagem">
-            ${htmlImagemProduto(produto, "")}
-        </div>
+    <img src="${produto.imagem}" alt="${produto.nome}">
+</div>
         <div class="produto-info">
             <span class="tag">LIMITED</span>
             <div class="titulo-produto">
@@ -129,12 +130,15 @@ function carregarPaginaProduto() {
         .map(p => `
             <a href="produto.html?id=${p.id}" class="link-produto">
                 <div class="produto">
-                    ${htmlImagemProduto(p, "")}
+                    <img src="${p.imagem}" alt="${p.nome}">
                     <h3>${p.nome}</h3>
                     <p>R$ ${p.preco.toFixed(2).replace(".", ",")}</p>
                 </div>
             </a>
         `).join("");
+        document.querySelectorAll("#grid-relacionados .produto").forEach(produto => {
+    produto.classList.add("aparecer");
+});
 
     if (typeof sincronizarBotoesFavoritos === "function") sincronizarBotoesFavoritos();
 }

@@ -38,23 +38,27 @@ function renderizarProdutosHome() {
         if (!grid || typeof PRODUTOS === "undefined") return;
 
         let html = "";
-
+        console.log(PRODUTOS);
         Object.values(PRODUTOS).forEach(produto => {
                 html += `
         <div class="produto" data-categoria="${produto.categoria}">
-            <span class="tag-produto">LIMITED</span>
-            <a href="produto.html?id=${produto.id}" class="link-produto">
-                ${htmlImagemProduto(produto, "")}
+                <span class="tag-produto">LIMITED</span>
+                <a href="produto.html?id=${produto.id}" class="link-produto">
+                <img src="${produto.imagem}" alt="${produto.nome}">
                 <h3 class="nome-produto">${produto.nome}</h3>
                 <p>R$ ${produto.preco.toFixed(2).replace(".", ",")}</p>
-            </a>
-            <div class="acoes-produto">
-                <a href="produto.html?id=${produto.id}">
-                    <button class="btn-comprar">Comprar</button>
                 </a>
-                <button class="btn-favorito" data-nome="${produto.nome}"
-                    onclick="favoritarProduto(this,'${produto.nome}',${produto.preco},'${produto.imagem || ""}')">🤍</button>
-            </div>
+                <div class="acoes-produto">
+                <a href="produto.html?id=${produto.id}">
+                        <button class="btn-comprar">Comprar</button>
+                </a>
+               <button class="btn-favorito" 
+        data-nome="${produto.nome}"
+        data-preco="${produto.preco}"
+        data-imagem="${produto.imagem || ""}">
+    🤍
+</button>
+                </div>
         </div>
         `;
         });
@@ -101,7 +105,7 @@ function carregarProdutos() {
 
         grid.innerHTML = "";
 
-        produtos.forEach(produto => {
+        PRODUTOS.forEach(produto => {
 
                 grid.innerHTML += `
         
@@ -117,7 +121,7 @@ function carregarProdutos() {
 
             <div class="acoes-produto">
 
-                <a href="${produto.link}">
+                <a href="${produto.link || `produto.html?id=${produto.id}`}">
 
                     <button class="btn-comprar">
                         Comprar
@@ -136,7 +140,10 @@ function carregarProdutos() {
         `;
 
         });
+        document.querySelectorAll(".produto").forEach(produto => {
+                produto.classList.add("aparecer");
+        });
 
 }
 
-document.addEventListener("DOMContentLoaded", carregarProdutos);
+document.addEventListener("DOMContentLoaded", carregarProdutos); 
