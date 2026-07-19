@@ -77,13 +77,30 @@
 </section>
 
     <!-- CATEGORIAS -->
-    <section class="categorias">
-        <button onclick="filtrarProdutos('todos')">Todos</button>
-        <button onclick="filtrarProdutos('camiseta')">Camisetas</button>
-        <button onclick="filtrarProdutos('moletom')">Moletons</button>
-        <button onclick="filtrarProdutos('calca')">Calças</button>
-        <button onclick="filtrarProdutos('acessorio')">Acessórios</button>
-    </section>
+                            <h2 class="titulo-categorias">EXPLORE A COLEÇÃO</h2>
+<section class="categorias">
+
+    <button class="categoria-btn ativo" onclick="filtrarProdutos('todos', this)">
+        Todos
+    </button>
+
+    <button class="categoria-btn" onclick="filtrarProdutos('camiseta', this)">
+        Camisetas
+    </button>
+
+    <button class="categoria-btn" onclick="filtrarProdutos('moletom', this)">
+        Moletons
+    </button>
+
+    <button class="categoria-btn" onclick="filtrarProdutos('calca', this)">
+        Calças
+    </button>
+
+    <button class="categoria-btn" onclick="filtrarProdutos('acessorio', this)">
+        Acessórios
+    </button>
+
+</section>
 
     <!-- PRODUTOS -->
     <section class="produtos" id="grid-produtos"></section>

@@ -52,22 +52,87 @@ body {
 
 
 .hero {
-    text-align: center;
-    padding: 80px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 80px 10%;
+    min-height: 90vh;
+    background: #000;
+    gap: 100px;
+    position: relative;
+    overflow: hidden;
 }
 
-.hero h1 {
-    color: red;
-    font-size: 50px;
+.hero-text {
+    flex: 0 0 45%;
 }
+
+.hero-text h1 {
+    font-size: 70px;
+    line-height: 1;
+    color: #fff;
+    margin: 20px 0;
+}
+
+.hero-text p {
+    color: #cfcfcf;
+    font-size: 18px;
+    max-width: 500px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+.limited {
+    display: inline-block;
+    background: #e60000;
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.hero-produto {
+    flex: 0 0 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.hero-produto img {
+    width: 520px;
+    max-width: 100%;
+    position: relative;
+    z-index: 2;
+    transition: transform .4s ease;
+    filter: drop-shadow(0 20px 40px rgba(0, 0, 0, .8));
+}
+
+.hero-produto img:hover {
+    transform: scale(1.05);
+}
+
 
 .hero button {
-    background: red;
-    color: white;
+    background: #e60000;
+    color: #fff;
     border: none;
-    padding: 12px 25px;
+    padding: 15px 35px;
     cursor: pointer;
     margin-top: 20px;
+    font-size: 16px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    transition: .3s;
+}
+
+.hero button:hover {
+    background: #fff;
+    color: #000;
+    transform: translateY(-3px);
 }
 
 /*CARD DOD PRODUTO*/
@@ -126,8 +191,10 @@ body {
 
 .produto img {
     width: 100%;
+    height: 350px;
+    object-fit: contain;
     margin-top: 30px;
-    transition: .4s;
+    transition: .4s ease;
 }
 
 .tag-produto {
@@ -525,7 +592,14 @@ button:hover {
 
 .produto-imagem img {
     width: 100%;
-    border-radius: 10px;
+    max-height: 700px;
+    object-fit: contain;
+    border-radius: 15px;
+    transition: .4s ease;
+}
+
+.produto-imagem img:hover {
+    transform: scale(1.03);
 }
 
 .produto-info {
@@ -603,11 +677,6 @@ button:hover {
 .opcoes-tamanho button:hover {
     border-color: red;
     transform: translateY(-3px);
-}
-
-.opcoes-tamanho button.selecionado {
-    background: red;
-    border-color: red;
 }
 
 .opcoes-tamanho button.ativo {
@@ -1062,6 +1131,12 @@ button:hover {
     transform: translateY(-4px);
 }
 
+.btn-comprar,
+.btn-carrinho {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
 /* TÍTULO DO PRODUTO */
 
 .titulo-produto {
@@ -1096,8 +1171,10 @@ button:hover {
 }
 
 .btn-favorito.ativo {
-    background: red;
+    background: transparent;
     border-color: red;
+    color: red;
+    box-shadow: 0 0 15px rgba(255, 0, 0, .5);
 }
 
 .acoes-produto {
@@ -1174,4 +1251,182 @@ button:hover {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
+}
+
+.brilho {
+    position: absolute;
+    width: 420px;
+    height: 420px;
+    background: radial-gradient(circle, rgba(255, 0, 0, 0.45), transparent 70%);
+    border-radius: 50%;
+    filter: blur(20px);
+    z-index: 1;
+}
+
+.hero-produto img {
+    animation: flutuar 4s ease-in-out infinite;
+}
+
+@keyframes flutuar {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-15px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+.hero::before {
+    content: "DRIPT";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 220px;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.03);
+    letter-spacing: 20px;
+    pointer-events: none;
+    z-index: 0;
+    user-select: none;
+}
+
+.categorias {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    margin: 70px 0 50px;
+    flex-wrap: wrap;
+}
+
+.categoria-btn {
+    background: transparent;
+    border: none;
+    color: #777;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    position: relative;
+    transition: all .3s ease;
+    padding: 8px 0;
+}
+
+.categoria-btn:hover {
+    color: #fff;
+}
+
+.categoria-btn.ativo {
+    color: #fff;
+}
+
+.categoria-btn::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: -8px;
+    width: 0;
+    height: 3px;
+    background: #e60000;
+    border-radius: 50px;
+    transform: translateX(-50%);
+    transition: width .3s ease;
+}
+
+.categoria-btn:hover::after,
+.categoria-btn.ativo::after {
+    width: 100%;
+}
+
+.titulo-categorias {
+    text-align: center;
+    color: #fff;
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin-top: 70px;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+}
+
+.nome-produto {
+    color: #fff;
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-top: 20px;
+    transition: .3s;
+}
+
+.produto:hover .nome-produto {
+    color: #e60000;
+}
+
+.btn-comprar {
+    background: #e60000;
+    color: white;
+    border: none;
+    padding: 14px 35px;
+    border-radius: 6px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.btn-comprar:hover {
+    background: white;
+    color: black;
+    transform: translateY(-3px);
+}
+
+.produto-info .preco {
+    font-size: 32px;
+    font-weight: 900;
+    color: #fff;
+    margin: 10px 0;
+    letter-spacing: 1px;
+}
+
+.produto-info .descricao {
+    color: #aaa;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+.relacionados {
+    margin: 80px auto;
+    padding: 40px;
+}
+
+.relacionados h2 {
+    color: #fff;
+    font-size: 32px;
+    text-align: center;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+#grid-relacionados {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+#grid-relacionados .produto {
+    padding: 20px;
+}
+
+#grid-relacionados .produto img {
+    height: 250px;
 }
