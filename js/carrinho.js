@@ -9,18 +9,21 @@ function fecharCarrinho() {
     document.getElementById("carrinho").classList.remove("ativo");
 }
 
-function adicionarCarrinho(nome, preco) {
+function adicionarCarrinho(nome, preco, imagem) {
 
     let areaCarrinho = document.getElementById("itens-carrinho");
 
     areaCarrinho.innerHTML += `
     <div class="item-carrinho">
-        <div>
-            <h3>${nome}</h3>
-            <p>Tamanho: ${tamanhoSelecionado}</p>
-            <p>Qtd: ${quantidade}</p>
-            <p>R$ ${(preco * quantidade).toFixed(2).replace(".", ",")}</p>
-        </div>
+
+    <img src="${imagem}" alt="${nome}">
+
+    <div>
+        <h3>${nome}</h3>
+        <p>Tamanho: ${tamanhoSelecionado}</p>
+        <p>Qtd: ${quantidade}</p>
+        <p>R$ ${(preco * quantidade).toFixed(2).replace(".", ",")}</p>
+    </div>
 
         <button class="btn-remover"
         onclick="removerItem(this, ${preco}, ${quantidade})">
@@ -30,7 +33,7 @@ function adicionarCarrinho(nome, preco) {
     </div>
     `;
 
-    contadorCarrinho++;
+    contadorCarrinho += quantidade;
     document.getElementById("contador").innerText = contadorCarrinho;
 
     totalCarrinho += preco * quantidade;

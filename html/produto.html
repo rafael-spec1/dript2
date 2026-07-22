@@ -109,14 +109,13 @@ const produto = Object.values(PRODUTOS).find(p => p.id === id);
         </div>
     `;
 
-    document.getElementById("btn-comprar-agora").onclick = () => {
-        adicionarCarrinho(produto.nome, produto.preco);
-        finalizarCompra();
-    };
-
-    document.getElementById("btn-add-carrinho").onclick = () => {
-        adicionarCarrinho(produto.nome, produto.preco);
-    };
+        document.getElementById("btn-comprar-agora").onclick = () => {
+    adicionarCarrinho(produto.nome, produto.preco, produto.imagem);
+    finalizarCompra();
+};
+        document.getElementById("btn-add-carrinho").onclick = () => {
+    adicionarCarrinho(produto.nome, produto.preco, produto.imagem);
+};
 
     document.getElementById("btn-fav-detalhe").onclick = function () {
         favoritarProduto(this, produto.nome, produto.preco, produto.imagem || "");

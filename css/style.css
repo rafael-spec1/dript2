@@ -138,7 +138,7 @@ body {
 /*CARD DOD PRODUTO*/
 .produtos {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
     padding: 40px;
 }
@@ -194,7 +194,7 @@ body {
     height: 350px;
     object-fit: contain;
     margin-top: 30px;
-    transition: .4s ease;
+    transition: .4s;
 }
 
 .tag-produto {
@@ -1429,4 +1429,25 @@ button:hover {
 
 #grid-relacionados .produto img {
     height: 250px;
+}
+
+.item-carrinho img {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+    .produtos {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .produtos {
+        grid-template-columns: 1fr;
+        padding: 20px;
+    }
 }

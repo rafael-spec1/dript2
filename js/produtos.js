@@ -42,10 +42,31 @@ const PRODUTOS = [
         tag: "NEW",
         descricao: "Boné DRIPT ajustável com acabamento premium.",
         avaliacao: 4.7
+    },
+
+    {
+        id: 5,
+        nome: "Camiseta Oversized DRIPT",
+        preco: 119.90,
+        categoria: "camiseta",
+        imagem: "../img/camiseta-fashion-free-black.png",
+        tag: "NEW",
+        descricao: "Camiseta oversized DRIPT com visual minimalista e modelagem streetwear.",
+        avaliacao: 4.9
+    },
+
+    {
+        id: 6,
+        nome: "Calça Jeans DRIPT",
+        preco: 229.90,
+        categoria: "calca",
+        imagem: "../img/camiseta-fashion-free-black.png",
+        tag: "NEW",
+        descricao: "Calça jeans DRIPT com modelagem moderna e inspiração streetwear.",
+        avaliacao: 4.8
     }
 
 ];
-
 function carregarProdutos() {
 
     const grid = document.getElementById("grid-produtos");
