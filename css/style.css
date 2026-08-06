@@ -1,3 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.container-cadastro h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 55px;
+    color: white;
+    letter-spacing: 4px;
+    margin: 0;
+}
+
+.slogan {
+    font-family: 'Montserrat', sans-serif;
+    color: #777;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    margin: -10px 0 10px;
+}
+
+.container-cadastro input[type="text"],
+.container-cadastro input[type="email"],
+.container-cadastro input[type="password"] {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    letter-spacing: 1px;
+}
+
+.container-cadastro button {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+}
+
+.login-texto {
+    font-family: 'Montserrat', sans-serif;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -470,25 +510,48 @@ body {
 
 /*RODAPÉ*/
 .footer {
-    background: #111;
-    padding: 50px;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 60px;
+    background: #0a0a0a;
+    padding: 70px 10%;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+    margin-top: 80px;
+    border-top: 1px solid #222;
 }
 
-.footer h2,
-.footer h3 {
-    color: red;
+.footer-logo h2 {
+    color: #fff;
+    font-size: 35px;
+    letter-spacing: 4px;
     margin-bottom: 15px;
+}
+
+.footer-logo p {
+    color: #777;
+    font-size: 14px;
+}
+
+.footer h3 {
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
 }
 
 .footer p,
 .footer a {
-    color: white;
+    color: #888;
     text-decoration: none;
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    font-size: 14px;
+    transition: .3s;
+}
+
+.footer a:hover {
+    color: red;
+    transform: translateX(4px);
 }
 
 /*FORMATAÇÃO NO MOBILE*/
@@ -515,9 +578,13 @@ body {
         font-size: 40px;
     }
 
-    .hero-image {
+    .hero-produto {
         width: 100%;
-        height: 300px;
+    }
+
+    .hero-produto img {
+        width: 100%;
+        max-width: 350px;
     }
 
 
@@ -527,11 +594,70 @@ body {
 
 
     .footer {
-        flex-direction: column;
+        grid-template-columns: 1fr;
         gap: 30px;
         text-align: center;
     }
 
+}
+
+.carrinho-lateral {
+    width: 100%;
+    max-width: 100%;
+}
+
+.item-carrinho {
+    padding: 15px;
+}
+
+.item-carrinho img {
+    width: 60px;
+    height: 60px;
+}
+
+.categorias {
+    gap: 20px;
+    margin: 40px 20px;
+}
+
+.categoria-btn {
+    font-size: 14px;
+    letter-spacing: 1px;
+}
+
+.acoes {
+    width: 100%;
+}
+
+.btn-comprar,
+.btn-carrinho {
+    width: 100%;
+}
+
+.pagina-produto {
+    max-width: 1300px;
+    margin: 70px auto;
+    padding: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 70px;
+}
+
+.produto-imagem {
+    flex: 1;
+    max-width: 600px;
+}
+
+.produto-info {
+    flex: 1;
+    max-width: 500px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .produto {
@@ -1450,4 +1576,363 @@ button:hover {
         grid-template-columns: 1fr;
         padding: 20px;
     }
+}
+
+/* WHATSAPP FLUTUANTE */
+
+.whatsapp-flutuante {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+
+    width: 60px;
+    height: 60px;
+
+    background: #25D366;
+    color: white;
+
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    text-decoration: none;
+    font-size: 28px;
+
+    z-index: 9999;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+
+    transition: 0.3s;
+}
+
+.whatsapp-flutuante:hover {
+    transform: scale(1.1);
+}
+
+.whatsapp-flutuante svg {
+    width: 32px;
+    height: 32px;
+    fill: white;
+}
+
+/* DIFERENCIAIS */
+
+.diferenciais {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    padding: 70px 8%;
+    background: #080808;
+    border-top: 1px solid #222;
+    border-bottom: 1px solid #222;
+}
+
+.diferencial {
+    text-align: center;
+    padding: 30px 20px;
+    transition: .3s;
+}
+
+.diferencial:hover {
+    transform: translateY(-5px);
+}
+
+.diferencial span {
+    display: block;
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.diferencial h3 {
+    color: #fff;
+    font-size: 15px;
+    letter-spacing: 1.5px;
+    margin-bottom: 12px;
+}
+
+.diferencial p {
+    color: #888;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* =========================
+   CADASTRO
+========================= */
+
+.pagina-cadastro {
+    min-height: 100vh;
+    margin: 0;
+    background: #050505;
+    color: #fff;
+}
+
+.cadastro {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+    position: relative;
+}
+
+.cadastro-logo {
+    position: absolute;
+    top: 35px;
+    left: 50px;
+
+    color: #fff;
+    text-decoration: none;
+
+    font-size: 32px;
+    font-weight: 900;
+    letter-spacing: 6px;
+
+    transition: .3s;
+}
+
+.cadastro-logo:hover {
+    color: red;
+}
+
+
+.cadastro-box {
+    width: 100%;
+    max-width: 460px;
+}
+
+.cadastro-topo {
+    margin-bottom: 35px;
+}
+
+.cadastro-topo span {
+    color: red;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.cadastro-topo h1 {
+    margin: 12px 0;
+    font-size: 42px;
+    line-height: 1;
+    letter-spacing: -1px;
+}
+
+.cadastro-topo p {
+    color: #777;
+    font-size: 14px;
+    line-height: 1.6;
+    max-width: 380px;
+}
+
+/* CAMPOS */
+
+.campo {
+    margin-bottom: 22px;
+}
+
+.campo label {
+    display: block;
+    color: #ccc;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 9px;
+}
+
+.campo input {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 16px;
+
+    background: #0d0d0d;
+    color: #fff;
+
+    border: 1px solid #292929;
+    border-radius: 6px;
+
+    outline: none;
+
+    font-size: 14px;
+
+    transition: .3s;
+}
+
+.campo input::placeholder {
+    color: #555;
+}
+
+.campo input:focus {
+    border-color: red;
+    box-shadow: 0 0 0 1px red;
+}
+
+/* TERMOS */
+
+.termos {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    color: #777;
+    font-size: 12px;
+
+    margin: 5px 0 25px;
+    cursor: pointer;
+}
+
+.termos input {
+    accent-color: red;
+}
+
+/* BOTÃO */
+
+.btn-cadastro {
+    width: 100%;
+    padding: 17px;
+
+    border: none;
+    border-radius: 6px;
+
+    background: red;
+    color: #fff;
+
+    font-size: 14px;
+    font-weight: 900;
+    letter-spacing: 2px;
+
+    cursor: pointer;
+
+    transition: .3s;
+}
+
+.btn-cadastro:hover {
+    background: #d00000;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(255, 0, 0, .2);
+}
+
+/* LOGIN */
+
+.cadastro-login {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+
+    margin-top: 28px;
+
+    font-size: 13px;
+    color: #666;
+}
+
+.cadastro-login a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.cadastro-login a:hover {
+    color: red;
+}
+
+/* PRIVACIDADE */
+
+.cadastro-privacidade {
+    text-align: center;
+
+    margin-top: 25px;
+
+    color: #444;
+    font-size: 11px;
+}
+
+.cadastro-logo span {
+    color: red;
+}
+
+.conta-box {
+    width: 100%;
+    max-width: 600px;
+}
+
+.conta-opcoes {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.conta-item {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    padding: 20px;
+
+    background: #0d0d0d;
+    border: 1px solid #222;
+    border-radius: 8px;
+
+    color: #fff;
+    text-decoration: none;
+
+    transition: .3s;
+}
+
+.conta-item:hover {
+    border-color: red;
+    transform: translateX(5px);
+    background: #111;
+}
+
+.conta-item>span {
+    width: 45px;
+    height: 45px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border: 1px solid #333;
+    border-radius: 50%;
+
+    font-size: 20px;
+}
+
+.conta-item h3 {
+    margin: 0 0 5px;
+    font-size: 15px;
+}
+
+.conta-item p {
+    margin: 0;
+    color: #666;
+    font-size: 12px;
+}
+
+.btn-sair {
+    width: 100%;
+    margin-top: 25px;
+    padding: 15px;
+
+    background: transparent;
+    color: #777;
+
+    border: 1px solid #333;
+    border-radius: 6px;
+
+    font-weight: bold;
+    letter-spacing: 1.5px;
+
+    cursor: pointer;
+    transition: .3s;
+}
+
+.btn-sair:hover {
+    color: red;
+    border-color: red;
 }

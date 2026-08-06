@@ -41,12 +41,39 @@ body {
     margin-bottom: 10px;
 }
 
-.container-cadastro input {
+.container-cadastro input[type="text"],
+.container-cadastro input[type="email"],
+.container-cadastro input[type="password"] {
     padding: 15px;
     background: transparent;
-    border: 1px solid white;
+    border: 1px solid #333;
     color: white;
     outline: none;
+    transition: 0.3s;
+}
+
+.container-cadastro input:focus {
+    border-color: #ff3c00;
+}
+
+.container-cadastro input::placeholder {
+    color: #777;
+}
+
+.termos {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #888;
+    font-size: 13px;
+    text-align: left;
+}
+
+.termos input {
+    width: 16px;
+    height: 16px;
+    accent-color: #ff3c00;
+    cursor: pointer;
 }
 
 .container-cadastro button {
@@ -58,6 +85,15 @@ body {
     letter-spacing: 3px;
     cursor: pointer;
     transition: 0.3s;
+}
+
+.container-cadastro button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(255, 60, 0, 0.3);
+}
+
+.container-cadastro button:active {
+    transform: translateY(0);
 }
 
 .container-cadastro button:hover {

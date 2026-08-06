@@ -1,29 +1,137 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DRIPT Login</title>
-<link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrar | DRIPT</title>
+    <link rel="stylesheet" href="../css/style.css">
 </head>
-<body>
 
-<div class="fundo-dript">DRIPT</div>
+<body class="pagina-cadastro">
 
-<div class="container-login">
-    <h1>ENTER THE DRIP</h1>
-    <input type="email" placeholder="EMAIL">
-    <input type="password" placeholder="SENHA">
-    <button onclick="entrar()">ACCESS DRIPT</button>
-    <p class="cadastro-texto">Não possui conta?</p>
-    <a href="cadastro.html" class="cadastro-link">CRIAR CONTA</a>
-</div>
+    <main class="cadastro">
 
-<script>
-function entrar() {
-    window.location.href = "index.html";
-}
-</script>
+        <a href="index.html" class="cadastro-logo">
+            DRIPT<span>.</span>
+        </a>
+
+        <div class="cadastro-box">
+
+            <div class="cadastro-topo">
+
+                <span>WELCOME BACK</span>
+
+                <h1>Entre na sua conta</h1>
+
+                <p>
+                    Acesse sua conta DRIPT e continue de onde parou.
+                </p>
+
+            </div>
+
+            <form id="form-login">
+
+                <div class="campo">
+
+                    <label for="email">
+                        E-mail
+                    </label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="seuemail@email.com"
+                        required
+                    >
+
+                </div>
+
+                <div class="campo">
+
+                    <label for="senha">
+                        Senha
+                    </label>
+
+                    <input
+                        type="password"
+                        id="senha"
+                        placeholder="Digite sua senha"
+                        required
+                    >
+
+                </div>
+
+                <button type="submit" class="btn-cadastro">
+                    ENTRAR NA DRIPT
+                </button>
+
+            </form>
+
+            <div class="cadastro-login">
+
+                <span>Ainda não possui uma conta?</span>
+
+                <a href="cadastro.html">
+                    Criar conta
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <script>
+
+        document
+            .getElementById("form-login")
+            .addEventListener("submit", function(event) {
+
+                event.preventDefault();
+
+                const email =
+                    document.getElementById("email").value.trim();
+
+                const senha =
+                    document.getElementById("senha").value;
+
+                const usuarioSalvo =
+                    localStorage.getItem("usuarioDript");
+
+
+                if (!usuarioSalvo) {
+
+                    alert("Nenhuma conta encontrada. Crie sua conta primeiro.");
+
+                    return;
+
+                }
+
+
+                const usuario =
+                    JSON.parse(usuarioSalvo);
+
+
+                if (
+                    email === usuario.email &&
+                    senha === usuario.senha
+                ) {
+
+                    localStorage.setItem("usuarioLogado", "true");
+
+                    alert("Login realizado com sucesso!");
+
+                    window.location.href = "index.html";
+
+                } else {
+
+                    alert("E-mail ou senha incorretos.");
+
+                }
+
+            });
+
+    </script>
 
 </body>
 </html>

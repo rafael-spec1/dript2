@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Minha Conta | DRIPT</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="pagina-cadastro">
+
+    <main class="cadastro">
+
+        <a href="index.html" class="cadastro-logo">
+            DRIPT<span>.</span>
+        </a>
+
+        <div class="conta-box">
+
+            <div class="cadastro-topo">
+                <span>MY DRIPT</span>
+
+                <h1>Minha conta</h1>
+
+                <p id="saudacao-usuario">
+                    Bem-vindo de volta.
+                </p>
+            </div>
+
+            <div class="conta-opcoes">
+
+                <a href="favoritos.html" class="conta-item">
+                    <span>♡</span>
+                    <div>
+                        <h3>Meus favoritos</h3>
+                        <p>Veja as peças que você salvou.</p>
+                    </div>
+                </a>
+
+                <a href="pedidos.html" class="conta-item">
+    <span>📦</span>
+    <div>
+        <h3>Meus pedidos</h3>
+        <p>Acompanhe suas compras.</p>
+    </div>
+</a>
+
+                <a href="dados.html" class="conta-item">
+                    <span>👤</span>
+                    <div>
+                        <h3>Meus dados</h3>
+                        <p>Confira suas informações.</p>
+                    </div>
+                </a>
+
+            </div>
+
+            <button class="btn-sair" onclick="sair()">
+                SAIR DA CONTA
+            </button>
+
+        </div>
+
+    </main>
+
+    <script>
+
+        const usuarioSalvo =
+            localStorage.getItem("usuarioDript");
+
+        const usuarioLogado =
+            localStorage.getItem("usuarioLogado");
+
+        if (!usuarioSalvo || usuarioLogado !== "true") {
+
+            window.location.href = "login.html";
+
+        }
+
+        if (usuarioSalvo) {
+
+            const usuario =
+                JSON.parse(usuarioSalvo);
+
+            document.getElementById("saudacao-usuario").innerText =
+                `Olá, ${usuario.nome.split(" ")[0]}. Bem-vindo à DRIPT.`;
+
+        }
+
+        function sair() {
+
+            localStorage.removeItem("usuarioLogado");
+
+            window.location.href = "index.html";
+
+        }
+
+    </script>
+
+</body>
+
+</html>

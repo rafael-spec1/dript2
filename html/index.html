@@ -25,8 +25,10 @@
 
         <div class="icons">
             <span onclick="abrirPesquisa()">🔍</span>
-            <a href="login.html"><span>👤</span></a>
-
+            <a href="login.html" class="icone-conta">
+    <span>👤</span>
+    <span id="nome-usuario"></span>
+</a>
             <div class="icone-carrinho">
                 <span onclick="abrirCarrinho()">🛒</span>
                 <div class="contador-carrinho" id="contador">0</div>
@@ -44,7 +46,7 @@
         <input type="text" id="pesquisa" placeholder="Pesquisar produtos..." onkeyup="pesquisarProduto()">
     </div>
 
-  <!-- HERO -->
+    <!-- HERO -->
 <section class="hero">
 
     <div class="hero-text">
@@ -102,6 +104,37 @@
 
 </section>
 
+<!-- DIFERENCIAIS -->
+<section class="diferenciais">
+
+    <div class="diferencial">
+        <span>🚚</span>
+        <h3>FRETE PARA TODO O BRASIL</h3>
+        <p>Enviamos nossas peças para todo o país.</p>
+    </div>
+
+    <div class="diferencial">
+        <span>💎</span>
+        <h3>QUALIDADE PREMIUM</h3>
+        <p>Peças pensadas para entregar qualidade e estilo.</p>
+    </div>
+
+    <div class="diferencial">
+        <span>🔥</span>
+        <h3>EDIÇÕES LIMITADAS</h3>
+        <p>Drops exclusivos para quem busca identidade.</p>
+    </div>
+
+    <div class="diferencial">
+        <span>🔄</span>
+        <h3>TROCA FÁCIL</h3>
+        <p>Mais segurança para você comprar.</p>
+    </div>
+
+</section>
+
+
+
     <!-- PRODUTOS -->
     <section class="produtos" id="grid-produtos"></section>
 
@@ -144,12 +177,46 @@
     </footer>
 
     <!-- JAVASCRIPT -->
-   <script src="../js/produtos.js"></script>
+<script src="../js/produtos.js"></script>
 <script src="../js/pesquisa.js"></script>
 <script src="../js/produto.js"></script>
 <script src="../js/carrinho.js"></script>
 <script src="../js/favoritos.js"></script>
 <script src="../js/loader.js"></script>
 <script src="../js/script.js"></script>
+
+<a href="https://wa.me/5numeros"
+        target="_blank"
+        class="whatsapp-flutuante"
+        aria-label="Falar com a DRIPT pelo WhatsApp">
+
+    <svg viewBox="0 0 32 32" aria-hidden="true">
+        <path d="M19.11 17.39c-.29-.14-1.71-.84-1.98-.94-.27-.1-.46-.14-.66.14-.19.29-.75.94-.92 1.13-.17.19-.34.22-.63.07-.29-.14-1.22-.45-2.32-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.59.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.14-.66-1.59-.9-2.18-.24-.57-.48-.49-.66-.5h-.56c-.19 0-.51.07-.77.36-.27.29-1.02 1-1.02 2.44s1.05 2.83 1.2 3.03c.14.19 2.06 3.15 5 4.42.7.3 1.25.48 1.68.61.71.23 1.36.2 1.87.12.57-.08 1.71-.7 1.95-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.54-.34z"/>
+    </svg>
+
+</a>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    const usuarioSalvo = localStorage.getItem("usuarioDript");
+    const usuarioLogado = localStorage.getItem("usuarioLogado");
+    const nomeUsuario = document.getElementById("nome-usuario");
+
+    if (
+        usuarioSalvo &&
+        usuarioLogado === "true" &&
+        nomeUsuario
+    ) {
+
+        const usuario = JSON.parse(usuarioSalvo);
+
+        nomeUsuario.innerText = usuario.nome.split(" ")[0];
+
+    }
+
+});
+</script>
+
 </body>
 </html>

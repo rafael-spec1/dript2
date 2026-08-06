@@ -18,7 +18,7 @@ function pesquisarProduto() {
 
     produtos.forEach(function (produto) {
 
-        let nome = produto.querySelector(".nome-produto").innerText.toLowerCase();
+        let nome = produto.querySelector("h3").innerText.toLowerCase();
 
         if (nome.includes(input)) {
             produto.style.display = "";

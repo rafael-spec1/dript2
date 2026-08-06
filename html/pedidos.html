@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Meus Pedidos | DRIPT</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body class="pagina-cadastro">
+
+    <main class="cadastro">
+
+        <a href="index.html" class="cadastro-logo">
+            DRIPT<span>.</span>
+        </a>
+
+        <div class="conta-box">
+
+            <div class="cadastro-topo">
+                <span>MY DRIPT</span>
+
+                <h1>Meus pedidos</h1>
+
+                <p>
+                    Acompanhe seus pedidos realizados na DRIPT.
+                </p>
+            </div>
+
+            <div id="lista-pedidos">
+                <p class="sem-pedidos">
+                    Você ainda não possui pedidos.
+                </p>
+            </div>
+
+            <a href="conta.html" class="btn-sobre">
+                VOLTAR PARA MINHA CONTA
+            </a>
+
+        </div>
+
+    </main>
+
+    <script>
+
+        const usuarioLogado =
+            localStorage.getItem("usuarioLogado");
+
+        if (usuarioLogado !== "true") {
+            window.location.href = "login.html";
+        }
+
+    </script>
+
+</body>
+
+</html>
