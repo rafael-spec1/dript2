@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DRIPT</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/pesquisa.css">
 </head>
 
 <body>
@@ -217,6 +218,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 </script>
+
+<div id="barra-pesquisa" class="barra-pesquisa">
+
+    <input
+        type="text"
+        id="campo-pesquisa"
+        placeholder="Pesquisar produtos..."
+        onkeyup="pesquisarProdutos()"
+    >
+
+    <button onclick="fecharPesquisa()">✕</button>
+
+</div>
 
 </body>
 </html>

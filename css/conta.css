@@ -1,0 +1,193 @@
+/* ÁREA DA CONTA*/
+
+.conta-box {
+    width: 100%;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+/* TOPO */
+
+.cadastro-topo {
+    margin-bottom: 30px;
+}
+
+.cadastro-topo span {
+    color: red;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+.cadastro-topo h1 {
+    color: white;
+    font-size: 38px;
+    margin: 8px 0;
+}
+
+.cadastro-topo p {
+    color: #777;
+    font-size: 14px;
+}
+
+
+/* OPÇÕES DA CONTA */
+
+.conta-opcoes {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.conta-item {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    width: 100%;
+    padding: 22px;
+
+    box-sizing: border-box;
+
+    background: #101010;
+    border: 1px solid #242424;
+    border-radius: 8px;
+
+    text-decoration: none;
+    color: white;
+
+    transition: 0.3s;
+}
+
+.conta-item:hover {
+    border-color: red;
+    transform: translateX(5px);
+}
+
+.conta-item>span {
+    font-size: 25px;
+}
+
+.conta-item h3 {
+    margin: 0 0 6px;
+    font-size: 15px;
+}
+
+.conta-item p {
+    margin: 0;
+    color: #666;
+    font-size: 12px;
+}
+
+
+/* PEDIDOS */
+
+#lista-pedidos {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.pedido {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 22px;
+
+    background: #101010;
+    border: 1px solid #242424;
+    border-radius: 10px;
+
+    transition: .3s;
+}
+
+.pedido:hover {
+    border-color: red;
+}
+
+.pedido span {
+    color: red;
+    font-size: 10px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.pedido h3 {
+    color: white;
+    font-size: 16px;
+    margin: 7px 0;
+}
+
+.pedido p {
+    color: #666;
+    font-size: 12px;
+    margin: 4px 0;
+}
+
+.pedido strong {
+    color: white;
+    font-size: 18px;
+}
+
+
+/* SEM PEDIDOS */
+
+.sem-pedidos {
+    text-align: center;
+    color: #666;
+    padding: 40px 20px;
+
+    background: #101010;
+    border: 1px solid #242424;
+    border-radius: 10px;
+}
+
+
+/* BOTÃO SAIR */
+
+.btn-sair {
+    width: 100%;
+    margin-top: 25px;
+    padding: 15px;
+
+    background: transparent;
+    color: #777;
+
+    border: 1px solid #292929;
+    border-radius: 7px;
+
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+
+    cursor: pointer;
+    transition: .3s;
+}
+
+.btn-sair:hover {
+    color: red;
+    border-color: red;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+
+    .conta-opcoes {
+        grid-template-columns: 1fr;
+    }
+
+    .cadastro-topo h1 {
+        font-size: 30px;
+    }
+
+    .pedido {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+}

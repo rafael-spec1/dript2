@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagamento - DRIPT</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
@@ -46,12 +46,44 @@
     }
 
     function confirmarPagamento() {
-        alert("Pagamento realizado com sucesso!");
-        localStorage.removeItem("carrinho");
-        localStorage.removeItem("total");
-        localStorage.removeItem("contador");
-        window.location.href = "index.html";
+
+    const metodo = document.getElementById("metodo").value;
+
+    if (!metodo) {
+        alert("Selecione um método de pagamento.");
+        return;
     }
+
+    const carrinho = localStorage.getItem("carrinho");
+    const total = localStorage.getItem("total");
+
+    const pedido = {
+        data: new Date().toLocaleDateString("pt-BR"),
+        metodo: metodo,
+        total: Number(total),
+        produtos: carrinho
+    };
+
+    let pedidos = JSON.parse(
+        localStorage.getItem("pedidosDript")
+    ) || [];
+
+    pedidos.push(pedido);
+
+    localStorage.setItem(
+        "pedidosDript",
+        JSON.stringify(pedidos)
+    );
+
+    alert("Pagamento realizado com sucesso!");
+
+    localStorage.removeItem("carrinho");
+    localStorage.removeItem("total");
+    localStorage.removeItem("contador");
+
+    window.location.href = "pedidos.html";
+}
+
     </script>
 
 </body>

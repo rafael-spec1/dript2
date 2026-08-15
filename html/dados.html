@@ -1,86 +1,84 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Meus Dados | DRIPT</title>
-
     <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/conta.css">
 </head>
-
+            
 <body class="pagina-cadastro">
-
+            
     <main class="cadastro">
-
+            
         <a href="index.html" class="cadastro-logo">
             DRIPT<span>.</span>
         </a>
-
+            
         <div class="conta-box">
-
+                
             <div class="cadastro-topo">
                 <span>MY DRIPT</span>
-
+                    
                 <h1>Meus dados</h1>
-
+                    
                 <p>
                     Confira as informações da sua conta.
                 </p>
             </div>
-
+                    
             <div class="dados-usuario">
-
+                    
                 <div class="campo">
                     <label>NOME</label>
                     <input type="text" id="nome" readonly>
                 </div>
-
+                    
                 <div class="campo">
                     <label>EMAIL</label>
                     <input type="email" id="email" readonly>
                 </div>
-
+                    
             </div>
-
+                    
             <a href="conta.html" class="btn-sobre">
                 VOLTAR PARA MINHA CONTA
             </a>
-
+                    
         </div>
-
+                    
     </main>
-
+                    
     <script>
-
+                    
         const usuarioSalvo =
             localStorage.getItem("usuarioDript");
-
+                    
         const usuarioLogado =
             localStorage.getItem("usuarioLogado");
-
+                    
         if (!usuarioSalvo || usuarioLogado !== "true") {
-
+                    
             window.location.href = "login.html";
-
+                    
         }
-
+                    
         if (usuarioSalvo) {
-
+                    
             const usuario =
                 JSON.parse(usuarioSalvo);
-
+                    
             document.getElementById("nome").value =
                 usuario.nome;
-
+                    
             document.getElementById("email").value =
                 usuario.email;
-
+                    
         }
-
+                    
     </script>
-
+                    
 </body>
 
 </html>

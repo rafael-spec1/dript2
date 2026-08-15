@@ -146,4 +146,57 @@ function carregarProdutos() {
 
 }
 
-document.addEventListener("DOMContentLoaded", carregarProdutos); 
+document.addEventListener("DOMContentLoaded", carregarProdutos);
+
+function abrirPesquisa() {
+
+        const barra = document.getElementById("barra-pesquisa");
+        const campo = document.getElementById("campo-pesquisa");
+
+        barra.classList.add("ativa");
+
+        campo.focus();
+}
+
+
+function fecharPesquisa() {
+
+        const barra = document.getElementById("barra-pesquisa");
+
+        barra.classList.remove("ativa");
+
+}
+
+function pesquisarProdutos() {
+
+        const busca = document
+                .getElementById("campo-pesquisa")
+                .value
+                .toLowerCase()
+                .trim();
+
+        const produtos = document.querySelectorAll(".produto");
+
+        produtos.forEach(produto => {
+
+                const nome = produto
+                        .querySelector("h3")
+                        ?.innerText
+                        .toLowerCase() || "";
+
+                if (nome.includes(busca)) {
+                        produto.style.display = "";
+                } else {
+                        produto.style.display = "none";
+                }
+
+        });
+}
+
+document.addEventListener("keydown", function (event) {
+
+        if (event.key === "Escape") {
+                fecharPesquisa();
+        }
+
+});

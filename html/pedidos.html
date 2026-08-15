@@ -8,6 +8,7 @@
     <title>Meus Pedidos | DRIPT</title>
 
     <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/conta.css">
 </head>
 
 <body class="pagina-cadastro">
@@ -30,11 +31,7 @@
                 </p>
             </div>
 
-            <div id="lista-pedidos">
-                <p class="sem-pedidos">
-                    Você ainda não possui pedidos.
-                </p>
-            </div>
+            <div id="lista-pedidos"></div>
 
             <a href="conta.html" class="btn-sobre">
                 VOLTAR PARA MINHA CONTA
@@ -54,6 +51,58 @@
         }
 
     </script>
+
+<script>
+
+    const pedidos =
+        JSON.parse(localStorage.getItem("pedidosDript")) || [];
+
+    const lista =
+        document.getElementById("lista-pedidos");
+
+    if (pedidos.length === 0) {
+
+        lista.innerHTML = `
+            <p class="sem-pedidos">
+                Você ainda não possui pedidos.
+            </p>
+        `;
+
+    } else {
+
+        pedidos.reverse().forEach((pedido, index) => {
+
+            lista.innerHTML += `
+                <div class="pedido">
+
+                    <div>
+                        <span>PEDIDO #${pedidos.length - index}</span>
+
+                        <h3>Compra realizada</h3>
+
+                        <p>
+                            Data: ${pedido.data}
+                        </p>
+
+                        <p>
+                            Pagamento: ${pedido.metodo}
+                        </p>
+                    </div>
+
+                    <strong>
+                        R$ ${pedido.total
+                            .toFixed(2)
+                            .replace(".", ",")}
+                    </strong>
+
+                </div>
+            `;
+
+        });
+
+    }
+
+</script>
 
 </body>
 
