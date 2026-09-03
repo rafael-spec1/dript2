@@ -1,0 +1,125 @@
+/* DROP DRIPT */
+
+.drop-dript {
+    position: relative;
+    min-height: 500px;
+    margin: 80px 5%;
+    padding: 60px;
+    background: #0d0d0d;
+    border: 1px solid #222;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.drop-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.drop-topo span {
+    color: red;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 4px;
+}
+
+.drop-topo p {
+    color: #666;
+    font-size: 11px;
+    letter-spacing: 3px;
+}
+
+.drop-conteudo {
+    position: relative;
+    z-index: 2;
+}
+
+.drop-conteudo h2 {
+    color: white;
+    font-size: clamp(55px, 8vw, 110px);
+    line-height: 0.85;
+    margin: 0 0 30px;
+    font-weight: 900;
+    letter-spacing: -4px;
+}
+
+.drop-conteudo p {
+    color: #777;
+    font-size: 13px;
+    line-height: 1.8;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+}
+
+.btn-drop {
+    display: inline-block;
+    padding: 15px 28px;
+    background: red;
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    transition: 0.3s;
+}
+
+.btn-drop:hover {
+    background: white;
+    color: red;
+    transform: translateX(5px);
+}
+
+.drop-numero {
+    position: absolute;
+    right: 40px;
+    bottom: 25px;
+    color: #333;
+    font-size: 12px;
+    letter-spacing: 3px;
+}
+
+.drop-dript::after {
+    content: "DRIPT";
+    position: absolute;
+    right: -20px;
+    bottom: -70px;
+    font-size: 220px;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.025);
+    letter-spacing: -10px;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+
+    .drop-dript {
+        margin: 50px 20px;
+        padding: 35px 25px;
+        min-height: 450px;
+    }
+
+    .drop-topo {
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .drop-topo p {
+        text-align: right;
+        font-size: 9px;
+    }
+
+    .drop-conteudo h2 {
+        font-size: 55px;
+        letter-spacing: -3px;
+    }
+
+    .drop-dript::after {
+        font-size: 100px;
+        bottom: -20px;
+    }
+}
