@@ -1,0 +1,249 @@
+/* PÁGINA DE PAGAMENTO*/
+
+body {
+    margin: 0;
+    background: #0b0b0b;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+/* CABEÇALHO */
+.pagamento-header {
+    height: 70px;
+    padding: 0 8%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #222;
+    background: #111;
+}
+
+.pagamento-header .logo {
+    color: red;
+    font-size: 28px;
+    font-weight: bold;
+    text-decoration: none;
+    letter-spacing: 2px;
+}
+
+.pagamento-header span {
+    color: #aaa;
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+/* ÁREA PRINCIPAL */
+
+.checkout {
+    max-width: 1100px;
+    margin: 50px auto;
+    padding: 0 25px;
+}
+
+.checkout>h1 {
+    font-size: 40px;
+    margin-bottom: 40px;
+}
+
+/* CONTAINER */
+
+.checkout-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+/* SEÇÕES */
+
+.resumo-pedido,
+.dados-entrega,
+.metodo-pagamento {
+    background: #111;
+    border: 1px solid #222;
+    padding: 30px;
+    border-radius: 8px;
+}
+
+.resumo-pedido h2,
+.dados-entrega h2,
+.metodo-pagamento h2 {
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 22px;
+}
+
+
+/* TOTAL */
+
+.total-pedido {
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.total-pedido strong {
+    color: red;
+    font-size: 22px;
+}
+
+
+/* CAMPOS */
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 18px;
+}
+
+.campo label {
+    margin-bottom: 8px;
+    font-size: 13px;
+    color: #bbb;
+}
+
+.campo input {
+    padding: 13px;
+    background: #0b0b0b;
+    color: white;
+    border: 1px solid #333;
+    border-radius: 5px;
+    outline: none;
+}
+
+.campo input:focus {
+    border-color: red;
+}
+
+
+/* LINHA DE CAMPOS */
+
+.linha {
+    display: flex;
+    gap: 15px;
+}
+
+.linha .campo {
+    flex: 1;
+}
+
+
+/* MÉTODOS DE PAGAMENTO */
+
+.metodo-pagamento {
+    grid-column: 1 / -1;
+}
+
+.opcoes-pagamento {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.opcao-pagamento {
+    flex: 1;
+    padding: 15px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.opcao-pagamento:hover {
+    border-color: red;
+}
+
+.opcao-pagamento input {
+    margin-right: 8px;
+}
+
+
+/* DADOS DO PAGAMENTO */
+
+.dados-pagamento {
+    padding: 20px;
+    background: #0b0b0b;
+    border: 1px solid #222;
+    border-radius: 5px;
+}
+
+.dados-pagamento h3 {
+    margin-top: 0;
+}
+
+
+/* PIX */
+
+.pix-placeholder {
+    width: 160px;
+    height: 160px;
+    margin: 20px auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #555;
+    color: #777;
+}
+
+
+/* FINALIZAÇÃO */
+
+.finalizar-compra {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-top: 10px;
+}
+
+#btn-finalizar {
+    width: 100%;
+    padding: 16px;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    letter-spacing: 1px;
+}
+
+#btn-finalizar:hover {
+    background: white;
+    color: red;
+}
+
+.finalizar-compra p {
+    color: #666;
+    font-size: 12px;
+    margin-top: 15px;
+}
+
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 768px) {
+
+    .checkout-container {
+        grid-template-columns: 1fr;
+    }
+
+    .metodo-pagamento,
+    .finalizar-compra {
+        grid-column: auto;
+    }
+
+    .checkout>h1 {
+        font-size: 32px;
+    }
+
+    .opcoes-pagamento {
+        flex-direction: column;
+    }
+
+    .linha {
+        flex-direction: column;
+        gap: 0;
+    }
+
+}
