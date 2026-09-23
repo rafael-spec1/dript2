@@ -16,7 +16,7 @@ const PRODUTOS = [
         nome: "Moletom DRIPT",
         preco: 179.90,
         categoria: "moletom",
-        imagem: "../img/moletom-rio-arabe-black.png",
+        imagem: "../img/moletom-dript.png",
         tag: "LIMITED",
         descricao: "Moletom premium DRIPT com tecido encorpado e modelagem streetwear.",
         avaliacao: 5.0
@@ -27,20 +27,20 @@ const PRODUTOS = [
         nome: "Calça DRIPT",
         preco: 199.90,
         categoria: "calca",
-        imagem: "../img/camiseta-fashion-free-black.png",
+        imagem: "../img/calça-dript.png",
         tag: "NEW",
-        descricao: "Calça cargo DRIPT inspirada na cultura urbana.",
-        avaliacao: 4.8
+        descricao: "Calça larga DRIPT inspirada na cultura urbana.",
+        avaliacao: 4.9
     },
 
     {
         id: 4,
-        nome: "Boné DRIPT",
-        preco: 89.90,
-        categoria: "acessorio",
-        imagem: "../img/camiseta-fashion-free-black.png",
+        nome: "Moletom DRIPT",
+        preco: 199.90,
+        categoria: "moletom",
+        imagem: "../img/moletom-dript-la.png",
         tag: "NEW",
-        descricao: "Boné DRIPT ajustável com acabamento premium.",
+        descricao: "Moletom DRIPT com estilo urbano e acabamento premium.",
         avaliacao: 4.7
     },
 
@@ -49,7 +49,7 @@ const PRODUTOS = [
         nome: "Camiseta Oversized DRIPT",
         preco: 119.90,
         categoria: "camiseta",
-        imagem: "../img/camiseta-fashion-free-black.png",
+        imagem: "../img/camisa-oversize.png",
         tag: "NEW",
         descricao: "Camiseta oversized DRIPT com visual minimalista e modelagem streetwear.",
         avaliacao: 4.9
