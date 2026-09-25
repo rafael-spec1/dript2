@@ -35,6 +35,13 @@
                     <!-- Produtos do carrinho -->
                 </div>
 
+<div class="frete-pedido">
+    <span>Frete</span>
+    <strong id="frete-pedido">
+        R$ 0,00
+    </strong>
+</div>
+
                 <div class="total-pedido">
 
                     <span>Total</span>
@@ -316,25 +323,28 @@
 
 
             <!-- FINALIZAÇÃO -->
+<div class="finalizar-compra">
 
-            <div class="finalizar-compra">
+    <button
+        type="button"
+        id="btn-finalizar"
+    >
+        FINALIZAR PEDIDO
+    </button>
 
-                <button
-                    type="button"
-                    id="btn-finalizar"
-                >
-                    FINALIZAR PEDIDO
-                </button>
+    <button
+        type="button"
+        class="btn-continuar"
+        onclick="window.location.href='index.html'"
+    >
+        CONTINUAR COMPRANDO
+    </button>
 
-                <p>
-                    Seus dados serão utilizados apenas para processar o pedido.
-                </p>
+    <p>
+        Seus dados serão utilizados apenas para processar o pedido.
+    </p>
 
-            </div>
-
-
-        </div>
-
+</div>
     </main>
 
     <script src="../js/pagamento.js"></script>

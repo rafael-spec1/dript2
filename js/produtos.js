@@ -38,7 +38,7 @@ const PRODUTOS = [
         nome: "Moletom DRIPT",
         preco: 199.90,
         categoria: "moletom",
-        imagem: "../img/moletom-dript-la.png",
+        imagem: "../img/moletom-dript-lax.png",
         tag: "NEW",
         descricao: "Moletom DRIPT com estilo urbano e acabamento premium.",
         avaliacao: 4.7
@@ -46,7 +46,7 @@ const PRODUTOS = [
 
     {
         id: 5,
-        nome: "Camiseta Oversized DRIPT",
+        nome: "Camiseta Oversized",
         preco: 119.90,
         categoria: "camiseta",
         imagem: "../img/camisa-oversize.png",

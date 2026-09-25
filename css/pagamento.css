@@ -247,3 +247,68 @@ body {
     }
 
 }
+
+.btn-continuar {
+    width: 100%;
+    padding: 14px;
+    margin-top: 10px;
+    background: transparent;
+    color: white;
+    border: 1px solid #fff;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn-continuar:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* ITENS DO RESUMO DO PEDIDO */
+#lista-pedido .item-carrinho {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid #2a2a2a;
+}
+
+#lista-pedido .item-carrinho img {
+    width: 80px;
+    height: 90px;
+    object-fit: contain;
+    background: #111;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+#lista-pedido .item-carrinho h3 {
+    margin: 0 0 8px;
+    font-size: 15px;
+    color: #fff;
+}
+
+#lista-pedido .item-carrinho p {
+    margin: 4px 0;
+    font-size: 13px;
+    color: #aaa;
+}
+
+#lista-pedido .btn-remover {
+    display: none;
+}
+
+.btn-remover-checkout {
+    background: transparent;
+    border: none;
+    color: #888;
+    font-size: 11px;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+.btn-remover-checkout:hover {
+    color: #fff;
+}
