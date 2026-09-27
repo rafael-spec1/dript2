@@ -3,9 +3,9 @@ const PRODUTOS = [
     {
         id: 1,
         nome: "Camiseta DRIPT",
-        preco: 99.90,
+        preco: 119.90,
         categoria: "camiseta",
-        imagem: "../img/camiseta-fashion-free-black.png",
+        imagem: "../img/camiseta-basica.png",
         tag: "LIMITED",
         descricao: "Camiseta oversized premium DRIPT confeccionada em algodão de alta qualidade.",
         avaliacao: 4.9
@@ -14,9 +14,9 @@ const PRODUTOS = [
     {
         id: 2,
         nome: "Moletom DRIPT",
-        preco: 179.90,
+        preco: 209.90,
         categoria: "moletom",
-        imagem: "../img/moletom-dript.png",
+        imagem: "../img/moletom-eua.png",
         tag: "LIMITED",
         descricao: "Moletom premium DRIPT com tecido encorpado e modelagem streetwear.",
         avaliacao: 5.0
@@ -25,9 +25,9 @@ const PRODUTOS = [
     {
         id: 3,
         nome: "Calça DRIPT",
-        preco: 199.90,
+        preco: 169.90,
         categoria: "calca",
-        imagem: "../img/calça-dript.png",
+        imagem: "../img/calca-dript.png",
         tag: "NEW",
         descricao: "Calça larga DRIPT inspirada na cultura urbana.",
         avaliacao: 4.9
@@ -36,9 +36,9 @@ const PRODUTOS = [
     {
         id: 4,
         nome: "Moletom DRIPT",
-        preco: 199.90,
+        preco: 209.90,
         categoria: "moletom",
-        imagem: "../img/moletom-dript-lax.png",
+        imagem: "../img/moletom-palestina.png",
         tag: "NEW",
         descricao: "Moletom DRIPT com estilo urbano e acabamento premium.",
         avaliacao: 4.7
@@ -49,7 +49,7 @@ const PRODUTOS = [
         nome: "Camiseta Oversized",
         preco: 119.90,
         categoria: "camiseta",
-        imagem: "../img/camisa-oversize.png",
+        imagem: "../img/moletom-paiefilho.png",
         tag: "NEW",
         descricao: "Camiseta oversized DRIPT com visual minimalista e modelagem streetwear.",
         avaliacao: 4.9
@@ -57,8 +57,8 @@ const PRODUTOS = [
 
     {
         id: 6,
-        nome: "Calça Jeans DRIPT",
-        preco: 229.90,
+        nome: "Shorts Jeans DRIPT",
+        preco: 149.90,
         categoria: "calca",
         imagem: "../img/camiseta-fashion-free-black.png",
         tag: "NEW",
