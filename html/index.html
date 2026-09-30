@@ -198,23 +198,13 @@
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
-
-    const usuarioSalvo = localStorage.getItem("usuarioDript");
-    const usuarioLogado = localStorage.getItem("usuarioLogado");
     const nomeUsuario = document.getElementById("nome-usuario");
-
-    if (
-        usuarioSalvo &&
-        usuarioLogado === "true" &&
-        nomeUsuario
-    ) {
-
-        const usuario = JSON.parse(usuarioSalvo);
-
-        nomeUsuario.innerText = usuario.nome.split(" ")[0];
-
-    }
-
+    if (!nomeUsuario) return;
+    fetch("../php/sessao.php")
+        .then(resposta => resposta.ok ? resposta.json() : null)
+        .then(usuario => {
+            if (usuario) nomeUsuario.innerText = usuario.nome.split(" ")[0];
+        });
 });
 </script>
 

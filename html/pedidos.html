@@ -42,67 +42,40 @@
     </main>
 
     <script>
-
-        const usuarioLogado =
-            localStorage.getItem("usuarioLogado");
-
-        if (usuarioLogado !== "true") {
-            window.location.href = "login.html";
-        }
-
-    </script>
-
-<script>
-
-    const pedidos =
-        JSON.parse(localStorage.getItem("pedidosDript")) || [];
-
-    const lista =
-        document.getElementById("lista-pedidos");
-
-    if (pedidos.length === 0) {
-
-        lista.innerHTML = `
-            <p class="sem-pedidos">
-                Você ainda não possui pedidos.
-            </p>
-        `;
-
-    } else {
-
-        pedidos.reverse().forEach((pedido, index) => {
-
-            lista.innerHTML += `
-                <div class="pedido">
-
-                    <div>
-                        <span>PEDIDO #${pedidos.length - index}</span>
-
-                        <h3>Compra realizada</h3>
-
-                        <p>
-                            Data: ${pedido.data}
-                        </p>
-
-                        <p>
-                            Pagamento: ${pedido.metodo}
-                        </p>
+        const lista = document.getElementById("lista-pedidos");
+        const escapar = valor => String(valor ?? "").replace(/[&<>"']/g, caractere => ({
+            "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+        })[caractere]);
+        fetch("../php/pedidos.php")
+            .then(async resposta => {
+                const dados = await resposta.json();
+                if (resposta.status === 401) {
+                    window.location.href = "login.html";
+                    return [];
+                }
+                if (!resposta.ok) throw new Error(dados.mensagem || "Não foi possível carregar os pedidos.");
+                return dados;
+            })
+            .then(pedidos => {
+                if (!pedidos.length) {
+                    lista.innerHTML = '<p class="sem-pedidos">Você ainda não possui pedidos.</p>';
+                    return;
+                }
+                lista.innerHTML = pedidos.map(pedido => `
+                    <div class="pedido">
+                        <div>
+                            <span>PEDIDO #${pedido.id}</span>
+                            <h3>${escapar(pedido.status)}</h3>
+                            <p>Data: ${new Date(pedido.criado_em).toLocaleDateString("pt-BR")}</p>
+                            <p>Pagamento: ${pedido.metodo_pagamento}</p>
+                            <p>Entrega: ${escapar(pedido.endereco)}, ${escapar(pedido.numero)} - ${escapar(pedido.cidade)}</p>
+                        </div>
+                        <strong>R$ ${(Number(pedido.total_centavos) / 100).toFixed(2).replace(".", ",")}</strong>
                     </div>
-
-                    <strong>
-                        R$ ${pedido.total
-                            .toFixed(2)
-                            .replace(".", ",")}
-                    </strong>
-
-                </div>
-            `;
-
-        });
-
-    }
-
-</script>
+                `).join("");
+            })
+            .catch(erro => lista.textContent = erro.message);
+    </script>
 
 </body>
 

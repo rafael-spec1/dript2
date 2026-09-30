@@ -95,39 +95,17 @@
                 const senha =
                     document.getElementById("senha").value;
 
-                const usuarioSalvo =
-                    localStorage.getItem("usuarioDript");
-
-
-                if (!usuarioSalvo) {
-
-                    alert("Nenhuma conta encontrada. Crie sua conta primeiro.");
-
-                    return;
-
-                }
-
-
-                const usuario =
-                    JSON.parse(usuarioSalvo);
-
-
-                if (
-                    email === usuario.email &&
-                    senha === usuario.senha
-                ) {
-
-                    localStorage.setItem("usuarioLogado", "true");
-
-                    alert("Login realizado com sucesso!");
-
-                    window.location.href = "index.html";
-
-                } else {
-
-                    alert("E-mail ou senha incorretos.");
-
-                }
+                fetch("../php/login.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ email, senha })
+                })
+                    .then(async resposta => {
+                        const dados = await resposta.json();
+                        if (!resposta.ok) throw new Error(dados.mensagem || "Não foi possível entrar.");
+                        window.location.href = "conta.html";
+                    })
+                    .catch(erro => alert(erro.message));
 
             });
 

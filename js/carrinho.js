@@ -9,31 +9,33 @@ function fecharCarrinho() {
     document.getElementById("carrinho").classList.remove("ativo");
 }
 
-function adicionarCarrinho(nome, preco, imagem) {
+function adicionarCarrinho(nome, preco, imagem, produtoId) {
 
     let areaCarrinho = document.getElementById("itens-carrinho");
+    const quantidadeAdicionada = quantidade;
+    const precoCentavos = Math.round(preco * 100);
 
     areaCarrinho.innerHTML += `
-    <div class="item-carrinho">
+    <div class="item-carrinho" data-produto-id="${produtoId}" data-quantidade="${quantidadeAdicionada}" data-tamanho="${tamanhoSelecionado}" data-preco-centavos="${precoCentavos}">
 
     <img src="${imagem}" alt="${nome}">
 
     <div>
         <h3>${nome}</h3>
         <p>Tamanho: ${tamanhoSelecionado}</p>
-        <p>Qtd: ${quantidade}</p>
-        <p>R$ ${(preco * quantidade).toFixed(2).replace(".", ",")}</p>
+        <p>Qtd: ${quantidadeAdicionada}</p>
+        <p>R$ ${(preco * quantidadeAdicionada).toFixed(2).replace(".", ",")}</p>
     </div>
 
         <button class="btn-remover"
-        onclick="removerItem(this, ${preco}, ${quantidade})">
+        onclick="removerItem(this)">
             ✖
         </button>
 
     </div>
     `;
 
-    contadorCarrinho += quantidade;
+    contadorCarrinho += quantidadeAdicionada;
     document.getElementById("contador").innerText = contadorCarrinho;
 
     totalCarrinho += preco * quantidade;
@@ -48,14 +50,14 @@ function adicionarCarrinho(nome, preco, imagem) {
     abrirCarrinho();
 }
 
-function removerItem(botao, preco, quantidade) {
+function removerItem(botao) {
     let item = botao.closest(".item-carrinho");
+    if (!item) return;
+    contadorCarrinho -= Number(item.dataset.quantidade);
+    totalCarrinho -= Number(item.dataset.precoCentavos) * Number(item.dataset.quantidade) / 100;
     item.remove();
 
-    contadorCarrinho--;
     document.getElementById("contador").innerText = contadorCarrinho;
-
-    totalCarrinho -= preco * quantidade;
     document.getElementById("total-carrinho").innerText =
         `Total: R$ ${totalCarrinho.toFixed(2).replace(".", ",")}`;
 

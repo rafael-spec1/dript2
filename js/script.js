@@ -52,7 +52,8 @@ function renderizarProdutosHome() {
                 <a href="produto.html?id=${produto.id}">
                         <button class="btn-comprar">Comprar</button>
                 </a>
-               <button class="btn-favorito" 
+                 <button class="btn-favorito" 
+         data-produto-id="${produto.id}"
         data-nome="${produto.nome}"
         data-preco="${produto.preco}"
         data-imagem="${produto.imagem || ""}">

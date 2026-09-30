@@ -74,7 +74,7 @@ const produto = Object.values(PRODUTOS).find(p => p.id === id);
             <span class="tag">LIMITED</span>
             <div class="titulo-produto">
                 <h1>${produto.nome}</h1>
-                <button class="btn-favorito" id="btn-fav-detalhe" data-nome="${produto.nome}">🤍</button>
+                <button class="btn-favorito" id="btn-fav-detalhe" data-produto-id="${produto.id}" data-nome="${produto.nome}" data-preco="${produto.preco}" data-imagem="${produto.imagem || ""}">🤍</button>
             </div>
             <div class="avaliacao">
                 ⭐⭐⭐⭐⭐
@@ -110,16 +110,12 @@ const produto = Object.values(PRODUTOS).find(p => p.id === id);
     `;
 
         document.getElementById("btn-comprar-agora").onclick = () => {
-    adicionarCarrinho(produto.nome, produto.preco, produto.imagem);
+    adicionarCarrinho(produto.nome, produto.preco, produto.imagem, produto.id);
     finalizarCompra();
 };
         document.getElementById("btn-add-carrinho").onclick = () => {
-    adicionarCarrinho(produto.nome, produto.preco, produto.imagem);
+    adicionarCarrinho(produto.nome, produto.preco, produto.imagem, produto.id);
 };
-
-    document.getElementById("btn-fav-detalhe").onclick = function () {
-        favoritarProduto(this, produto.nome, produto.preco, produto.imagem || "");
-    };
 
     // relacionados: todos os outros produtos do catálogo
     let grid = document.getElementById("grid-relacionados");

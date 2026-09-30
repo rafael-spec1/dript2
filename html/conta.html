@@ -65,37 +65,21 @@
     </main>
 
     <script>
-
-        const usuarioSalvo =
-            localStorage.getItem("usuarioDript");
-
-        const usuarioLogado =
-            localStorage.getItem("usuarioLogado");
-
-        if (!usuarioSalvo || usuarioLogado !== "true") {
-
-            window.location.href = "login.html";
-
-        }
-
-        if (usuarioSalvo) {
-
-            const usuario =
-                JSON.parse(usuarioSalvo);
-
-            document.getElementById("saudacao-usuario").innerText =
-                `Olá, ${usuario.nome.split(" ")[0]}. Bem-vindo à DRIPT.`;
-
-        }
+        fetch("../php/sessao.php")
+            .then(resposta => {
+                if (!resposta.ok) throw new Error();
+                return resposta.json();
+            })
+            .then(usuario => {
+                document.getElementById("saudacao-usuario").innerText =
+                    `Olá, ${usuario.nome.split(" ")[0]}. Bem-vindo à DRIPT.`;
+            })
+            .catch(() => window.location.href = "login.html");
 
         function sair() {
-
-            localStorage.removeItem("usuarioLogado");
-
-            window.location.href = "index.html";
-
+            fetch("../php/sessao.php", { method: "DELETE" })
+                .finally(() => window.location.href = "index.html");
         }
-
     </script>
 
 </body>

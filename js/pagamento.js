@@ -35,6 +35,7 @@ opcoesPagamento.forEach(opcao => {
 const listaPedido = document.getElementById("lista-pedido");
 const totalPedido = document.getElementById("total-pedido");
 const botaoFrete = document.getElementById("calcular-frete");
+const valorFrete = 20;
 
 botaoFrete.addEventListener("click", function () {
 
@@ -46,10 +47,10 @@ botaoFrete.addEventListener("click", function () {
         return;
     }
 
-    console.log("CEP informado:", cep);
+    document.getElementById("frete-pedido").textContent =
+        `R$ ${valorFrete.toFixed(2).replace(".", ",")}`;
+    atualizarTotal();
 });
-
-const valorFrete = 20;
 
 document.getElementById("frete-pedido").textContent =
     `R$ ${valorFrete.toFixed(2).replace(".", ",")}`;
@@ -67,14 +68,17 @@ if (totalSalvo) {
 if (carrinhoSalvo) {
     listaPedido.innerHTML = carrinhoSalvo;
 
-    document.querySelectorAll("#lista-pedido .item-carrinho").forEach(item => {
-        item.insertAdjacentHTML(
-            "beforeend",
-            `<button class="btn-remover-checkout" onclick="removerDoCheckout(this)">
-                REMOVER
-            </button>`
-        );
+    listaPedido.querySelectorAll(".item-carrinho").forEach(item => {
+        item.insertAdjacentHTML("beforeend", '<button class="btn-remover-checkout" onclick="removerDoCheckout(this)">REMOVER</button>');
     });
+}
+
+atualizarTotal();
+
+function atualizarTotal() {
+    const subtotal = [...listaPedido.querySelectorAll(".item-carrinho")]
+        .reduce((soma, item) => soma + Number(item.dataset.precoCentavos || 0) * Number(item.dataset.quantidade || 0), 0) / 100;
+    totalPedido.textContent = `R$ ${(subtotal + valorFrete).toFixed(2).replace(".", ",")}`;
 }
 
 function removerDoCheckout(botao) {
@@ -84,40 +88,9 @@ function removerDoCheckout(botao) {
 
     item.remove();
 
-    const itensRestantes = document.querySelectorAll(
-        "#lista-pedido .item-carrinho"
-    );
-
-    let total = 0;
-    let contador = 0;
-
-    itensRestantes.forEach(item => {
-        const paragrafos = item.querySelectorAll("p");
-
-        paragrafos.forEach(p => {
-            const texto = p.innerText;
-
-            if (texto.includes("Qtd:")) {
-                const qtd = Number(
-                    texto.replace("Qtd:", "").trim()
-                );
-
-                contador += qtd;
-            }
-
-            if (texto.includes("R$")) {
-                const valor = Number(
-                    texto
-                        .replace("R$", "")
-                        .trim()
-                        .replace(/\./g, "")
-                        .replace(",", ".")
-                );
-
-                total += valor;
-            }
-        });
-    });
+    const itensRestantes = document.querySelectorAll("#lista-pedido .item-carrinho");
+    const total = [...itensRestantes].reduce((soma, atual) => soma + Number(atual.dataset.precoCentavos || 0) * Number(atual.dataset.quantidade || 0), 0) / 100;
+    const contador = [...itensRestantes].reduce((soma, atual) => soma + Number(atual.dataset.quantidade || 0), 0);
 
     localStorage.setItem(
         "carrinho",
@@ -127,6 +100,52 @@ function removerDoCheckout(botao) {
     localStorage.setItem("total", total);
     localStorage.setItem("contador", contador);
 
-    totalPedido.textContent =
-        `R$ ${total.toFixed(2).replace(".", ",")}`;
+    atualizarTotal();
 }
+
+document.getElementById("btn-finalizar").addEventListener("click", async () => {
+    const itens = [...listaPedido.querySelectorAll(".item-carrinho")].map(item => ({
+        produto_id: Number(item.dataset.produtoId),
+        quantidade: Number(item.dataset.quantidade),
+        tamanho: item.dataset.tamanho
+    }));
+    const metodo = document.querySelector('input[name="pagamento"]:checked')?.value;
+    const entrega = {
+        nome: document.getElementById("nome").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        cep: document.getElementById("cep").value.trim(),
+        endereco: document.getElementById("endereco").value.trim(),
+        numero: document.getElementById("numero").value.trim(),
+        cidade: document.getElementById("cidade").value.trim()
+    };
+
+    if (!itens.length || itens.some(item => !item.produto_id)) {
+        alert("Seu carrinho está vazio ou contém um item inválido.");
+        return;
+    }
+    if (!metodo || Object.values(entrega).some(valor => !valor)) {
+        alert("Preencha os dados de entrega e selecione a forma de pagamento.");
+        return;
+    }
+
+    try {
+        const resposta = await fetch("../php/pedidos.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ metodo, itens, entrega, frete_centavos: valorFrete * 100 })
+        });
+        const retorno = await resposta.json();
+        if (resposta.status === 401) {
+            window.location.href = "login.html";
+            return;
+        }
+        if (!resposta.ok) throw new Error(retorno.mensagem || "Não foi possível salvar o pedido.");
+        localStorage.removeItem("carrinho");
+        localStorage.removeItem("total");
+        localStorage.removeItem("contador");
+        alert(`Pedido #${retorno.pedido_id} salvo com sucesso.`);
+        window.location.href = "pedidos.html";
+    } catch (erro) {
+        alert(erro.message);
+    }
+});
