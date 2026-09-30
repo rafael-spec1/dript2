@@ -24,7 +24,7 @@ const PRODUTOS = [
 
     {
         id: 3,
-        nome: "Calça DRIPT",
+        nome: "Calça Reta DRIPT",
         preco: 169.90,
         categoria: "calca",
         imagem: "../img/calca-dript.png",
@@ -60,7 +60,7 @@ const PRODUTOS = [
         nome: "Shorts Jeans DRIPT",
         preco: 149.90,
         categoria: "calca",
-        imagem: "../img/camiseta-fashion-free-black.png",
+        imagem: "../img/shorts-jeans.png",
         tag: "NEW",
         descricao: "Calça jeans DRIPT com modelagem moderna e inspiração streetwear.",
         avaliacao: 4.8

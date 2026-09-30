@@ -175,7 +175,10 @@ function pesquisarProdutos() {
                 .toLowerCase()
                 .trim();
 
-        const produtos = document.querySelectorAll(".produto");
+        const produtos = document.querySelectorAll("#grid-produtos .produto");
+        const resultados = document.getElementById("resultados-pesquisa");
+
+        resultados.innerHTML = "";
 
         produtos.forEach(produto => {
 
@@ -185,9 +188,8 @@ function pesquisarProdutos() {
                         .toLowerCase() || "";
 
                 if (nome.includes(busca)) {
-                        produto.style.display = "";
-                } else {
-                        produto.style.display = "none";
+                        const copia = produto.cloneNode(true);
+                        resultados.appendChild(copia);
                 }
 
         });

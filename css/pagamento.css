@@ -312,3 +312,50 @@ body {
 .btn-remover-checkout:hover {
     color: #fff;
 }
+
+/* RODAPÉ */
+
+.footer {
+    background: #0a0a0a;
+    padding: 70px 10%;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+    margin-top: 80px;
+    border-top: 1px solid #222;
+}
+
+.footer-logo h2 {
+    color: #fff;
+    font-size: 35px;
+    letter-spacing: 4px;
+    margin-bottom: 15px;
+}
+
+.footer-logo p {
+    color: #777;
+    font-size: 14px;
+}
+
+.footer h3 {
+    color: #fff;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.footer p,
+.footer a {
+    color: #888;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 12px;
+    font-size: 14px;
+    transition: .3s;
+}
+
+.footer a:hover {
+    color: red;
+    transform: translateX(4px);
+}

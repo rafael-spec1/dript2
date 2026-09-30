@@ -34,6 +34,25 @@ opcoesPagamento.forEach(opcao => {
 
 const listaPedido = document.getElementById("lista-pedido");
 const totalPedido = document.getElementById("total-pedido");
+const botaoFrete = document.getElementById("calcular-frete");
+
+botaoFrete.addEventListener("click", function () {
+
+    const cep = document.getElementById("cep").value
+        .replace(/\D/g, "");
+
+    if (cep.length !== 8) {
+        alert("Digite um CEP válido.");
+        return;
+    }
+
+    console.log("CEP informado:", cep);
+});
+
+const valorFrete = 20;
+
+document.getElementById("frete-pedido").textContent =
+    `R$ ${valorFrete.toFixed(2).replace(".", ",")}`;
 
 const carrinhoSalvo = localStorage.getItem("carrinho");
 const totalSalvo = localStorage.getItem("total");
