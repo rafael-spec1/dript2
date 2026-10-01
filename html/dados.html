@@ -51,32 +51,16 @@
     </main>
                     
     <script>
-                    
-        const usuarioSalvo =
-            localStorage.getItem("usuarioDript");
-                    
-        const usuarioLogado =
-            localStorage.getItem("usuarioLogado");
-                    
-        if (!usuarioSalvo || usuarioLogado !== "true") {
-                    
-            window.location.href = "login.html";
-                    
-        }
-                    
-        if (usuarioSalvo) {
-                    
-            const usuario =
-                JSON.parse(usuarioSalvo);
-                    
-            document.getElementById("nome").value =
-                usuario.nome;
-                    
-            document.getElementById("email").value =
-                usuario.email;
-                    
-        }
-                    
+        fetch("../php/sessao.php")
+            .then(resposta => {
+                if (!resposta.ok) throw new Error();
+                return resposta.json();
+            })
+            .then(usuario => {
+                document.getElementById("nome").value = usuario.nome;
+                document.getElementById("email").value = usuario.email;
+            })
+            .catch(() => window.location.href = "login.html");
     </script>
                     
 </body>

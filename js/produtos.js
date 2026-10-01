@@ -3,7 +3,7 @@ const PRODUTOS = [
     {
         id: 1,
         nome: "Camiseta DRIPT",
-        preco: 119.90,
+        preco: 99.90,
         categoria: "camiseta",
         imagem: "../img/camiseta-basica.png",
         tag: "LIMITED",
@@ -14,7 +14,7 @@ const PRODUTOS = [
     {
         id: 2,
         nome: "Moletom DRIPT",
-        preco: 209.90,
+        preco: 179.90,
         categoria: "moletom",
         imagem: "../img/moletom-eua.png",
         tag: "LIMITED",
@@ -25,7 +25,7 @@ const PRODUTOS = [
     {
         id: 3,
         nome: "Calça Reta DRIPT",
-        preco: 169.90,
+        preco: 199.90,
         categoria: "calca",
         imagem: "../img/calca-dript.png",
         tag: "NEW",
@@ -36,7 +36,7 @@ const PRODUTOS = [
     {
         id: 4,
         nome: "Moletom DRIPT",
-        preco: 209.90,
+        preco: 89.90,
         categoria: "moletom",
         imagem: "../img/moletom-palestina.png",
         tag: "NEW",
@@ -58,7 +58,7 @@ const PRODUTOS = [
     {
         id: 6,
         nome: "Shorts Jeans DRIPT",
-        preco: 149.90,
+        preco: 229.90,
         categoria: "calca",
         imagem: "../img/shorts-jeans.png",
         tag: "NEW",
@@ -97,7 +97,10 @@ function carregarProdutos() {
                 </button>
 
                 <button class="btn-favorito"
-                onclick="favoritarProduto(this,'${produto.nome}',${produto.preco},'${produto.imagem}')">
+                data-produto-id="${produto.id}"
+                data-nome="${produto.nome}"
+                data-preco="${produto.preco}"
+                data-imagem="${produto.imagem}">
                     🤍
                 </button>
 

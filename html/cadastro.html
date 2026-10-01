@@ -135,9 +135,7 @@
 
 
                 if (senha !== confirmarSenha) {
-
                     alert("As senhas não coincidem.");
-
                     return;
                 }
 
@@ -145,29 +143,20 @@
                 if (!termos) {
 
                     alert("Aceite os termos e condições para continuar.");
-
                     return;
                 }
 
-
-                const usuario = {
-
-                    nome: nome,
-                    email: email,
-                    senha: senha
-
-                };
-
-
-                localStorage.setItem(
-                    "usuarioDript",
-                    JSON.stringify(usuario)
-                );
-
-
-                alert("Conta criada com sucesso!");
-
-                window.location.href = "login.html";
+                fetch("../php/salvar.php", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ nome, email, senha, confirmarSenha, aceitarTermos: termos })
+                })
+                    .then(async resposta => {
+                        const dados = await resposta.json();
+                        if (!resposta.ok) throw new Error(dados.mensagem || "Não foi possível criar a conta.");
+                        window.location.href = "conta.html";
+                    })
+                    .catch(erro => alert(erro.message));
 
             });
 
