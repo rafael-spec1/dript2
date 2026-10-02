@@ -51,6 +51,7 @@
 <script src="../js/carrinho.js"></script>
 <script src="../js/favoritos.js"></script>
 <script src="../js/script.js"></script>
+<script src="../js/provador.js"></script>
 
 <script>
 function carregarPaginaProduto() {
@@ -100,6 +101,11 @@ const produto = Object.values(PRODUTOS).find(p => p.id === id);
                 <button class="btn-comprar" id="btn-comprar-agora">Comprar Agora</button>
                 <button class="btn-carrinho" id="btn-add-carrinho">Adicionar ao Carrinho</button>
             </div>
+
+<button class="btn-provar" id="btn-provar">
+    PROVAR ESSA PEÇA
+</button>
+
             <div class="beneficios">
                 <p>🚚 Frete para todo o Brasil</p>
                 <p>🔄 Troca em até 7 dias</p>
@@ -164,6 +170,30 @@ document.addEventListener("DOMContentLoaded", carregarPaginaProduto);
     </div>
 
 </footer>
+
+<div id="provador-modal" class="provador-modal">
+
+    <div class="provador-conteudo">
+
+        <button id="fechar-provador" class="fechar-provador">
+            ×
+        </button>
+
+        <span class="provador-label">DRIPT / FIT CHECK</span>
+
+        <h2>PROVADOR DRIPT</h2>
+
+        <p>
+            Veja como essa peça pode ficar no seu estilo.
+        </p>
+
+        <div class="provador-area">
+            <span>SEU LOOK APARECERÁ AQUI</span>
+        </div>
+
+    </div>
+
+</div>
 
 </body>
 </html>

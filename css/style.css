@@ -1949,3 +1949,178 @@ button:hover {
     color: red;
     transform: translateX(4px);
 }
+
+/* BOTÃO PROVADOR DRIPT MÁRMORE PRETO / MÁRMORE CLARO */
+
+.btn-provar {
+    width: 100%;
+    margin-top: 18px;
+    padding: 19px 22px;
+
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+
+    background:
+        repeating-linear-gradient(120deg,
+            transparent 0px,
+            transparent 28px,
+            rgba(255, 255, 255, 0.08) 30px,
+            transparent 33px,
+            transparent 58px),
+        repeating-linear-gradient(65deg,
+            transparent 0px,
+            transparent 45px,
+            rgba(255, 255, 255, 0.05) 47px,
+            transparent 50px,
+            transparent 80px),
+        radial-gradient(ellipse at 20% 20%,
+            rgba(255, 255, 255, 0.12),
+            transparent 30%),
+        linear-gradient(135deg,
+            #050505,
+            #202020,
+            #080808,
+            #292929,
+            #090909) !important;
+
+    color: #ffffff !important;
+
+    border: 1px solid #666666 !important;
+    border-radius: 3px;
+
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 2.8px;
+    text-transform: uppercase;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.4),
+        inset 0 0 20px rgba(255, 255, 255, 0.03);
+
+    transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+
+/* TEXTO NORMAL */
+
+.btn-provar span {
+    position: relative;
+    z-index: 5;
+}
+
+
+/* LUZ */
+
+.btn-provar::before {
+    content: "";
+
+    position: absolute;
+
+    top: -100%;
+    left: -40%;
+
+    width: 25%;
+    height: 300%;
+
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.22),
+            transparent);
+
+    transform: rotate(18deg);
+
+    transition: left 0.8s ease;
+
+    z-index: 4;
+
+    pointer-events: none;
+}
+
+
+/* MÁRMORE CLARO DO HOVER */
+
+.btn-provar::after {
+    content: "ABRIR PROVADOR  ↗";
+
+    position: absolute;
+    inset: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        repeating-linear-gradient(120deg,
+            transparent 0px,
+            transparent 30px,
+            rgba(0, 0, 0, 0.10) 32px,
+            transparent 35px,
+            transparent 62px),
+        repeating-linear-gradient(65deg,
+            transparent 0px,
+            transparent 42px,
+            rgba(0, 0, 0, 0.06) 44px,
+            transparent 48px,
+            transparent 78px),
+        linear-gradient(135deg,
+            #f4f4f4,
+            #c8c8c8,
+            #eeeeee,
+            #b8b8b8,
+            #f2f2f2) !important;
+
+    color: #080808 !important;
+
+    transform: translateY(100%);
+
+    transition:
+        transform 0.5s cubic-bezier(.76, 0, .24, 1);
+
+    z-index: 3;
+}
+
+
+/* HOVER */
+
+.btn-provar:hover {
+    transform: translateY(-4px);
+
+    border-color: #aaaaaa !important;
+
+    box-shadow:
+        0 15px 32px rgba(0, 0, 0, 0.45);
+}
+
+.btn-provar:hover::before {
+    left: 125%;
+}
+
+.btn-provar:hover::after {
+    transform: translateY(0);
+}
+
+
+/* CLIQUE */
+
+.btn-provar:active {
+    transform: translateY(-1px);
+}
+
+.provador-modal {
+    display: none !important;
+
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(0, 0, 0, 0.85);
+}
