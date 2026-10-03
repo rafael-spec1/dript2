@@ -114,12 +114,12 @@ function carregarProdutos() {
 
 }
 
+
 function abrirProduto(id) {
 
     localStorage.setItem("produtoSelecionado", id);
 
-    window.location.href = "produto.html";
+    window.location.href = `produto.php?id=${id}`;
 
 }
-
 document.addEventListener("DOMContentLoaded", carregarProdutos);
