@@ -8,35 +8,51 @@
 </head>
 <body>
 
-    <!-- NAVBAR -->
+    <!--  NAVBAR -->
+
     <nav class="navbar">
 
-        <a href="index.php" class="logo">DRIPT</a>
+        <!-- Logo -->
+        <a href="index.php" class="logo">
+            DRIPT
+        </a>
 
         <ul class="menu">
 
             <li>
-                <a href="index.php">INÍCIO</a>
+                <a href="index.php">
+                    INÍCIO
+                </a>
             </li>
 
             <li>
-                <a href="index.php#produtos">COLEÇÕES</a>
+                <a href="index.php#grid-produtos">
+                    COLEÇÕES
+                </a>
             </li>
 
             <li>
-                <a href="index.php#produtos">CAMISETAS</a>
+                <a href="index.php#grid-produtos">
+                    CAMISETAS
+                </a>
             </li>
 
             <li>
-                <a href="index.php#produtos">MOLETONS</a>
+                <a href="index.php#grid-produtos">
+                    MOLETONS
+                </a>
             </li>
 
             <li>
-                <a href="contato.php">CONTATO</a>
+                <a href="contato.php">
+                    CONTATO
+                </a>
             </li>
 
             <li>
-                <a href="sobre.php">SOBRE</a>
+                <a href="sobre.php">
+                    SOBRE
+                </a>
             </li>
 
         </ul>
@@ -44,31 +60,44 @@
     </nav>
 
 
-    <!-- CABEÇALHO -->
+    <!--  CABEÇALHO-->
+
     <header>
 
-        <h1>ENTRE EM CONTATO</h1>
+        <h1>
+            ENTRE EM CONTATO
+        </h1>
 
-        <p>Fale com a DRIPT</p>
+        <p>
+            Fale com a DRIPT
+        </p>
 
     </header>
 
 
-    <!-- CONTATO -->
+    <!-- CONTATO  -->
+
     <main>
 
         <section class="contato">
 
-            <h2>CONTATO</h2>
+            <h2>
+                CONTATO
+            </h2>
 
             <p>
                 Tem alguma dúvida sobre nossos produtos, pedidos ou entregas?
                 Entre em contato com a DRIPT.
             </p>
 
+
+            <!-- Formulário de contato -->
+
             <form id="form-contato">
 
-                <label for="nome">Nome</label>
+                <label for="nome">
+                    Nome
+                </label>
 
                 <input
                     type="text"
@@ -77,7 +106,10 @@
                     placeholder="Digite seu nome"
                 >
 
-                <label for="email">E-mail</label>
+
+                <label for="email">
+                    E-mail
+                </label>
 
                 <input
                     type="email"
@@ -86,13 +118,17 @@
                     placeholder="Digite seu e-mail"
                 >
 
-                <label for="mensagem">Mensagem</label>
+
+                <label for="mensagem">
+                    Mensagem
+                </label>
 
                 <textarea
                     id="mensagem"
                     name="mensagem"
                     placeholder="Digite sua mensagem"
                 ></textarea>
+
 
                 <button type="submit">
                     ENVIAR MENSAGEM
@@ -105,14 +141,22 @@
     </main>
 
 
-    <!-- MENSAGEM DE SUCESSO -->
-    <div id="mensagem-sucesso" class="mensagem-sucesso">
+    <!--  MENSAGEM DE SUCESSO -->
+
+    <div
+        id="mensagem-sucesso"
+        class="mensagem-sucesso"
+    >
 
         <div class="caixa-sucesso">
 
-            <span class="icone-sucesso">✓</span>
+            <span class="icone-sucesso">
+                ✓
+            </span>
 
-            <h2>MENSAGEM ENVIADA!</h2>
+            <h2>
+                MENSAGEM ENVIADA!
+            </h2>
 
             <p>
                 Recebemos sua mensagem.<br>
@@ -128,16 +172,20 @@
     </div>
 
 
-    <!-- JAVASCRIPT -->
+    <!--  JAVASCRIPT  -->
+
     <script src="../js/contato.js"></script>
 
 
-    <!-- FOOTER -->
+    <!-- FOOTER  -->
+
     <footer class="footer">
 
         <div class="footer-logo">
 
-            <h2>DRIPT</h2>
+            <h2>
+                DRIPT
+            </h2>
 
             <p>
                 Streetwear sem regras. Sem limites.
@@ -148,30 +196,47 @@
 
         <div class="footer-links">
 
-            <h3>Links</h3>
+            <h3>
+                Links
+            </h3>
 
-            <a href="index.php">Início</a>
+            <a href="index.php">
+                Início
+            </a>
 
-            <a href="#">Coleções</a>
+            <a href="index.php#grid-produtos">
+                Coleções
+            </a>
 
-            <a href="produto.php">Produtos</a>
+            <a href="produto.php">
+                Produtos
+            </a>
 
-            <a href="sobre.php">Sobre</a>
+            <a href="sobre.php">
+                Sobre
+            </a>
 
         </div>
 
 
         <div class="footer-social">
 
-            <h3>Redes Sociais</h3>
+            <h3>
+                Redes Sociais
+            </h3>
 
-            <p>Instagram</p>
+            <p>
+                Instagram
+            </p>
 
-            <p>TikTok</p>
+            <p>
+                TikTok
+            </p>
 
         </div>
 
     </footer>
+
 
 </body>
 </html>
