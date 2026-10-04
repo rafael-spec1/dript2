@@ -9,25 +9,35 @@
 
 <body class="pagina-cadastro">
 
+    <!-- Login -->
+
     <main class="cadastro">
 
-        <a href="index.html" class="cadastro-logo">
+        <a href="index.php" class="cadastro-logo">
             DRIPT<span>.</span>
         </a>
+
 
         <div class="cadastro-box">
 
             <div class="cadastro-topo">
 
-                <span>WELCOME BACK</span>
+                <span>
+                    WELCOME BACK
+                </span>
 
-                <h1>Entre na sua conta</h1>
+                <h1>
+                    Entre na sua conta
+                </h1>
 
                 <p>
                     Acesse sua conta DRIPT e continue de onde parou.
                 </p>
 
             </div>
+
+
+            <!-- Formulário -->
 
             <form id="form-login">
 
@@ -46,6 +56,7 @@
 
                 </div>
 
+
                 <div class="campo">
 
                     <label for="senha">
@@ -61,17 +72,24 @@
 
                 </div>
 
-                <button type="submit" class="btn-cadastro">
+
+                <button
+                    type="submit"
+                    class="btn-cadastro"
+                >
                     ENTRAR NA DRIPT
                 </button>
 
             </form>
 
+
             <div class="cadastro-login">
 
-                <span>Ainda não possui uma conta?</span>
+                <span>
+                    Ainda não possui uma conta?
+                </span>
 
-                <a href="cadastro.html">
+                <a href="cadastro.php">
                     Criar conta
                 </a>
 
@@ -80,6 +98,9 @@
         </div>
 
     </main>
+
+
+    <!-- Login via PHP -->
 
     <script>
 
@@ -95,17 +116,50 @@
                 const senha =
                     document.getElementById("senha").value;
 
+
+                // Envia os dados para o PHP
+
                 fetch("../php/login.php", {
+
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ email, senha })
-                })
-                    .then(async resposta => {
-                        const dados = await resposta.json();
-                        if (!resposta.ok) throw new Error(dados.mensagem || "Não foi possível entrar.");
-                        window.location.href = "conta.html";
+
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+
+                    body: JSON.stringify({
+                        email,
+                        senha
                     })
-                    .catch(erro => alert(erro.message));
+
+                })
+
+                .then(async resposta => {
+
+                    const dados =
+                        await resposta.json();
+
+                    if (!resposta.ok) {
+
+                        throw new Error(
+                            dados.mensagem ||
+                            "Não foi possível entrar."
+                        );
+
+                    }
+
+                    // Após o login, abre a conta
+
+                    window.location.href =
+                        "conta.php";
+
+                })
+
+                .catch(erro => {
+
+                    alert(erro.message);
+
+                });
 
             });
 

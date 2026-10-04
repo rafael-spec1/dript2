@@ -1,21 +1,19 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>DRIPT</title>
-
+    <title>Document</title>
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/pesquisa.css">
 </head>
-
 <body>
+    
+    <!--  NAVBAR -->
 
-    <!-- NAVBAR -->
     <nav class="navbar">
 
+        <!-- Logo -->
         <a href="index.php" class="logo">DRIPT</a>
 
         <ul class="menu">
@@ -43,11 +41,11 @@
             </li>
 
             <li>
-                <a href="contato.html">CONTATO</a>
+                <a href="contato.php">CONTATO</a>
             </li>
 
             <li>
-                <a href="sobre.html">SOBRE</a>
+                <a href="sobre.php">SOBRE</a>
             </li>
 
         </ul>
@@ -58,7 +56,7 @@
             <span onclick="abrirPesquisa()">🔍</span>
 
             <!-- Conta -->
-            <a href="login.html" class="icone-conta">
+            <a href="login.php" class="icone-conta">
                 <span>👤</span>
                 <span id="nome-usuario"></span>
             </a>
@@ -75,7 +73,7 @@
             </div>
 
             <!-- Favoritos -->
-            <a href="favoritos.html" class="icone-favoritos">
+            <a href="favoritos.php" class="icone-favoritos">
 
                 ❤️
 
@@ -90,7 +88,8 @@
     </nav>
 
 
-    <!-- PESQUISA -->
+    <!--  PESQUISA  -->
+
     <div id="search-box" class="search-box">
 
         <input
@@ -103,7 +102,8 @@
     </div>
 
 
-    <!-- HERO -->
+    <!-- HERO  -->
+
     <section class="hero">
 
         <div class="hero-text">
@@ -128,6 +128,7 @@
 
         </div>
 
+
         <div class="hero-produto">
 
             <div class="brilho"></div>
@@ -142,10 +143,12 @@
     </section>
 
 
-    <!-- CATEGORIAS -->
+    <!-- CATEGORIAS-->
+
     <h2 class="titulo-categorias">
         EXPLORE A COLEÇÃO
     </h2>
+
 
     <section class="categorias">
 
@@ -177,17 +180,11 @@
             Calças
         </button>
 
-        <button
-            class="categoria-btn"
-            onclick="filtrarProdutos('acessorio', this)"
-        >
-            Acessórios
-        </button>
-
     </section>
 
 
-    <!-- DIFERENCIAIS -->
+    <!--DIFERENCIAIS -->
+
     <section class="diferenciais">
 
         <div class="diferencial">
@@ -204,6 +201,7 @@
 
         </div>
 
+
         <div class="diferencial">
 
             <span>💎</span>
@@ -218,6 +216,7 @@
 
         </div>
 
+
         <div class="diferencial">
 
             <span>🔥</span>
@@ -231,6 +230,7 @@
             </p>
 
         </div>
+
 
         <div class="diferencial">
 
@@ -250,13 +250,16 @@
 
 
     <!-- PRODUTOS -->
+
     <section
         class="produtos"
         id="grid-produtos"
-    ></section>
+    >
+    </section>
 
 
-    <!-- CARRINHO LATERAL -->
+    <!-- CARRINHO LATERAL-->
+
     <div
         class="carrinho-lateral"
         id="carrinho"
@@ -274,7 +277,10 @@
 
         </div>
 
+
+        <!-- Produtos adicionados ao carrinho -->
         <div id="itens-carrinho"></div>
+
 
         <div class="rodape-carrinho">
 
@@ -282,6 +288,8 @@
                 Total: R$ 0,00
             </h3>
 
+
+            <!-- Finalizar compra -->
             <button
                 class="btn-finalizar"
                 onclick="finalizarCompra()"
@@ -289,6 +297,8 @@
                 Finalizar Compra
             </button>
 
+
+            <!--Limpar carrinho-->
             <button
                 onclick="limparCarrinho()"
                 class="btn-limpar"
@@ -301,12 +311,15 @@
     </div>
 
 
-    <!-- FOOTER -->
+    <!--FOOTER -->
+
     <footer class="footer">
 
         <div class="footer-logo">
 
-            <h2>DRIPT</h2>
+            <h2>
+                DRIPT
+            </h2>
 
             <p>
                 Streetwear sem regras. Sem limites.
@@ -314,9 +327,12 @@
 
         </div>
 
+
         <div class="footer-links">
 
-            <h3>Links</h3>
+            <h3>
+                Links
+            </h3>
 
             <a href="index.php">
                 Início
@@ -326,39 +342,55 @@
                 Coleções
             </a>
 
-            <a href="produto.html">
+            <a href="produto.php">
                 Produtos
             </a>
 
-            <a href="sobre.html">
+            <a href="sobre.php">
                 Sobre
             </a>
 
         </div>
 
+
         <div class="footer-social">
 
-            <h3>Redes Sociais</h3>
+            <h3>
+                Redes Sociais
+            </h3>
 
-            <p>Instagram</p>
-            <p>TikTok</p>
+            <p>
+                Instagram
+            </p>
+
+            <p>
+                TikTok
+            </p>
 
         </div>
 
     </footer>
 
 
-    <!-- JAVASCRIPT -->
+    <!--JAVASCRIPT-->
+
     <script src="../js/produtos.js"></script>
+
     <script src="../js/pesquisa.js"></script>
+
     <script src="../js/produto.js"></script>
+
     <script src="../js/carrinho.js"></script>
+
     <script src="../js/favoritos.js"></script>
+
     <script src="../js/loader.js"></script>
+
     <script src="../js/script.js"></script>
 
 
     <!-- WHATSAPP -->
+
     <a
         href="https://wa.me/5numeros"
         target="_blank"
@@ -378,7 +410,8 @@
     </a>
 
 
-    <!-- VERIFICAÇÃO DA SESSÃO DO USUÁRIO -->
+    <!-- VERIFICAÇÃO DA SESSÃO -->
+
     <script>
 
         document.addEventListener("DOMContentLoaded", () => {
@@ -388,10 +421,13 @@
 
             if (!nomeUsuario) return;
 
+
             fetch("../php/sessao.php")
 
                 .then(resposta =>
-                    resposta.ok ? resposta.json() : null
+                    resposta.ok
+                        ? resposta.json()
+                        : null
                 )
 
                 .then(usuario => {
@@ -411,6 +447,7 @@
 
 
     <!-- BARRA DE PESQUISA -->
+
     <div
         id="barra-pesquisa"
         class="barra-pesquisa"
@@ -431,10 +468,12 @@
 
         </div>
 
+
+        <!-- Resultados da pesquisa -->
         <div id="resultados-pesquisa"></div>
 
     </div>
 
-</body>
 
+</body>
 </html>
