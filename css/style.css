@@ -2124,3 +2124,10 @@ button:hover {
 
     background: rgba(0, 0, 0, 0.85);
 }
+
+/*ícone de favoritos */
+.btn-favorito {
+    text-decoration: none !important;
+    border: none;
+    outline: none;
+}
