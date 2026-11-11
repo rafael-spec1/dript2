@@ -10,12 +10,10 @@
 <body>
     
     <!--  NAVBAR -->
-
     <nav class="navbar">
 
         <!-- Logo -->
         <a href="index.php" class="logo">DRIPT</a>
-
         <ul class="menu">
 
             <li>
@@ -47,7 +45,6 @@
             <li>
                 <a href="sobre.php">SOBRE</a>
             </li>
-
         </ul>
 
         <div class="icons">

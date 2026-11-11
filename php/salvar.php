@@ -51,7 +51,7 @@ try {
              JOIN (
                  SELECT COUNT(*) AS total_admins
                  FROM usuarios
-                 WHERE tipo = 'admin'
+             WHERE tipo = 'admin'
              ) AS contagem ON contagem.total_admins < 3
              SET alvo.tipo = 'admin'
              WHERE alvo.email = :email"
