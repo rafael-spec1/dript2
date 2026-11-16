@@ -1,5 +1,7 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,9 +39,7 @@
 
                 <div class="campo">
 
-                    <label for="nome">
-                        Nome completo
-                    </label>
+                    <label for="nome">Nome completo</label>
 
                     <input
                         type="text"
@@ -52,9 +52,7 @@
 
                 <div class="campo">
 
-                    <label for="email">
-                        E-mail
-                    </label>
+                    <label for="email">E-mail</label>
 
                     <input
                         type="email"
@@ -67,9 +65,7 @@
 
                 <div class="campo">
 
-                    <label for="senha">
-                        Senha
-                    </label>
+                    <label for="senha">Senha</label>
 
                     <input
                         type="password"
@@ -77,6 +73,18 @@
                         placeholder="Crie uma senha"
                         required
                     >
+
+                </div>
+
+                <!-- Barra de força da senha -->
+
+                <div class="forca-senha">
+
+                    <div class="forca-senha-barra">
+                        <span id="barraForca"></span>
+                    </div>
+
+                    <p id="textoForca">Digite uma senha</p>
 
                 </div>
 
@@ -140,6 +148,38 @@
     <!-- Cadastro via PHP -->
 
     <script>
+
+        // Barra de força da senha
+
+        const campoSenha = document.getElementById("senha");
+        const barraForca = document.getElementById("barraForca");
+        const textoForca = document.getElementById("textoForca");
+
+        campoSenha.addEventListener("input", function() {
+
+            const senha = campoSenha.value;
+            let forca = 0;
+
+            if (senha.length >= 8) forca++;
+            if (/[A-Z]/.test(senha)) forca++;
+            if (/[0-9]/.test(senha)) forca++;
+            if (/[^A-Za-z0-9]/.test(senha)) forca++;
+
+            const niveis = [
+                { largura: "0%", texto: "Digite uma senha", cor: "transparent" },
+                { largura: "25%", texto: "Senha fraca", cor: "#e74c3c" },
+                { largura: "50%", texto: "Senha média", cor: "#f39c12" },
+                { largura: "75%", texto: "Senha boa", cor: "#3498db" },
+                { largura: "100%", texto: "Senha forte", cor: "#2ecc71" }
+            ];
+
+            barraForca.style.width = niveis[forca].largura;
+            barraForca.style.backgroundColor = niveis[forca].cor;
+            textoForca.textContent = niveis[forca].texto;
+
+        });
+
+        // Cadastro
 
         document
             .getElementById("form-cadastro")
@@ -219,8 +259,7 @@
 
                     // Após cadastrar, abre a conta
 
-                    window.location.href =
-                        "conta.php";
+                    window.location.href = "conta.php";
 
                 })
 

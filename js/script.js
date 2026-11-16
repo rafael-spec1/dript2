@@ -32,45 +32,55 @@ function filtrarProdutos(categoria) {
 }
 
 
-
 function renderizarProdutosHome() {
         let grid = document.getElementById("grid-produtos");
         if (!grid || typeof PRODUTOS === "undefined") return;
 
         let html = "";
-        console.log(PRODUTOS);
+
         Object.values(PRODUTOS).forEach(produto => {
                 html += `
-        <div class="produto" data-categoria="${produto.categoria}">
-                <span class="tag-produto">LIMITED</span>
-                <a href="produto.html?id=${produto.id}" class="link-produto">
+       <div class="produto"
+     data-categoria="${produto.categoria}"
+     onclick="window.location.href='produto.php?id=${produto.id}'">
+
+            <span class="tag-produto">LIMITED</span>
+
+            <a href="produto.php?id=${produto.id}" class="link-produto">
+
                 <img src="${produto.imagem}" alt="${produto.nome}">
+
                 <h3 class="nome-produto">${produto.nome}</h3>
+
                 <p>R$ ${produto.preco.toFixed(2).replace(".", ",")}</p>
-                </a>
-                <div class="acoes-produto">
-                <a href="produto.html?id=${produto.id}">
-                        <button class="btn-comprar">Comprar</button>
-                </a>
-                 <button class="btn-favorito" 
-         data-produto-id="${produto.id}"
-        data-nome="${produto.nome}"
-        data-preco="${produto.preco}"
-        data-imagem="${produto.imagem || ""}">
+
+            </a>
+
+            <div class="acoes-produto">
+
+                <button class="btn-comprar"
+                    onclick="window.location.href='produto.php?id=${produto.id}'">
+                    Comprar
+                </button>
+
+               <button class="btn-favorito"
+    onclick="event.stopPropagation()"
+    data-produto-id="${produto.id}"
+    data-nome="${produto.nome}"
+    data-preco="${produto.preco}"
+    data-imagem="${produto.imagem || ""}">
     🤍
 </button>
-                </div>
+
+            </div>
+
         </div>
         `;
         });
 
         grid.innerHTML = html;
-
-
-        ativarEfeitosProdutos();
-
-        if (typeof sincronizarBotoesFavoritos === "function") sincronizarBotoesFavoritos();
 }
+
 
 function ativarEfeitosProdutos() {
         let produtos = document.querySelectorAll(".produto");

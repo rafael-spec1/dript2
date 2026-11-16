@@ -2131,3 +2131,35 @@ button:hover {
     border: none;
     outline: none;
 }
+
+
+
+/* BARRA DE FORÇA DA SENHA */
+
+.forca-senha {
+    width: 100%;
+    margin-top: 8px;
+    margin-bottom: 15px;
+}
+
+.forca-senha-barra {
+    width: 100%;
+    height: 6px;
+    background-color: #444;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+#barraForca {
+    display: block;
+    height: 100%;
+    width: 0%;
+    border-radius: 5px;
+    transition: width 0.3s ease;
+}
+
+#textoForca {
+    font-size: 12px;
+    color: #aaa;
+    margin-top: 7px;
+}
