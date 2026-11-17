@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato | DRIPT</title>
+    <link rel="stylesheet" href="../css/contato.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <a href="index.php" class="logo">DRIPT</a>
+
+        <ul class="menu">
+
+            <li>
+                <a href="index.php">INÍCIO</a>
+            </li>
+
+            <li>
+                <a href="index.php#produtos">COLEÇÕES</a>
+            </li>
+
+            <li>
+                <a href="index.php#produtos">CAMISETAS</a>
+            </li>
+
+            <li>
+                <a href="index.php#produtos">MOLETONS</a>
+            </li>
+
+            <li>
+                <a href="contato.php">CONTATO</a>
+            </li>
+
+            <li>
+                <a href="sobre.php">SOBRE</a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+    <!-- CABEÇALHO -->
+    <header>
+
+        <h1>ENTRE EM CONTATO</h1>
+
+        <p>Fale com a DRIPT</p>
+
+    </header>
+
+
+    <!-- CONTATO -->
+    <main>
+
+        <section class="contato">
+
+            <h2>CONTATO</h2>
+
+            <p>
+                Tem alguma dúvida sobre nossos produtos, pedidos ou entregas?
+                Entre em contato com a DRIPT.
+            </p>
+
+            <form id="form-contato">
+
+                <label for="nome">Nome</label>
+
+                <input
+                    type="text"
+                    id="nome"
+                    name="nome"
+                    placeholder="Digite seu nome"
+                >
+
+                <label for="email">E-mail</label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Digite seu e-mail"
+                >
+
+                <label for="mensagem">Mensagem</label>
+
+                <textarea
+                    id="mensagem"
+                    name="mensagem"
+                    placeholder="Digite sua mensagem"
+                ></textarea>
+
+                <button type="submit">
+                    ENVIAR MENSAGEM
+                </button>
+
+            </form>
+
+        </section>
+
+    </main>
+
+
+    <!-- MENSAGEM DE SUCESSO -->
+    <div id="mensagem-sucesso" class="mensagem-sucesso">
+
+        <div class="caixa-sucesso">
+
+            <span class="icone-sucesso">✓</span>
+
+            <h2>MENSAGEM ENVIADA!</h2>
+
+            <p>
+                Recebemos sua mensagem.<br>
+                A equipe DRIPT entrará em contato em breve.
+            </p>
+
+            <button onclick="fecharMensagem()">
+                OK
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="../js/contato.js"></script>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="footer-logo">
+
+            <h2>DRIPT</h2>
+
+            <p>
+                Streetwear sem regras. Sem limites.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h3>Links</h3>
+
+            <a href="index.php">Início</a>
+
+            <a href="#">Coleções</a>
+
+            <a href="produto.php">Produtos</a>
+
+            <a href="sobre.php">Sobre</a>
+
+        </div>
+
+
+        <div class="footer-social">
+
+            <h3>Redes Sociais</h3>
+
+            <p>Instagram</p>
+
+            <p>TikTok</p>
+
+        </div>
+
+    </footer>
+
+</body>
+</html>

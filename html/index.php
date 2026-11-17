@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DRIPT</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/pesquisa.css">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+
+        <a href="index.php" class="logo">DRIPT</a>
+
+        <ul class="menu">
+
+            <li>
+                <a href="index.php">INÍCIO</a>
+            </li>
+
+            <li>
+                <a href="#" onclick="filtrarProdutos('todos'); return false;">
+                    COLEÇÕES
+                </a>
+            </li>
+
+            <li>
+                <a href="#" onclick="filtrarProdutos('camiseta'); return false;">
+                    CAMISETAS
+                </a>
+            </li>
+
+            <li>
+                <a href="#" onclick="filtrarProdutos('moletom'); return false;">
+                    MOLETONS
+                </a>
+            </li>
+
+            <li>
+                <a href="contato.html">CONTATO</a>
+            </li>
+
+            <li>
+                <a href="sobre.html">SOBRE</a>
+            </li>
+
+        </ul>
+
+        <div class="icons">
+
+            <!-- Pesquisa -->
+            <span onclick="abrirPesquisa()">🔍</span>
+
+            <!-- Conta -->
+            <a href="login.html" class="icone-conta">
+                <span>👤</span>
+                <span id="nome-usuario"></span>
+            </a>
+
+            <!-- Carrinho -->
+            <div class="icone-carrinho">
+
+                <span onclick="abrirCarrinho()">🛒</span>
+
+                <div class="contador-carrinho" id="contador">
+                    0
+                </div>
+
+            </div>
+
+            <!-- Favoritos -->
+            <a href="favoritos.html" class="icone-favoritos">
+
+                ❤️
+
+                <span id="contador-favoritos">
+                    0
+                </span>
+
+            </a>
+
+        </div>
+
+    </nav>
+
+
+    <!-- PESQUISA -->
+    <div id="search-box" class="search-box">
+
+        <input
+            type="text"
+            id="pesquisa"
+            placeholder="Pesquisar produtos..."
+            onkeyup="pesquisarProduto()"
+        >
+
+    </div>
+
+
+    <!-- HERO -->
+    <section class="hero">
+
+        <div class="hero-text">
+
+            <span class="limited">
+                NOVA COLEÇÃO
+            </span>
+
+            <h1>
+                DRIPT<br>
+                STREETWEAR
+            </h1>
+
+            <p>
+                Vista atitude. Vista identidade.
+                Peças exclusivas criadas para quem vive a cultura streetwear.
+            </p>
+
+            <button onclick="abrirOverlay()">
+                COMPRAR AGORA
+            </button>
+
+        </div>
+
+        <div class="hero-produto">
+
+            <div class="brilho"></div>
+
+            <img
+                src="../img/moletom-dript.png"
+                alt="Moletom DRIPT"
+            >
+
+        </div>
+
+    </section>
+
+
+    <!-- CATEGORIAS -->
+    <h2 class="titulo-categorias">
+        EXPLORE A COLEÇÃO
+    </h2>
+
+    <section class="categorias">
+
+        <button
+            class="categoria-btn ativo"
+            onclick="filtrarProdutos('todos', this)"
+        >
+            Todos
+        </button>
+
+        <button
+            class="categoria-btn"
+            onclick="filtrarProdutos('camiseta', this)"
+        >
+            Camisetas
+        </button>
+
+        <button
+            class="categoria-btn"
+            onclick="filtrarProdutos('moletom', this)"
+        >
+            Moletons
+        </button>
+
+        <button
+            class="categoria-btn"
+            onclick="filtrarProdutos('calca', this)"
+        >
+            Calças
+        </button>
+
+        <button
+            class="categoria-btn"
+            onclick="filtrarProdutos('acessorio', this)"
+        >
+            Acessórios
+        </button>
+
+    </section>
+
+
+    <!-- DIFERENCIAIS -->
+    <section class="diferenciais">
+
+        <div class="diferencial">
+
+            <span>🚚</span>
+
+            <h3>
+                FRETE PARA TODO O BRASIL
+            </h3>
+
+            <p>
+                Enviamos nossas peças para todo o país.
+            </p>
+
+        </div>
+
+        <div class="diferencial">
+
+            <span>💎</span>
+
+            <h3>
+                QUALIDADE PREMIUM
+            </h3>
+
+            <p>
+                Peças pensadas para entregar qualidade e estilo.
+            </p>
+
+        </div>
+
+        <div class="diferencial">
+
+            <span>🔥</span>
+
+            <h3>
+                EDIÇÕES LIMITADAS
+            </h3>
+
+            <p>
+                Drops exclusivos para quem busca identidade.
+            </p>
+
+        </div>
+
+        <div class="diferencial">
+
+            <span>🔄</span>
+
+            <h3>
+                TROCA FÁCIL
+            </h3>
+
+            <p>
+                Mais segurança para você comprar.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- PRODUTOS -->
+    <section
+        class="produtos"
+        id="grid-produtos"
+    ></section>
+
+
+    <!-- CARRINHO LATERAL -->
+    <div
+        class="carrinho-lateral"
+        id="carrinho"
+    >
+
+        <div class="topo-carrinho">
+
+            <h2>
+                Seu Carrinho
+            </h2>
+
+            <span onclick="fecharCarrinho()">
+                ✖
+            </span>
+
+        </div>
+
+        <div id="itens-carrinho"></div>
+
+        <div class="rodape-carrinho">
+
+            <h3 id="total-carrinho">
+                Total: R$ 0,00
+            </h3>
+
+            <button
+                class="btn-finalizar"
+                onclick="finalizarCompra()"
+            >
+                Finalizar Compra
+            </button>
+
+            <button
+                onclick="limparCarrinho()"
+                class="btn-limpar"
+            >
+                Limpar Carrinho
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="footer-logo">
+
+            <h2>DRIPT</h2>
+
+            <p>
+                Streetwear sem regras. Sem limites.
+            </p>
+
+        </div>
+
+        <div class="footer-links">
+
+            <h3>Links</h3>
+
+            <a href="index.php">
+                Início
+            </a>
+
+            <a href="#">
+                Coleções
+            </a>
+
+            <a href="produto.html">
+                Produtos
+            </a>
+
+            <a href="sobre.html">
+                Sobre
+            </a>
+
+        </div>
+
+        <div class="footer-social">
+
+            <h3>Redes Sociais</h3>
+
+            <p>Instagram</p>
+            <p>TikTok</p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="../js/produtos.js"></script>
+    <script src="../js/pesquisa.js"></script>
+    <script src="../js/produto.js"></script>
+    <script src="../js/carrinho.js"></script>
+    <script src="../js/favoritos.js"></script>
+    <script src="../js/loader.js"></script>
+    <script src="../js/script.js"></script>
+
+
+    <!-- WHATSAPP -->
+    <a
+        href="https://wa.me/5numeros"
+        target="_blank"
+        class="whatsapp-flutuante"
+        aria-label="Falar com a DRIPT pelo WhatsApp"
+    >
+
+        <svg
+            viewBox="0 0 32 32"
+            aria-hidden="true"
+        >
+
+            <path d="M19.11 17.39c-.29-.14-1.71-.84-1.98-.94-.27-.1-.46-.14-.66.14-.19.29-.75.94-.92 1.13-.17.19-.34.22-.63.07-.29-.14-1.22-.45-2.32-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.59.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.14-.66-1.59-.9-2.18-.24-.57-.48-.49-.66-.5h-.56c-.19 0-.51.07-.77.36-.27.29-1.02 1-1.02 2.44s1.05 2.83 1.2 3.03c.14.19 2.06 3.15 5 4.42.7.3 1.25.48 1.68.61.71.23 1.36.2 1.87.12.57-.08 1.71-.7 1.95-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.54-.34z"/>
+
+        </svg>
+
+    </a>
+
+
+    <!-- VERIFICAÇÃO DA SESSÃO DO USUÁRIO -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", () => {
+
+            const nomeUsuario =
+                document.getElementById("nome-usuario");
+
+            if (!nomeUsuario) return;
+
+            fetch("../php/sessao.php")
+
+                .then(resposta =>
+                    resposta.ok ? resposta.json() : null
+                )
+
+                .then(usuario => {
+
+                    if (usuario) {
+
+                        nomeUsuario.innerText =
+                            usuario.nome.split(" ")[0];
+
+                    }
+
+                });
+
+        });
+
+    </script>
+
+
+    <!-- BARRA DE PESQUISA -->
+    <div
+        id="barra-pesquisa"
+        class="barra-pesquisa"
+    >
+
+        <div class="topo-pesquisa">
+
+            <input
+                type="text"
+                id="campo-pesquisa"
+                placeholder="Pesquisar produtos..."
+                onkeyup="pesquisarProdutos()"
+            >
+
+            <button onclick="fecharPesquisa()">
+                ✕
+            </button>
+
+        </div>
+
+        <div id="resultados-pesquisa"></div>
+
+    </div>
+
+</body>
+
+</html>
