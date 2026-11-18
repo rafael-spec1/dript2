@@ -1,182 +1,154 @@
-const opcoesPagamento = document.querySelectorAll(
-    'input[name="pagamento"]'
-);
 
+const opcoesPagamento = document.querySelectorAll('input[name="pagamento"]');
 const dadosCartao = document.getElementById("dados-cartao");
 const dadosPix = document.getElementById("dados-pix");
 const dadosBoleto = document.getElementById("dados-boleto");
 
+const listaPedido = document.getElementById("lista-pedido");
+const totalPedido = document.getElementById("total-pedido");
+const campoFrete = document.getElementById("frete-pedido");
+const botaoFrete = document.getElementById("calcular-frete");
 
+let valorFrete = 0;
+
+// Mostra a seção correspondente ao pagamento escolhido
 opcoesPagamento.forEach(opcao => {
-
     opcao.addEventListener("change", function () {
-
         dadosCartao.style.display = "none";
         dadosPix.style.display = "none";
         dadosBoleto.style.display = "none";
 
-
-        if (this.value === "cartao") {
-            dadosCartao.style.display = "block";
-        }
-
-        if (this.value === "pix") {
-            dadosPix.style.display = "block";
-        }
-
-        if (this.value === "boleto") {
-            dadosBoleto.style.display = "block";
-        }
-
+        if (this.value === "cartao") dadosCartao.style.display = "block";
+        if (this.value === "pix") dadosPix.style.display = "block";
+        if (this.value === "boleto") dadosBoleto.style.display = "block";
     });
-
 });
 
-const listaPedido = document.getElementById("lista-pedido");
-const totalPedido = document.getElementById("total-pedido");
-const botaoFrete = document.getElementById("calcular-frete");
+// Atualiza o total usando o valor salvo no carrinho
+function atualizarTotal() {
+    const totalProdutos = Number(localStorage.getItem("total")) || 0;
+    const total = totalProdutos + valorFrete;
 
-botaoFrete.addEventListener("click", function () {
+    totalPedido.textContent =
+        `R$ ${total.toFixed(2).replace(".", ",")}`;
 
-    const cep = document.getElementById("cep").value
-        .replace(/\D/g, "");
+    campoFrete.textContent =
+        `R$ ${valorFrete.toFixed(2).replace(".", ",")}`;
+}
+
+// Carrega os produtos salvos no navegador
+function carregarPedido() {
+    listaPedido.innerHTML = localStorage.getItem("carrinho") || "";
+
+    if (!listaPedido.querySelector(".item-carrinho")) {
+        listaPedido.innerHTML = "<p>Seu carrinho está vazio.</p>";
+    }
+
+    atualizarTotal();
+}
+
+carregarPedido();
+
+// Consulta o CEP e calcula o frete estimado
+botaoFrete.addEventListener("click", async function () {
+    const cep = document.getElementById("cep").value.replace(/\D/g, "");
 
     if (cep.length !== 8) {
         alert("Digite um CEP válido.");
         return;
     }
 
-    console.log("CEP informado:", cep);
+    try {
+        const resposta = await fetch(`https://viacep.com.br/ws/${cep}/json/`);
+        const dados = await resposta.json();
 
-    fetch(`https://viacep.com.br/ws/${cep}/json/`)
-        .then(resposta => resposta.json())
-        .then(dados => {
+        if (dados.erro) {
+            alert("CEP não encontrado.");
+            return;
+        }
 
-            if (dados.erro) {
-                alert("CEP não encontrado.");
-                return;
-            }
-
-            document.getElementById("cidade").value = dados.localidade;
-
-
-            document.getElementById("endereco").value =
-                `${dados.logradouro}, ${dados.bairro}`;
-        })
-        .catch(() => {
-            alert("Não foi possível consultar o CEP.");
-        });
-
-    let valorFrete;
-
-    if (cep.startsWith("0")) {
-        valorFrete = 15; // São Paulo
-    } else if (cep.startsWith("1")) {
-        valorFrete = 18; // São Paulo
-    } else if (cep.startsWith("2")) {
-        valorFrete = 25; // Rio de Janeiro e Espírito Santo
-    } else if (cep.startsWith("3")) {
-        valorFrete = 25; // Minas Gerais
-    } else if (cep.startsWith("4")) {
-        valorFrete = 30; // Bahia e Sergipe
-    } else if (cep.startsWith("5")) {
-        valorFrete = 30; // Pernambuco e região
-    } else if (cep.startsWith("6")) {
-        valorFrete = 35; // Norte/Nordeste
-    } else if (cep.startsWith("7")) {
-        valorFrete = 35; // Centro-Oeste
-    } else if (cep.startsWith("8")) {
-        valorFrete = 35; // Paraná e Santa Catarina
-    } else if (cep.startsWith("9")) {
-        valorFrete = 40; // Rio Grande do Sul
+        document.getElementById("cidade").value = dados.localidade;
+        document.getElementById("endereco").value =
+            [dados.logradouro, dados.bairro].filter(Boolean).join(", ");
+    } catch {
+        alert("Não foi possível consultar o CEP.");
+        return;
     }
 
-    document.getElementById("frete-pedido").textContent =
-        `R$ ${valorFrete.toFixed(2).replace(".", ",")}`;
+    // Estimativa demonstrativa; não é cotação de transportadora
+    const primeiroNumero = cep[0];
+    const fretes = {
+        "0": 15, "1": 18, "2": 25, "3": 25, "4": 30,
+        "5": 30, "6": 35, "7": 35, "8": 35, "9": 40
+    };
 
-    const totalProdutos = Number(localStorage.getItem("total")) || 0;
-    const novoTotal = totalProdutos + valorFrete;
+    valorFrete = fretes[primeiroNumero] ?? 0;
+    atualizarTotal();
 
-    totalPedido.textContent =
-        `R$ ${novoTotal.toFixed(2).replace(".", ",")}`;
-
-    alert("Frete calculado com sucesso!");
+    alert("Frete estimado calculado com sucesso!");
 });
 
-
-const carrinhoSalvo = localStorage.getItem("carrinho");
-const totalSalvo = localStorage.getItem("total");
-
-if (totalSalvo) {
-    totalPedido.textContent =
-        `R$ ${Number(totalSalvo).toFixed(2).replace(".", ",")}`;
-} else {
-    totalPedido.textContent = "R$ 0,00";
-}
-
-if (carrinhoSalvo) {
-    listaPedido.innerHTML = carrinhoSalvo;
-
-    document.querySelectorAll("#lista-pedido .item-carrinho").forEach(item => {
-        item.insertAdjacentHTML(
-            "beforeend",
-            `<button class="btn-remover-checkout" onclick="removerDoCheckout(this)">
-                REMOVER
-            </button>`
-        );
-    });
-}
-
+// Remove um produto do resumo e sincroniza o carrinho salvo
 function removerDoCheckout(botao) {
     const item = botao.closest(".item-carrinho");
-
     if (!item) return;
+
+    const quantidade = Number(item.dataset.quantidade) || 1;
+    const precoCentavos = Number(item.dataset.precoCentavos) || 0;
+
+    let contador = Number(localStorage.getItem("contador")) || 0;
+    let total = Number(localStorage.getItem("total")) || 0;
+
+    contador = Math.max(0, contador - quantidade);
+    total = Math.max(0, total - precoCentavos * quantidade / 100);
 
     item.remove();
 
-    const itensRestantes = document.querySelectorAll(
-        "#lista-pedido .item-carrinho"
-    );
-
-    let total = 0;
-    let contador = 0;
-
-    itensRestantes.forEach(item => {
-        const paragrafos = item.querySelectorAll("p");
-
-        paragrafos.forEach(p => {
-            const texto = p.innerText;
-
-            if (texto.includes("Qtd:")) {
-                const qtd = Number(
-                    texto.replace("Qtd:", "").trim()
-                );
-
-                contador += qtd;
-            }
-
-            if (texto.includes("R$")) {
-                const valor = Number(
-                    texto
-                        .replace("R$", "")
-                        .trim()
-                        .replace(/\./g, "")
-                        .replace(",", ".")
-                );
-
-                total += valor;
-            }
-        });
-    });
-
-    localStorage.setItem(
-        "carrinho",
-        document.getElementById("lista-pedido").innerHTML
-    );
-
-    localStorage.setItem("total", total);
+    // Guarda apenas os produtos restantes
+    const itensRestantes = listaPedido.querySelectorAll(".item-carrinho");
+    localStorage.setItem("carrinho", Array.from(itensRestantes)
+        .map(item => item.outerHTML).join(""));
     localStorage.setItem("contador", contador);
+    localStorage.setItem("total", total);
 
-    totalPedido.textContent =
-        `R$ ${total.toFixed(2).replace(".", ",")}`;
+    carregarPedido();
 }
+
+// Adiciona os botões de remoção ao resumo
+listaPedido.querySelectorAll(".item-carrinho").forEach(item => {
+    const botao = document.createElement("button");
+    botao.type = "button";
+    botao.className = "btn-remover-checkout";
+    botao.textContent = "REMOVER";
+    botao.addEventListener("click", () => removerDoCheckout(botao));
+    item.appendChild(botao);
+});
+
+// Valida os dados antes de permitir avançar
+document.getElementById("btn-finalizar").addEventListener("click", function () {
+    const nome = document.getElementById("nome").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const cep = document.getElementById("cep").value.trim();
+    const numero = document.getElementById("numero").value.trim();
+    const endereco = document.getElementById("endereco").value.trim();
+    const cidade = document.getElementById("cidade").value.trim();
+    const pagamento = document.querySelector('input[name="pagamento"]:checked');
+    const itens = listaPedido.querySelector(".item-carrinho");
+
+    if (!itens) {
+        alert("Seu carrinho está vazio!");
+        return;
+    }
+
+    if (!nome || !email || !cep || !numero || !endereco || !cidade) {
+        alert("Preencha todos os dados de entrega.");
+        return;
+    }
+
+    if (!pagamento) {
+        alert("Escolha uma forma de pagamento.");
+        return;
+    }
+
+    alert("Dados validados! A finalização real do pedido ainda precisa ser conectada ao sistema de pedidos.");
+});

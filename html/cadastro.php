@@ -141,6 +141,38 @@
 
     <script>
 
+        // Barra de força da senha
+
+        const campoSenha = document.getElementById("senha");
+        const barraForca = document.getElementById("barraForca");
+        const textoForca = document.getElementById("textoForca");
+
+        campoSenha.addEventListener("input", function() {
+
+            const senha = campoSenha.value;
+            let forca = 0;
+
+            if (senha.length >= 8) forca++;
+            if (/[A-Z]/.test(senha)) forca++;
+            if (/[0-9]/.test(senha)) forca++;
+            if (/[^A-Za-z0-9]/.test(senha)) forca++;
+
+            const niveis = [
+                { largura: "0%", texto: "Digite uma senha", cor: "transparent" },
+                { largura: "25%", texto: "Senha fraca", cor: "#e74c3c" },
+                { largura: "50%", texto: "Senha média", cor: "#f39c12" },
+                { largura: "75%", texto: "Senha boa", cor: "#3498db" },
+                { largura: "100%", texto: "Senha forte", cor: "#2ecc71" }
+            ];
+
+            barraForca.style.width = niveis[forca].largura;
+            barraForca.style.backgroundColor = niveis[forca].cor;
+            textoForca.textContent = niveis[forca].texto;
+
+        });
+
+        // Cadastro
+
         document
             .getElementById("form-cadastro")
             .addEventListener("submit", function(event) {
