@@ -43,11 +43,11 @@
             </li>
 
             <li>
-                <a href="contato.html">CONTATO</a>
+                <a href="contato.php">CONTATO</a>
             </li>
 
             <li>
-                <a href="sobre.html">SOBRE</a>
+                <a href="sobre.php">SOBRE</a>
             </li>
 
         </ul>
@@ -58,7 +58,7 @@
             <span onclick="abrirPesquisa()">🔍</span>
 
             <!-- Conta -->
-            <a href="login.html" class="icone-conta">
+            <a href="login.php" class="icone-conta">
                 <span>👤</span>
                 <span id="nome-usuario"></span>
             </a>
@@ -75,7 +75,7 @@
             </div>
 
             <!-- Favoritos -->
-            <a href="favoritos.html" class="icone-favoritos">
+            <a href="favoritos.php" class="icone-favoritos">
 
                 ❤️
 
@@ -326,11 +326,11 @@
                 Coleções
             </a>
 
-            <a href="produto.html">
+            <a href="produto.php">
                 Produtos
             </a>
 
-            <a href="sobre.html">
+            <a href="sobre.php">
                 Sobre
             </a>
 

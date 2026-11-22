@@ -42,20 +42,12 @@
                         Nome completo
                     </label>
 
-                  <div class="campo-senha">
-
-    <input
-        type="password"
-        id="senha"
-        placeholder="Crie uma senha"
-        required
-    >
-
-    <button type="button" class="olho-senha" data-target="senha">
-        <span class="olho">👁</span>
-    </button>
-
-</div>
+                    <input
+                        type="text"
+                        id="nome"
+                        placeholder="Digite seu nome completo"
+                        required
+                    >
 
                 </div>
 

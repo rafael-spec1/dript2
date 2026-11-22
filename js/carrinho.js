@@ -81,7 +81,7 @@ function finalizarCompra() {
         alert("Seu carrinho está vazio!");
         return;
     }
-    window.location.href = "checkout.html";
+    window.location.href = "checkout.php";
 }
 
 function salvarCarrinho() {

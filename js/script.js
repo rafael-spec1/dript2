@@ -132,7 +132,7 @@ function carregarProdutos() {
 
             <div class="acoes-produto">
 
-                <a href="${produto.link || `produto.html?id=${produto.id}`}">
+                <a href="${produto.link || `produto.php?id=${produto.id}`}">
 
                     <button class="btn-comprar">
                         Comprar

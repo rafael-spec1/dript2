@@ -4,21 +4,6 @@ session_start();
 
 $mensagem_enviada = false;
 $erro = "";
-
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $nome = trim($_POST["nome"] ?? "");
-    $email = trim($_POST["email"] ?? "");
-    $assunto = trim($_POST["assunto"] ?? "");
-    $mensagem = trim($_POST["mensagem"] ?? "");
-
-    if ($nome === "" || $email === "" || $assunto === "" || $mensagem === "") {
-        $erro = "Preencha todos os campos.";
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $erro = "Digite um e-mail válido.";
-    } else {
-        $mensagem_enviada = true;
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -69,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 </p>
             <?php endif; ?>
 
-            <form method="POST" action="contato.php">
+            <form id="form-contato">
 
                 <label for="nome">Nome</label>
                 <input
@@ -159,11 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
     </div>
 
-    <script>
-        function fecharMensagem() {
-            document.getElementById("mensagemSucesso").classList.remove("ativo");
-        }
-    </script>
+    <script src="../js/contato.js"></script>
 
 </body>
 </html>

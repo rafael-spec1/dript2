@@ -1,5 +1,5 @@
 const formulario = document.getElementById("form-contato");
-const mensagemSucesso = document.getElementById("mensagem-sucesso");
+const mensagemSucesso = document.getElementById("mensagemSucesso");
 
 formulario.addEventListener("submit", function (event) {
     event.preventDefault();

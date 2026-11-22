@@ -25,7 +25,7 @@
         </li>
 
         <li>
-            <a href="sobre.html">SOBRE</a>
+            <a href="sobre.php">SOBRE</a>
         </li>
 
     </ul>
@@ -385,7 +385,7 @@ document.addEventListener(
 
         <a href="produto.php">Produtos</a>
 
-        <a href="sobre.html">Sobre</a>
+        <a href="sobre.php">Sobre</a>
 
     </div>
 

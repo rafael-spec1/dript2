@@ -11,9 +11,9 @@
 <body>
 
 <nav class="navbar">
-    <a href="index.html" class="logo">DRIPT</a>
+    <a href="index.php" class="logo">DRIPT</a>
     <ul class="menu">
-        <li><a href="index.html">INÍCIO</a></li>
+        <li><a href="index.php">INÍCIO</a></li>
     </ul>
 </nav>
 
