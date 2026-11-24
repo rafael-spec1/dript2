@@ -1,6 +1,10 @@
+/* ==========================================
+   DRIPT - PÁGINA DE FAVORITOS
+========================================== */
+
 .pagina-favoritos {
-    background: #0a0a0a;
     min-height: 100vh;
+    background: #0a0a0a;
     color: #fff;
 }
 
@@ -10,6 +14,8 @@
     padding: 150px 0 80px;
 }
 
+/* CABEÇALHO */
+
 .favoritos-topo {
     text-align: center;
     margin-bottom: 55px;
@@ -18,7 +24,7 @@
 .favoritos-topo span {
     color: #e50914;
     font-size: 13px;
-    font-weight: 700;
+    font-weight: 800;
     letter-spacing: 3px;
 }
 
@@ -27,12 +33,13 @@
     font-size: clamp(32px, 5vw, 56px);
     font-weight: 900;
     letter-spacing: -2px;
+    text-transform: uppercase;
 }
 
 .favoritos-topo p {
-    color: #999;
     max-width: 550px;
     margin: 0 auto;
+    color: #999;
     line-height: 1.6;
 }
 
@@ -52,37 +59,39 @@
     color: #fff;
 }
 
-/* Grid */
+/* GRID DE PRODUTOS */
 
 #lista-favoritos {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 28px;
 }
 
 .favorito-card {
     position: relative;
-    background: #111;
-    border: 1px solid #222;
-    border-radius: 14px;
     overflow: hidden;
-    transition: 0.3s ease;
+    background: #111;
+    border: 1px solid #252525;
+    border-radius: 12px;
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 .favorito-card:hover {
     transform: translateY(-6px);
-    border-color: #3a3a3a;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    border-color: #e50914;
 }
+
+/* IMAGEM */
 
 .favorito-imagem {
     position: relative;
     height: 390px;
-    background: #1b1b1b;
     overflow: hidden;
+    background: #171717;
 }
 
 .favorito-imagem img {
+    display: block;
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -90,45 +99,70 @@
 }
 
 .favorito-card:hover .favorito-imagem img {
-    transform: scale(1.04);
+    transform: scale(1.05);
 }
+
+/* BOTÃO REMOVER */
 
 .btn-remover-favorito {
     position: absolute;
+    z-index: 2;
     top: 15px;
     right: 15px;
-    width: 42px;
-    height: 42px;
-    border: 1px solid #333;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 43px;
+    height: 43px;
+
+    padding: 0;
+    border: 1px solid #383838;
     border-radius: 50%;
+
     background: rgba(10, 10, 10, 0.9);
-    color: #fff;
-    font-size: 18px;
+    color: #e50914;
+
     cursor: pointer;
-    transition: 0.2s;
+    transition: 0.25s ease;
+}
+
+.btn-remover-favorito svg {
+    width: 21px;
+    height: 21px;
 }
 
 .btn-remover-favorito:hover {
     background: #e50914;
     border-color: #e50914;
+    color: #fff;
+    transform: scale(1.08);
 }
+
+/* INFORMAÇÕES */
 
 .favorito-info {
     padding: 22px;
 }
 
 .favorito-info h3 {
-    margin: 0 0 8px;
-    font-size: 18px;
+    margin: 0 0 10px;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 800;
     text-transform: uppercase;
 }
 
-.favorito-preco {
-    margin: 0 0 20px;
-    color: #ddd;
-    font-size: 17px;
-    font-weight: 700;
+.favorito-info strong {
+    display: block;
+    margin-bottom: 20px;
+    color: #e50914;
+    font-size: 19px;
+    font-weight: 800;
 }
+
+/* BOTÕES DE AÇÃO */
 
 .favorito-acoes {
     display: flex;
@@ -137,18 +171,28 @@
 
 .btn-ver-produto,
 .btn-comprar-favorito {
+    display: flex;
     flex: 1;
-    padding: 12px;
-    border-radius: 6px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 12px;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 44px;
+    padding: 12px 10px;
+
+    border-radius: 5px;
+    font-size: 11px;
     font-weight: 800;
-    transition: 0.2s;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    text-align: center;
+
+    cursor: pointer;
+    transition: 0.25s ease;
 }
 
 .btn-ver-produto {
-    border: 1px solid #333;
+    border: 1px solid #383838;
+    background: transparent;
     color: #fff;
 }
 
@@ -158,19 +202,20 @@
 }
 
 .btn-comprar-favorito {
+    border: 1px solid #e50914;
     background: #e50914;
     color: #fff;
 }
 
 .btn-comprar-favorito:hover {
+    border-color: #b80710;
     background: #b80710;
 }
 
-/* Estado vazio */
+/* ESTADO VAZIO */
 
 .favoritos-vazio {
     grid-column: 1 / -1;
-
     min-height: 480px;
 
     display: flex;
@@ -180,104 +225,112 @@
 
     padding: 60px 30px;
 
-    background:
-        radial-gradient(circle at center,
+    background: radial-gradient(circle at center,
             rgba(229, 9, 20, 0.08),
-            transparent 55%);
+            transparent 60%);
 
     border: 1px solid #292929;
-    border-radius: 18px;
-
+    border-radius: 16px;
     text-align: center;
 }
 
-.favoritos-vazio .icone {
-    width: 90px;
-    height: 90px;
-
+.vazio-icone {
     display: flex;
     align-items: center;
     justify-content: center;
 
+    width: 90px;
+    height: 90px;
     margin-bottom: 25px;
 
     border: 1px solid #3a3a3a;
     border-radius: 50%;
 
-    color: #e50914;
-    font-size: 42px;
-
     background: #111;
+    color: #e50914;
 
-    box-shadow:
-        0 0 35px rgba(229, 9, 20, 0.12);
+    box-shadow: 0 0 35px rgba(229, 9, 20, 0.12);
+}
+
+.vazio-icone svg {
+    width: 42px;
+    height: 42px;
+}
+
+.favoritos-vazio>span {
+    margin-bottom: 12px;
+    color: #e50914;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 3px;
 }
 
 .favoritos-vazio h2 {
     margin: 0 0 14px;
-
     font-size: clamp(28px, 4vw, 42px);
     font-weight: 900;
-
     letter-spacing: -1px;
     text-transform: uppercase;
 }
 
 .favoritos-vazio p {
     max-width: 500px;
-
     margin: 0 auto 30px;
-
     color: #999;
-
     font-size: 15px;
     line-height: 1.7;
 }
 
-.btn-voltar-produtos {
+/* BOTÃO EXPLORAR */
+
+.btn-ver-produtos {
     display: inline-flex;
     align-items: center;
     justify-content: center;
 
     padding: 15px 28px;
 
+    border: 1px solid #e50914;
+    border-radius: 5px;
+
     background: #e50914;
     color: #fff;
-
-    border-radius: 6px;
-
-    text-decoration: none;
 
     font-size: 12px;
     font-weight: 800;
     letter-spacing: 0.5px;
+    text-decoration: none;
 
     transition: 0.25s ease;
 }
 
-.btn-voltar-produtos:hover {
+.btn-ver-produtos:hover {
     background: #b80710;
-    transform: translateY(-2px);
+    border-color: #b80710;
+    transform: translateY(-3px);
 }
 
-/* Responsivo */
+/* RESPONSIVIDADE */
 
 @media (max-width: 900px) {
-
     #lista-favoritos {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-
 }
 
 @media (max-width: 600px) {
-
     .favoritos-container {
+        width: 92%;
         padding-top: 120px;
+    }
+
+    .favoritos-topo {
+        margin-bottom: 35px;
     }
 
     #lista-favoritos {
         grid-template-columns: 1fr;
+        gap: 20px;
     }
 
     .favorito-imagem {
@@ -288,11 +341,8 @@
         flex-direction: column;
     }
 
-}
-
-/* Remove linha do botão de favorito */
-.btn-remover-favorito {
-    text-decoration: none;
-    border: none;
-    outline: none;
+    .favoritos-vazio {
+        min-height: 420px;
+        padding: 40px 20px;
+    }
 }

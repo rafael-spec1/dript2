@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/pesquisa.css">
+    <link rel="stylesheet" href="../css/icones.css">
 </head>
 
 <body>
@@ -43,51 +44,70 @@
             </li>
 
             <li>
-                <a href="contato.html">CONTATO</a>
+                <a href="contato.php">CONTATO</a>
             </li>
 
             <li>
-                <a href="sobre.html">SOBRE</a>
+                <a href="sobre.php">SOBRE</a>
             </li>
 
         </ul>
 
-        <div class="icons">
+     
+<div class="icons">
 
-            <!-- Pesquisa -->
-            <span onclick="abrirPesquisa()">🔍</span>
+    <!-- Pesquisa -->
+    <span onclick="abrirPesquisa()" class="icone-svg">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="7"/>
+            <path d="m20 20-4-4"/>
+        </svg>
+    </span>
 
-            <!-- Conta -->
-            <a href="login.html" class="icone-conta">
-                <span>👤</span>
-                <span id="nome-usuario"></span>
-            </a>
+    <!-- Conta -->
+    <a href="login.php" class="icone-conta">
+        <span class="icone-svg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="8" r="4"/>
+                <path d="M5 21v-2a7 7 0 0 1 14 0v2"/>
+            </svg>
+        </span>
+        <span id="nome-usuario"></span>
+    </a>
 
-            <!-- Carrinho -->
-            <div class="icone-carrinho">
+    <!-- Carrinho -->
+    <div class="icone-carrinho">
 
-                <span onclick="abrirCarrinho()">🛒</span>
+        <span onclick="abrirCarrinho()" class="icone-svg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"/>
+                <circle cx="19" cy="21" r="1"/>
+                <path d="M1 1h4l2.7 13.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L23 6H6"/>
+            </svg>
+        </span>
 
-                <div class="contador-carrinho" id="contador">
-                    0
-                </div>
-
-            </div>
-
-            <!-- Favoritos -->
-            <a href="favoritos.html" class="icone-favoritos">
-
-                ❤️
-
-                <span id="contador-favoritos">
-                    0
-                </span>
-
-            </a>
-
+        <div class="contador-carrinho" id="contador">
+            0
         </div>
 
-    </nav>
+    </div>
+
+    <!-- Favoritos -->
+    <a href="favoritos.php" class="icone-favoritos">
+
+        <span class="icone-svg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8z"/>
+            </svg>
+        </span>
+
+        <span id="contador-favoritos">0</span>
+
+    </a>
+
+</div>
+
+</nav>
 
 
     <!-- PESQUISA -->
@@ -326,7 +346,7 @@
                 Coleções
             </a>
 
-            <a href="produto.html">
+            <a href="produto.php">
                 Produtos
             </a>
 
@@ -349,33 +369,43 @@
 
 
     <!-- JAVASCRIPT -->
-    <script src="../js/produtos.js"></script>
-    <script src="../js/pesquisa.js"></script>
-    <script src="../js/produto.js"></script>
-    <script src="../js/carrinho.js"></script>
-    <script src="../js/favoritos.js"></script>
-    <script src="../js/loader.js"></script>
-    <script src="../js/script.js"></script>
+  <script src="../js/produtos.js"></script>
+<script src="../js/produto.js"></script>
+<script src="../js/pesquisa.js"></script>
+<script src="../js/carrinho.js"></script>
+<script src="../js/favoritos.js"></script>
+<script src="../js/loader.js"></script>
+<script src="../js/script.js"></script>
 
 
-    <!-- WHATSAPP -->
-    <a
-        href="https://wa.me/5numeros"
-        target="_blank"
-        class="whatsapp-flutuante"
-        aria-label="Falar com a DRIPT pelo WhatsApp"
+<!-- WHATSAPP -->
+<a
+    href="https://wa.me/5numeros"
+    target="_blank"
+    class="whatsapp-flutuante"
+    aria-label="Falar com a DRIPT pelo WhatsApp"
+>
+    <svg
+        viewBox="0 0 32 32"
+        aria-hidden="true"
     >
+        <!-- Contorno do WhatsApp -->
+        <path
+            d="M16 3.5a12.2 12.2 0 0 0-10.5 18.4L4 28l6.3-1.5A12.2 12.2 0 1 0 16 3.5Z"
+            fill="none"
+            stroke="white"
+            stroke-width="2"
+            stroke-linejoin="round"
+        />
 
-        <svg
-            viewBox="0 0 32 32"
-            aria-hidden="true"
-        >
+        <!-- Símbolo do telefone -->
+        <path
+            d="M19.11 17.39c-.29-.14-1.71-.84-1.98-.94-.27-.1-.46-.14-.66.14-.19.29-.75.94-.92 1.13-.17.19-.34.22-.63.07-.29-.14-1.22-.45-2.32-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.59.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.14-.66-1.59-.9-2.18-.24-.57-.48-.49-.66-.5h-.56c-.19 0-.51.07-.77.36-.27.29-1.02 1-1.02 2.44s1.05 2.83 1.2 3.03c.14.19 2.06 3.15 5 4.42.7.3 1.25.48 1.68.61.71.23 1.36.2 1.87.12.57-.08 1.71-.7 1.95-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.54-.34z"
+            fill="white"
+        />
+    </svg>
+</a>
 
-            <path d="M19.11 17.39c-.29-.14-1.71-.84-1.98-.94-.27-.1-.46-.14-.66.14-.19.29-.75.94-.92 1.13-.17.19-.34.22-.63.07-.29-.14-1.22-.45-2.32-1.43-.86-.77-1.44-1.72-1.61-2.01-.17-.29-.02-.45.13-.59.13-.13.29-.34.43-.51.14-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.14-.66-1.59-.9-2.18-.24-.57-.48-.49-.66-.5h-.56c-.19 0-.51.07-.77.36-.27.29-1.02 1-1.02 2.44s1.05 2.83 1.2 3.03c.14.19 2.06 3.15 5 4.42.7.3 1.25.48 1.68.61.71.23 1.36.2 1.87.12.57-.08 1.71-.7 1.95-1.37.24-.67.24-1.25.17-1.37-.07-.12-.26-.19-.54-.34z"/>
-
-        </svg>
-
-    </a>
 
 
     <!-- VERIFICAÇÃO DA SESSÃO DO USUÁRIO -->

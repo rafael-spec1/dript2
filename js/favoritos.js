@@ -1,8 +1,58 @@
 function favoritosLocais() {
-    const favoritos = JSON.parse(localStorage.getItem("favoritos")) || [];
+    const favoritos = JSON.parse(
+        localStorage.getItem("favoritos")
+    ) || [];
+
     return Array.isArray(favoritos) ? favoritos : [];
 }
 
+
+// Protege textos inseridos no HTML
+function escaparHTML(valor) {
+    return String(valor ?? "").replace(/[&<>"']/g, caractere => ({
+        "&": "&amp;",
+        "<": "&lt;",
+        ">": "&gt;",
+        '"': "&quot;",
+        "'": "&#39;"
+    })[caractere]);
+}
+
+
+// Ícone SVG de coração
+function iconeCoracao(favoritado = true) {
+    return `
+        <svg
+            viewBox="0 0 24 24"
+            fill="${favoritado ? 'currentColor' : 'none'}"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            aria-hidden="true"
+        >
+            <path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8z"/>
+        </svg>
+    `;
+}
+
+
+// Atualiza o visual do botão de favorito
+function aplicarEstadoBotao(botao, favoritado) {
+    if (!botao) return;
+
+    botao.innerHTML = iconeCoracao(favoritado);
+
+    botao.classList.toggle("favoritado", favoritado);
+
+    botao.setAttribute(
+        "aria-pressed",
+        String(favoritado)
+    );
+}
+
+
+// Atualiza o contador
 function atualizarContadorFavoritos(total = favoritosLocais().length) {
     const contador = document.getElementById("contador-favoritos");
 
@@ -11,63 +61,63 @@ function atualizarContadorFavoritos(total = favoritosLocais().length) {
     }
 }
 
-function aplicarEstadoBotao(botao, favoritado) {
-    botao.innerHTML = favoritado ? "❤️" : "🤍";
-    botao.classList.toggle("favoritado", favoritado);
-}
 
-// Adiciona ou remove um favorito
+// ==========================================
+// ADICIONAR OU REMOVER FAVORITOS
+// ==========================================
+
 async function favoritarProduto(botao, nome, preco, imagem) {
     const produtoId = Number(botao.dataset.produtoId);
 
-    if (produtoId) {
-        try {
-            const resposta = await fetch("../php/favoritos.php", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    produto_id: produtoId
-                })
-            });
+    if (!produtoId) return;
 
+    try {
+        const resposta = await fetch("../php/favoritos.php", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                produto_id: produtoId
+            })
+        });
+
+        if (resposta.status !== 401) {
             const retorno = await resposta.json();
 
-            if (resposta.status !== 401) {
-                if (!resposta.ok) {
-                    throw new Error(
-                        retorno.mensagem || "Não foi possível salvar o favorito."
-                    );
-                }
-
-                aplicarEstadoBotao(botao, retorno.favoritado);
-                atualizarContadorFavoritos(retorno.total);
-
-                if (document.getElementById("lista-favoritos")) {
-                    carregarFavoritos();
-                }
-
-                return;
+            if (!resposta.ok) {
+                throw new Error(
+                    retorno.mensagem || "Não foi possível atualizar os favoritos."
+                );
             }
 
-        } catch (erro) {
-            alert(erro.message);
+            aplicarEstadoBotao(botao, retorno.favoritado);
+            atualizarContadorFavoritos(retorno.total);
+
+            if (document.getElementById("lista-favoritos")) {
+                await carregarFavoritos();
+            }
+
             return;
         }
+
+    } catch (erro) {
+        alert(erro.message);
+        return;
     }
 
-    // Favoritos de usuário não logado
+    // Usuário não autenticado: armazenamento local
     const favoritos = favoritosLocais();
 
     const indice = favoritos.findIndex(produto =>
-        produto.produtoId === produtoId ||
+        Number(produto.produtoId) === produtoId ||
         produto.nome === nome
     );
 
     if (indice >= 0) {
         favoritos.splice(indice, 1);
         aplicarEstadoBotao(botao, false);
+
     } else {
         favoritos.push({
             produtoId,
@@ -79,29 +129,41 @@ async function favoritarProduto(botao, nome, preco, imagem) {
         aplicarEstadoBotao(botao, true);
     }
 
-    localStorage.setItem("favoritos", JSON.stringify(favoritos));
+    localStorage.setItem(
+        "favoritos",
+        JSON.stringify(favoritos)
+    );
 
     atualizarContadorFavoritos(favoritos.length);
 
     if (document.getElementById("lista-favoritos")) {
-        carregarFavoritos();
+        await carregarFavoritos();
     }
 }
 
-// Busca favoritos
+
+// ==========================================
+// BUSCAR FAVORITOS
+// ==========================================
+
 async function buscarFavoritos() {
     try {
-        const resposta = await fetch("../php/favoritos.php");
+        const resposta = await fetch("/dript2/php/favoritos.php", {
+            credentials: "same-origin",
+            cache: "no-store"
+        });
 
         if (resposta.status === 401) {
             return favoritosLocais();
         }
 
         if (!resposta.ok) {
-            throw new Error("Não foi possível carregar os favoritos.");
+            throw new Error("Erro ao buscar favoritos.");
         }
 
-        return (await resposta.json()).map(produto => ({
+        const dados = await resposta.json();
+
+        return dados.map(produto => ({
             produtoId: Number(produto.produto_id),
             nome: produto.nome,
             preco: Number(produto.preco_centavos) / 100,
@@ -113,7 +175,44 @@ async function buscarFavoritos() {
     }
 }
 
-// Carrega a página de favoritos
+
+// ==========================================
+// ESTADO VAZIO
+// ==========================================
+
+function mostrarFavoritosVazios(lista) {
+    lista.innerHTML = `
+        <div class="favoritos-vazio">
+
+            <div class="vazio-icone">
+                ${iconeCoracao(false)}
+            </div>
+
+            <span>DRIPT COLLECTION</span>
+
+            <h2>NENHUMA PEÇA SALVA</h2>
+
+            <p>
+                Seu próximo drip pode estar esperando por você.
+                Explore nossa coleção e salve suas peças favoritas.
+            </p>
+
+            <a
+                href="index.php#grid-produtos"
+                class="btn-ver-produtos"
+            >
+                EXPLORAR COLEÇÃO
+            </a>
+
+        </div>
+    `;
+}
+
+
+// ==========================================
+// CARREGAR PRODUTOS FAVORITOS
+// ==========================================
+
 async function carregarFavoritos() {
     const lista = document.getElementById("lista-favoritos");
 
@@ -123,90 +222,82 @@ async function carregarFavoritos() {
 
     atualizarContadorFavoritos(favoritos.length);
 
-    // Nenhum favorito
     if (!favoritos.length) {
-        lista.innerHTML = `
-            <div class="favoritos-vazio">
-
-                <div class="vazio-icone">
-                    ♡
-                </div>
-
-                <span>YOUR DRIP</span>
-
-                <h2>SEUS FAVORITOS ESTÃO VAZIOS</h2>
-
-                <p>
-                    Você ainda não salvou nenhuma peça.
-                    Explore nossa coleção e encontre seu próximo drip.
-                </p>
-
-                <a href="index.php#grid-produtos" class="btn-ver-produtos">
-                    VER PRODUTOS
-                </a>
-
-            </div>
-        `;
-
+        mostrarFavoritosVazios(lista);
         return;
     }
 
-    // Mostra os produtos favoritos
-    lista.innerHTML = favoritos.map(produto => `
-        <article class="favorito-card">
+    lista.innerHTML = favoritos.map(produto => {
 
-            <div class="favorito-imagem">
+        const id = Number(produto.produtoId);
+        const nome = escaparHTML(produto.nome);
+        const imagem = escaparHTML(produto.imagem);
 
-                <button
-                    class="btn-remover-favorito"
-                    data-produto-id="${produto.produtoId}"
-                    title="Remover dos favoritos"
-                >
-                    ❤️
-                </button>
+        const preco = Number(produto.preco)
+            .toFixed(2)
+            .replace(".", ",");
 
-                <img
-                    src="${produto.imagem}"
-                    alt="${String(produto.nome).replace(/[&<>"']/g, "")}"
-                >
+        return `
+            <article class="favorito-card" data-produto-id="${id}">
 
-            </div>
-
-            <div class="favorito-info">
-
-                <h3>
-                    ${String(produto.nome).replace(/[&<>"']/g, "")}
-                </h3>
-
-                <strong>
-                    R$ ${Number(produto.preco).toFixed(2).replace(".", ",")}
-                </strong>
-
-                <div class="favorito-acoes">
-
-                    <a
-                        href="produto.php?id=${produto.produtoId}"
-                        class="btn-ver-produto"
-                    >
-                        VER PRODUTO
-                    </a>
+                <div class="favorito-imagem">
 
                     <button
-                        class="btn-comprar-favorito"
-                        data-produto-id="${produto.produtoId}"
+                        type="button"
+                        class="btn-remover-favorito favoritado"
+                        data-produto-id="${id}"
+                        aria-label="Remover ${nome} dos favoritos"
+                        title="Remover dos favoritos"
                     >
-                        COMPRAR
+                        ${iconeCoracao(true)}
                     </button>
+
+                    <img
+                        src="${imagem}"
+                        alt="${nome}"
+                        loading="lazy"
+                    >
 
                 </div>
 
-            </div>
+                <div class="favorito-info">
 
-        </article>
-    `).join("");
+                    <h3>${nome}</h3>
+
+                    <strong>R$ ${preco}</strong>
+
+                    <div class="favorito-acoes">
+
+                        <a
+                            href="produto.php?id=${id}"
+                            class="btn-ver-produto"
+                        >
+                            VER PRODUTO
+                        </a>
+
+                        <button
+                            type="button"
+                            class="btn-comprar-favorito"
+                            data-produto-id="${id}"
+                        >
+                            COMPRAR
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </article>
+        `;
+
+    }).join("");
 }
 
-// Remove favorito diretamente da página
+
+// ==========================================
+// REMOVER FAVORITO
+// ==========================================
+
 async function removerFavorito(produtoId) {
     const botao = document.querySelector(
         `.btn-remover-favorito[data-produto-id="${produtoId}"]`
@@ -222,7 +313,10 @@ async function removerFavorito(produtoId) {
     );
 }
 
-// Sincroniza os corações das outras páginas
+
+// SINCRONIZAR BOTÕES
+// 
+
 async function sincronizarBotoesFavoritos() {
     const favoritos = await buscarFavoritos();
 
@@ -230,8 +324,7 @@ async function sincronizarBotoesFavoritos() {
         favoritos.map(produto => Number(produto.produtoId))
     );
 
-    document
-        .querySelectorAll(".btn-favorito[data-nome]")
+    document.querySelectorAll(".btn-favorito[data-nome]")
         .forEach(botao => {
 
             const salvo =
@@ -246,11 +339,15 @@ async function sincronizarBotoesFavoritos() {
     atualizarContadorFavoritos(favoritos.length);
 }
 
-// Eventos
+
+//EVENTOs
+//
+
 document.addEventListener("DOMContentLoaded", () => {
     carregarFavoritos();
     sincronizarBotoesFavoritos();
 });
+
 
 document.addEventListener("click", event => {
 
@@ -265,6 +362,7 @@ document.addEventListener("click", event => {
         );
     }
 
+
     const botaoRemover = event.target.closest(".btn-remover-favorito");
 
     if (botaoRemover) {
@@ -272,6 +370,7 @@ document.addEventListener("click", event => {
             Number(botaoRemover.dataset.produtoId)
         );
     }
+
 
     const botaoComprar = event.target.closest(".btn-comprar-favorito");
 
@@ -282,4 +381,5 @@ document.addEventListener("click", event => {
 
         window.location.href = `produto.php?id=${id}`;
     }
+
 });

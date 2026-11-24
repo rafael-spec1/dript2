@@ -68,6 +68,30 @@ body {
     cursor: pointer;
 }
 
+/* ESTILO DOS ICONES SVG */
+.icons .icone-svg {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.icons .icone-svg svg {
+    width: 22px;
+    height: 22px;
+    stroke: currentColor;
+    display: block;
+}
+
+.icons .icone-conta,
+.icons .icone-favoritos {
+    color: #fff;
+    text-decoration: none;
+}
+
 
 /*LOGO DRIPT PRINCIPAL TOPO DO SITE*/
 .logo {
@@ -401,13 +425,6 @@ body {
 .menu a:hover {
     color: red;
     text-shadow: 0 0 10px red;
-}
-
-.icons {
-    display: flex;
-    gap: 20px;
-    font-size: 18px;
-    cursor: pointer;
 }
 
 .hero {
@@ -2192,4 +2209,40 @@ button:hover {
 
 .senha-requisitos span.validado {
     color: #2ecc71;
+}
+
+/* ICONES SVG DA DRIPT */
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icons .icone-svg {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    color: #fff;
+    cursor: pointer;
+}
+
+.icons .icone-svg svg {
+    display: block;
+    width: 22px;
+    height: 22px;
+    stroke: currentColor;
+    fill: none;
+    transition: 0.2s ease;
+}
+
+.icons .icone-svg:hover {
+    color: #999;
+}
+
+.icons .icone-conta,
+.icons .icone-favoritos {
+    color: #fff;
+    text-decoration: none;
 }

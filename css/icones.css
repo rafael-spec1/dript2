@@ -1,0 +1,37 @@
+/* ICONES DA DRIPT */
+
+.icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.icons .icone-svg {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.icons .icone-svg svg {
+    width: 22px;
+    height: 22px;
+    display: block;
+    stroke: currentColor;
+    fill: none;
+}
+
+.icons .icone-svg:hover {
+    color: #999;
+}
+
+.icons .icone-conta,
+.icons .icone-favoritos {
+    color: #fff;
+    text-decoration: none;
+}

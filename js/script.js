@@ -31,55 +31,66 @@ function filtrarProdutos(categoria) {
         if (secao) secao.scrollIntoView({ behavior: "smooth" });
 }
 
-
 function renderizarProdutosHome() {
-        let grid = document.getElementById("grid-produtos");
+        const grid = document.getElementById("grid-produtos");
+
         if (!grid || typeof PRODUTOS === "undefined") return;
 
         let html = "";
 
         Object.values(PRODUTOS).forEach(produto => {
+                const nome = String(produto.nome ?? "");
+                const imagem = String(produto.imagem ?? "");
+                const preco = Number(produto.preco) || 0;
+                const id = Number(produto.id);
+
+                const linkProduto = `http://localhost/dript2/html/produto.php?id=${id}`;
+                console.log("LINK DO PRODUTO:", linkProduto);
                 html += `
-       <div class="produto"
-     data-categoria="${produto.categoria}"
-     onclick="window.location.href='produto.php?id=${produto.id}'">
+            <div class="produto"
+                data-categoria="${produto.categoria}"
+                onclick="window.location.href='${linkProduto}'">
 
-            <span class="tag-produto">LIMITED</span>
+                <span class="tag-produto">LIMITED</span>
 
-            <a href="produto.php?id=${produto.id}" class="link-produto">
+                <a href="${linkProduto}" class="link-produto"
+                    onclick="event.stopPropagation()">
 
-                <img src="${produto.imagem}" alt="${produto.nome}">
+                    <img src="${imagem}" alt="${nome}">
 
-                <h3 class="nome-produto">${produto.nome}</h3>
+                    <h3 class="nome-produto">${nome}</h3>
 
-                <p>R$ ${produto.preco.toFixed(2).replace(".", ",")}</p>
+                    <p>R$ ${preco.toFixed(2).replace(".", ",")}</p>
+                </a>
 
-            </a>
+                <div class="acoes-produto">
 
-            <div class="acoes-produto">
+                    <button
+                        type="button"
+                        class="btn-comprar"
+                        onclick="event.stopPropagation(); window.location.href='${linkProduto}'">
+                        Comprar
+                    </button>
 
-                <button class="btn-comprar"
-                    onclick="window.location.href='produto.php?id=${produto.id}'">
-                    Comprar
-                </button>
+                    <button
+                        type="button"
+                        class="btn-favorito"
+                        data-produto-id="${id}"
+                        data-nome="${nome}"
+                        data-preco="${preco}"
+                        data-imagem="${imagem}"
+                        onclick="event.stopPropagation(); favoritarProduto(this, this.dataset.nome, Number(this.dataset.preco), this.dataset.imagem)">
+                        🤍
+                    </button>
 
-               <button class="btn-favorito"
-    onclick="event.stopPropagation()"
-    data-produto-id="${produto.id}"
-    data-nome="${produto.nome}"
-    data-preco="${produto.preco}"
-    data-imagem="${produto.imagem || ""}">
-    🤍
-</button>
-
+                </div>
             </div>
-
-        </div>
         `;
         });
 
         grid.innerHTML = html;
 }
+
 
 
 function ativarEfeitosProdutos() {
@@ -108,56 +119,8 @@ document.addEventListener("DOMContentLoaded", () => {
         renderizarProdutosHome();
 });
 
-function carregarProdutos() {
 
-        const grid = document.getElementById("grid-produtos");
 
-        if (!grid) return;
-
-        grid.innerHTML = "";
-
-        PRODUTOS.forEach(produto => {
-
-                grid.innerHTML += `
-        
-        <div class="produto" data-categoria="${produto.categoria}">
-
-            <span class="tag-produto">${produto.tag}</span>
-
-            <img src="${produto.imagem}" alt="${produto.nome}">
-
-            <h3 class="nome-produto">${produto.nome}</h3>
-
-            <p>R$ ${produto.preco.toFixed(2).replace(".", ",")}</p>
-
-            <div class="acoes-produto">
-
-                <a href="${produto.link || `produto.html?id=${produto.id}`}">
-
-                    <button class="btn-comprar">
-                        Comprar
-                    </button>
-
-                </a>
-
-                <button class="btn-favorito">
-                    🤍
-                </button>
-
-            </div>
-
-        </div>
-
-        `;
-
-        });
-        document.querySelectorAll(".produto").forEach(produto => {
-                produto.classList.add("aparecer");
-        });
-
-}
-
-document.addEventListener("DOMContentLoaded", carregarProdutos);
 
 function abrirPesquisa() {
 
