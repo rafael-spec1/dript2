@@ -1,0 +1,322 @@
+.dashboard-body {
+    min-height: 100vh;
+    padding: 0;
+    background:
+        radial-gradient(circle at 85% 10%, rgba(255, 0, 0, 0.10), transparent 26%),
+        #080808;
+}
+
+.dashboard-sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    padding: 28px 22px;
+    background: #0d0d0d;
+    border-right: 1px solid #242424;
+}
+
+.dashboard-logo {
+    color: #fff;
+    font-size: 27px;
+    font-weight: 800;
+    letter-spacing: 4px;
+    text-decoration: none;
+}
+
+.dashboard-logo span {
+    color: #ff1e1e;
+}
+
+.dashboard-sidebar nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 55px;
+}
+
+.dashboard-sidebar nav a,
+.dashboard-voltar {
+    padding: 12px 14px;
+    color: #777;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.dashboard-sidebar nav a:hover,
+.dashboard-sidebar nav a.ativo {
+    color: #fff;
+    background: #171717;
+    border-left: 3px solid #ff1e1e;
+}
+
+.dashboard-voltar {
+    margin-top: auto;
+    border: 1px solid #292929;
+    text-align: center;
+}
+
+.dashboard-main {
+    margin-left: 220px;
+    min-height: 100vh;
+    padding: 34px;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.dashboard-header h1 {
+    margin-top: 5px;
+    font-size: 32px;
+}
+
+.dashboard-eyebrow,
+.panel-header span {
+    color: #ff3030;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.dashboard-header button {
+    padding: 11px 15px;
+    color: #ddd;
+    background: #111;
+    border: 1px solid #2b2b2b;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.metric-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.metric-card,
+.dashboard-panel {
+    background: rgba(16, 16, 16, 0.96);
+    border: 1px solid #242424;
+    border-radius: 10px;
+}
+
+.metric-card {
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.metric-card.destaque {
+    border-top: 3px solid #ff1e1e;
+}
+
+.metric-card > span {
+    color: #888;
+    font-size: 12px;
+}
+
+.metric-card strong {
+    font-size: 27px;
+}
+
+.metric-card small {
+    color: #777;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 14px;
+}
+
+.dashboard-panel {
+    min-width: 0;
+    padding: 20px;
+}
+
+.pedidos-panel,
+.mais-vendidos {
+    grid-column: 1 / -1;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 18px;
+}
+
+.panel-header h2 {
+    margin-top: 5px;
+    font-size: 17px;
+}
+
+.panel-header > strong {
+    color: #ff3030;
+    font-size: 12px;
+}
+
+.tabela-wrap {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th,
+td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #202020;
+    text-align: left;
+    font-size: 12px;
+}
+
+th {
+    color: #666;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.status {
+    display: inline-block;
+    padding: 5px 8px;
+    border-radius: 20px;
+    background: #252525;
+    color: #bbb;
+    text-transform: capitalize;
+}
+
+.status-recebido {
+    color: #ffb54a;
+    background: rgba(255, 181, 74, 0.12);
+}
+
+.estado-vazio {
+    color: #777;
+    text-align: center;
+}
+
+.lista-resumo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.linha-resumo {
+    display: flex;
+    justify-content: space-between;
+    padding: 13px 14px;
+    background: #111;
+    border: 1px solid #202020;
+    border-radius: 6px;
+    text-transform: capitalize;
+}
+
+.linha-resumo strong {
+    color: #ff3030;
+}
+
+.lista-produtos {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 10px;
+}
+
+.produto-ranking {
+    display: grid;
+    grid-template-columns: auto 48px 1fr;
+    align-items: center;
+    gap: 10px;
+    min-height: 78px;
+    padding: 10px;
+    background: #111;
+    border: 1px solid #202020;
+    border-radius: 7px;
+}
+
+.produto-ranking img {
+    width: 48px;
+    height: 48px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.produto-ranking div {
+    min-width: 0;
+}
+
+.produto-ranking strong,
+.produto-ranking small {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.produto-ranking small {
+    margin-top: 4px;
+    color: #777;
+}
+
+.produto-ranking b {
+    grid-column: 2 / -1;
+    color: #ff3030;
+    font-size: 12px;
+}
+
+.posicao {
+    color: #555;
+    font-size: 11px;
+}
+
+@media (max-width: 1100px) {
+    .metric-grid,
+    .lista-produtos {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 760px) {
+    .dashboard-sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+    }
+
+    .dashboard-sidebar nav {
+        flex-direction: row;
+        margin: 20px 0;
+    }
+
+    .dashboard-voltar {
+        display: none;
+    }
+
+    .dashboard-main {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .metric-grid,
+    .dashboard-grid,
+    .lista-produtos {
+        grid-template-columns: 1fr;
+    }
+
+    .pedidos-panel,
+    .mais-vendidos {
+        grid-column: auto;
+    }
+}

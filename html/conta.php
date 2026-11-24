@@ -69,6 +69,17 @@
 
                 </a>
 
+                <a href="dashboard.php" class="conta-item" id="opcao-dashboard" hidden>
+
+                    <span>⚙</span>
+
+                    <div>
+                        <h3>Painel administrativo</h3>
+                        <p>Gerencie produtos e acompanhe pedidos.</p>
+                    </div>
+
+                </a>
+
             </div>
 
             <button class="btn-sair" onclick="sair()">
@@ -101,6 +112,12 @@
                     .getElementById("saudacao-usuario")
                     .innerText =
                     `Olá, ${usuario.nome.split(" ")[0]}. Bem-vindo à DRIPT.`;
+
+                if (usuario.tipo === "admin") {
+                    document
+                        .getElementById("opcao-dashboard")
+                        .hidden = false;
+                }
 
             })
 

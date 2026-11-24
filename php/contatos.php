@@ -21,7 +21,11 @@ if ($nome === '' || !filter_var($email, FILTER_VALIDATE_EMAIL) || $mensagem === 
 }
 
 require __DIR__ . '/conexao.php';
-$comando = $pdo->prepare('INSERT INTO contatos (nome, email, mensagem) VALUES (:nome, :email, :mensagem)');
-$comando->execute([':nome' => $nome, ':email' => $email, ':mensagem' => $mensagem]);
-
-echo json_encode(['mensagem' => 'Mensagem recebida.']);
+try {
+    $comando = $pdo->prepare('INSERT INTO contatos (nome, email, mensagem) VALUES (:nome, :email, :mensagem)');
+    $comando->execute([':nome' => $nome, ':email' => $email, ':mensagem' => $mensagem]);
+    echo json_encode(['mensagem' => 'Mensagem recebida.']);
+} catch (PDOException $erro) {
+    http_response_code(500);
+    echo json_encode(['mensagem' => 'Nao foi possivel salvar a mensagem.']);
+}

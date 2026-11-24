@@ -79,6 +79,10 @@
     font-size: 12px;
 }
 
+.conta-item[hidden] {
+    display: none;
+}
+
 
 /* PEDIDOS */
 

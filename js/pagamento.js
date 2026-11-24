@@ -125,7 +125,7 @@ listaPedido.querySelectorAll(".item-carrinho").forEach(item => {
 });
 
 // Valida os dados antes de permitir avançar
-document.getElementById("btn-finalizar").addEventListener("click", function () {
+document.getElementById("btn-finalizar").addEventListener("click", async function () {
     const nome = document.getElementById("nome").value.trim();
     const email = document.getElementById("email").value.trim();
     const cep = document.getElementById("cep").value.trim();
@@ -133,9 +133,9 @@ document.getElementById("btn-finalizar").addEventListener("click", function () {
     const endereco = document.getElementById("endereco").value.trim();
     const cidade = document.getElementById("cidade").value.trim();
     const pagamento = document.querySelector('input[name="pagamento"]:checked');
-    const itens = listaPedido.querySelector(".item-carrinho");
+    const itemNoResumo = listaPedido.querySelector(".item-carrinho");
 
-    if (!itens) {
+    if (!itemNoResumo) {
         alert("Seu carrinho está vazio!");
         return;
     }
@@ -150,5 +150,34 @@ document.getElementById("btn-finalizar").addEventListener("click", function () {
         return;
     }
 
-    alert("Dados validados! A finalização real do pedido ainda precisa ser conectada ao sistema de pedidos.");
+    const itens = Array.from(listaPedido.querySelectorAll(".item-carrinho")).map(item => ({
+        produto_id: Number(item.dataset.produtoId),
+        quantidade: Number(item.dataset.quantidade) || 1,
+        tamanho: item.dataset.tamanho || null
+    }));
+
+    try {
+        const resposta = await fetch("../php/pedidos.php", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                metodo: pagamento.value,
+                itens,
+                entrega: { nome, email, cep, endereco, numero, cidade }
+            })
+        });
+        const retorno = await resposta.json();
+
+        if (!resposta.ok) {
+            throw new Error(retorno.mensagem || "Não foi possível finalizar o pedido.");
+        }
+
+        localStorage.removeItem("carrinho");
+        localStorage.removeItem("total");
+        localStorage.removeItem("contador");
+        alert("Pedido realizado com sucesso!");
+        window.location.href = "pedidos.php";
+    } catch (erro) {
+        alert(erro.message);
+    }
 });

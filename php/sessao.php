@@ -27,4 +27,5 @@ echo json_encode([
     'id' => (int) $_SESSION['usuario_id'],
     'nome' => $_SESSION['usuario_nome'],
     'email' => $_SESSION['usuario_email'],
+    'tipo' => $_SESSION['usuario_tipo'] ?? 'cliente',
 ]);

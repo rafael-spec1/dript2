@@ -117,6 +117,13 @@ CREATE TABLE IF NOT EXISTS favoritos (
     FOREIGN KEY (produto_id) REFERENCES produtos(id) ON DELETE CASCADE
 );
 
+CREATE TABLE IF NOT EXISTS logins (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    usuario_id INT NOT NULL,
+    criado_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
+);
+
 INSERT IGNORE INTO produtos
     (id, nome, preco_centavos, categoria, imagem, tag, descricao, avaliacao)
 VALUES

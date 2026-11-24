@@ -38,4 +38,15 @@ $_SESSION['usuario_nome'] = $usuario['nome'];
 $_SESSION['usuario_email'] = $usuario['email'];
 $_SESSION['usuario_tipo'] = $usuario['tipo'];
 
+$pdo->exec(
+    'CREATE TABLE IF NOT EXISTS logins (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        usuario_id INT NOT NULL,
+        criado_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (usuario_id) REFERENCES usuarios(id) ON DELETE CASCADE
+    )'
+);
+$registrarLogin = $pdo->prepare('INSERT INTO logins (usuario_id) VALUES (:usuario_id)');
+$registrarLogin->execute([':usuario_id' => (int) $usuario['id']]);
+
 echo json_encode(['mensagem' => 'Login realizado.', 'usuario' => ['nome' => $usuario['nome'], 'email' => $usuario['email']]]);

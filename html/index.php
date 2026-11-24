@@ -350,7 +350,7 @@
                 Produtos
             </a>
 
-            <a href="sobre.html">
+            <a href="sobre.php">
                 Sobre
             </a>
 
